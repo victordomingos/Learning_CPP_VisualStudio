@@ -1,3 +1,7 @@
+// Simulação de Tarifa (Produção 1)
+// 2019-05-29
+// Victor Domingos
+
 #include "Form1.h"
 
 using namespace System;
