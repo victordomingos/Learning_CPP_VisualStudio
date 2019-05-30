@@ -35,13 +35,13 @@ namespace ProjCLR {
 			}
 		}
     private: System::Windows::Forms::DataGridView^ dataGridView1;
-    private: System::Windows::Forms::TextBox^ txt_search;
+
     protected:
 
 
 
 
-    private: System::Windows::Forms::Label^ lbl_pesquisar;
+
 
 
 
@@ -51,16 +51,27 @@ namespace ProjCLR {
     private: System::Windows::Forms::Label^ label3;
     private: System::Windows::Forms::Label^ label2;
     private: System::Windows::Forms::Label^ label1;
-    private: System::Windows::Forms::TextBox^ textBox4;
-    private: System::Windows::Forms::TextBox^ textBox3;
-    private: System::Windows::Forms::TextBox^ textBox2;
-    private: System::Windows::Forms::Button^ btn_del_selected;
+    private: System::Windows::Forms::TextBox^ txt_ano;
+
+    private: System::Windows::Forms::TextBox^ txt_cidade;
+
+    private: System::Windows::Forms::TextBox^ txt_nome;
+
+
     private: System::Windows::Forms::Button^ btn_insert;
     private: System::Windows::Forms::Button^ btn_messagebox;
     private: System::Windows::Forms::Button^ btn_del_incomplete;
     private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nome;
     private: System::Windows::Forms::DataGridViewTextBoxColumn^ Cidade;
     private: System::Windows::Forms::DataGridViewTextBoxColumn^ AnoNasc;
+    private: System::Windows::Forms::GroupBox^ groupBox1;
+    private: System::Windows::Forms::Button^ btn_remover;
+    private: System::Windows::Forms::Label^ label4;
+    private: System::Windows::Forms::TextBox^ txt_nome_a_remover;
+    private: System::Windows::Forms::TextBox^ txt_search;
+    private: System::Windows::Forms::Button^ btn_del_seleted;
+
+    private: System::ComponentModel::IContainer^ components;
 
 
 
@@ -72,7 +83,7 @@ namespace ProjCLR {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -85,8 +96,6 @@ namespace ProjCLR {
             this->Nome = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
             this->Cidade = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
             this->AnoNasc = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-            this->txt_search = (gcnew System::Windows::Forms::TextBox());
-            this->lbl_pesquisar = (gcnew System::Windows::Forms::Label());
             this->btn_inicializar = (gcnew System::Windows::Forms::Button());
             this->btn_limpar = (gcnew System::Windows::Forms::Button());
             this->grpbx_novo = (gcnew System::Windows::Forms::GroupBox());
@@ -94,18 +103,25 @@ namespace ProjCLR {
             this->label3 = (gcnew System::Windows::Forms::Label());
             this->label2 = (gcnew System::Windows::Forms::Label());
             this->label1 = (gcnew System::Windows::Forms::Label());
-            this->textBox4 = (gcnew System::Windows::Forms::TextBox());
-            this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-            this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-            this->btn_del_selected = (gcnew System::Windows::Forms::Button());
+            this->txt_ano = (gcnew System::Windows::Forms::TextBox());
+            this->txt_cidade = (gcnew System::Windows::Forms::TextBox());
+            this->txt_nome = (gcnew System::Windows::Forms::TextBox());
             this->btn_messagebox = (gcnew System::Windows::Forms::Button());
             this->btn_del_incomplete = (gcnew System::Windows::Forms::Button());
+            this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+            this->btn_remover = (gcnew System::Windows::Forms::Button());
+            this->label4 = (gcnew System::Windows::Forms::Label());
+            this->txt_nome_a_remover = (gcnew System::Windows::Forms::TextBox());
+            this->txt_search = (gcnew System::Windows::Forms::TextBox());
+            this->btn_del_seleted = (gcnew System::Windows::Forms::Button());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             this->grpbx_novo->SuspendLayout();
+            this->groupBox1->SuspendLayout();
             this->SuspendLayout();
             // 
             // dataGridView1
             // 
+            this->dataGridView1->AllowUserToAddRows = false;
             this->dataGridView1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
                 | System::Windows::Forms::AnchorStyles::Left)
                 | System::Windows::Forms::AnchorStyles::Right));
@@ -117,7 +133,9 @@ namespace ProjCLR {
             });
             this->dataGridView1->Location = System::Drawing::Point(0, 198);
             this->dataGridView1->Name = L"dataGridView1";
+            this->dataGridView1->RowHeadersVisible = false;
             this->dataGridView1->RowTemplate->Resizable = System::Windows::Forms::DataGridViewTriState::True;
+            this->dataGridView1->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
             this->dataGridView1->ShowEditingIcon = false;
             this->dataGridView1->Size = System::Drawing::Size(784, 363);
             this->dataGridView1->TabIndex = 0;
@@ -141,25 +159,6 @@ namespace ProjCLR {
             this->AnoNasc->HeaderText = L"Ano Nasc.";
             this->AnoNasc->Name = L"AnoNasc";
             this->AnoNasc->Width = 82;
-            // 
-            // txt_search
-            // 
-            this->txt_search->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-            this->txt_search->Location = System::Drawing::Point(642, 13);
-            this->txt_search->Name = L"txt_search";
-            this->txt_search->Size = System::Drawing::Size(130, 20);
-            this->txt_search->TabIndex = 1;
-            this->txt_search->TextChanged += gcnew System::EventHandler(this, &Form1::Txt_search_TextChanged);
-            // 
-            // lbl_pesquisar
-            // 
-            this->lbl_pesquisar->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-            this->lbl_pesquisar->AutoSize = true;
-            this->lbl_pesquisar->Location = System::Drawing::Point(684, 35);
-            this->lbl_pesquisar->Name = L"lbl_pesquisar";
-            this->lbl_pesquisar->Size = System::Drawing::Size(53, 13);
-            this->lbl_pesquisar->TabIndex = 2;
-            this->lbl_pesquisar->Text = L"Pesquisar";
             // 
             // btn_inicializar
             // 
@@ -187,9 +186,9 @@ namespace ProjCLR {
             this->grpbx_novo->Controls->Add(this->label3);
             this->grpbx_novo->Controls->Add(this->label2);
             this->grpbx_novo->Controls->Add(this->label1);
-            this->grpbx_novo->Controls->Add(this->textBox4);
-            this->grpbx_novo->Controls->Add(this->textBox3);
-            this->grpbx_novo->Controls->Add(this->textBox2);
+            this->grpbx_novo->Controls->Add(this->txt_ano);
+            this->grpbx_novo->Controls->Add(this->txt_cidade);
+            this->grpbx_novo->Controls->Add(this->txt_nome);
             this->grpbx_novo->Location = System::Drawing::Point(13, 66);
             this->grpbx_novo->Name = L"grpbx_novo";
             this->grpbx_novo->Size = System::Drawing::Size(349, 126);
@@ -205,6 +204,7 @@ namespace ProjCLR {
             this->btn_insert->TabIndex = 6;
             this->btn_insert->Text = L"Inserir";
             this->btn_insert->UseVisualStyleBackColor = true;
+            this->btn_insert->Click += gcnew System::EventHandler(this, &Form1::Btn_insert_Click);
             // 
             // label3
             // 
@@ -233,41 +233,31 @@ namespace ProjCLR {
             this->label1->TabIndex = 3;
             this->label1->Text = L"Nome";
             // 
-            // textBox4
+            // txt_ano
             // 
-            this->textBox4->Location = System::Drawing::Point(110, 87);
-            this->textBox4->Name = L"textBox4";
-            this->textBox4->Size = System::Drawing::Size(87, 20);
-            this->textBox4->TabIndex = 2;
+            this->txt_ano->Location = System::Drawing::Point(110, 87);
+            this->txt_ano->Name = L"txt_ano";
+            this->txt_ano->Size = System::Drawing::Size(87, 20);
+            this->txt_ano->TabIndex = 2;
             // 
-            // textBox3
+            // txt_cidade
             // 
-            this->textBox3->Location = System::Drawing::Point(110, 61);
-            this->textBox3->Name = L"textBox3";
-            this->textBox3->Size = System::Drawing::Size(228, 20);
-            this->textBox3->TabIndex = 1;
+            this->txt_cidade->Location = System::Drawing::Point(110, 61);
+            this->txt_cidade->Name = L"txt_cidade";
+            this->txt_cidade->Size = System::Drawing::Size(228, 20);
+            this->txt_cidade->TabIndex = 1;
             // 
-            // textBox2
+            // txt_nome
             // 
-            this->textBox2->Location = System::Drawing::Point(110, 35);
-            this->textBox2->Name = L"textBox2";
-            this->textBox2->Size = System::Drawing::Size(228, 20);
-            this->textBox2->TabIndex = 0;
-            // 
-            // btn_del_selected
-            // 
-            this->btn_del_selected->Anchor = System::Windows::Forms::AnchorStyles::Top;
-            this->btn_del_selected->Location = System::Drawing::Point(329, 13);
-            this->btn_del_selected->Name = L"btn_del_selected";
-            this->btn_del_selected->Size = System::Drawing::Size(125, 23);
-            this->btn_del_selected->TabIndex = 6;
-            this->btn_del_selected->Text = L"Eliminar Selecionado";
-            this->btn_del_selected->UseVisualStyleBackColor = true;
+            this->txt_nome->Location = System::Drawing::Point(110, 35);
+            this->txt_nome->Name = L"txt_nome";
+            this->txt_nome->Size = System::Drawing::Size(228, 20);
+            this->txt_nome->TabIndex = 0;
             // 
             // btn_messagebox
             // 
-            this->btn_messagebox->Anchor = System::Windows::Forms::AnchorStyles::Top;
-            this->btn_messagebox->Location = System::Drawing::Point(231, 13);
+            this->btn_messagebox->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+            this->btn_messagebox->Location = System::Drawing::Point(231, 12);
             this->btn_messagebox->Name = L"btn_messagebox";
             this->btn_messagebox->Size = System::Drawing::Size(92, 23);
             this->btn_messagebox->TabIndex = 7;
@@ -278,26 +268,84 @@ namespace ProjCLR {
             // btn_del_incomplete
             // 
             this->btn_del_incomplete->Anchor = System::Windows::Forms::AnchorStyles::Top;
-            this->btn_del_incomplete->Location = System::Drawing::Point(460, 13);
+            this->btn_del_incomplete->Location = System::Drawing::Point(329, 12);
             this->btn_del_incomplete->Name = L"btn_del_incomplete";
             this->btn_del_incomplete->Size = System::Drawing::Size(125, 23);
             this->btn_del_incomplete->TabIndex = 8;
             this->btn_del_incomplete->Text = L"Eliminar incompletos";
             this->btn_del_incomplete->UseVisualStyleBackColor = true;
+            this->btn_del_incomplete->Click += gcnew System::EventHandler(this, &Form1::Btn_del_incomplete_Click);
+            // 
+            // groupBox1
+            // 
+            this->groupBox1->Controls->Add(this->btn_remover);
+            this->groupBox1->Controls->Add(this->label4);
+            this->groupBox1->Controls->Add(this->txt_nome_a_remover);
+            this->groupBox1->Location = System::Drawing::Point(385, 66);
+            this->groupBox1->Name = L"groupBox1";
+            this->groupBox1->Size = System::Drawing::Size(387, 77);
+            this->groupBox1->TabIndex = 9;
+            this->groupBox1->TabStop = false;
+            this->groupBox1->Text = L"Remover registo";
+            // 
+            // btn_remover
+            // 
+            this->btn_remover->Location = System::Drawing::Point(302, 34);
+            this->btn_remover->Name = L"btn_remover";
+            this->btn_remover->Size = System::Drawing::Size(75, 23);
+            this->btn_remover->TabIndex = 2;
+            this->btn_remover->Text = L"Remover";
+            this->btn_remover->UseVisualStyleBackColor = true;
+            this->btn_remover->Click += gcnew System::EventHandler(this, &Form1::Btn_remover_Click);
+            // 
+            // label4
+            // 
+            this->label4->AutoSize = true;
+            this->label4->Location = System::Drawing::Point(34, 38);
+            this->label4->Name = L"label4";
+            this->label4->Size = System::Drawing::Size(35, 13);
+            this->label4->TabIndex = 1;
+            this->label4->Text = L"Nome";
+            // 
+            // txt_nome_a_remover
+            // 
+            this->txt_nome_a_remover->Location = System::Drawing::Point(75, 35);
+            this->txt_nome_a_remover->Name = L"txt_nome_a_remover";
+            this->txt_nome_a_remover->Size = System::Drawing::Size(221, 20);
+            this->txt_nome_a_remover->TabIndex = 0;
+            // 
+            // txt_search
+            // 
+            this->txt_search->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+            this->txt_search->Location = System::Drawing::Point(638, 14);
+            this->txt_search->Name = L"txt_search";
+            this->txt_search->Size = System::Drawing::Size(134, 20);
+            this->txt_search->TabIndex = 10;
+            this->txt_search->TextChanged += gcnew System::EventHandler(this, &Form1::Txt_search_TextChanged_1);
+            // 
+            // btn_del_seleted
+            // 
+            this->btn_del_seleted->Location = System::Drawing::Point(460, 12);
+            this->btn_del_seleted->Name = L"btn_del_seleted";
+            this->btn_del_seleted->Size = System::Drawing::Size(129, 23);
+            this->btn_del_seleted->TabIndex = 11;
+            this->btn_del_seleted->Text = L"Eliminar selecionados";
+            this->btn_del_seleted->UseVisualStyleBackColor = true;
+            this->btn_del_seleted->Click += gcnew System::EventHandler(this, &Form1::Btn_del_seleted_Click);
             // 
             // Form1
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
             this->ClientSize = System::Drawing::Size(784, 561);
+            this->Controls->Add(this->btn_del_seleted);
+            this->Controls->Add(this->txt_search);
+            this->Controls->Add(this->groupBox1);
             this->Controls->Add(this->btn_del_incomplete);
             this->Controls->Add(this->btn_messagebox);
-            this->Controls->Add(this->btn_del_selected);
             this->Controls->Add(this->grpbx_novo);
             this->Controls->Add(this->btn_limpar);
             this->Controls->Add(this->btn_inicializar);
-            this->Controls->Add(this->lbl_pesquisar);
-            this->Controls->Add(this->txt_search);
             this->Controls->Add(this->dataGridView1);
             this->MinimumSize = System::Drawing::Size(800, 600);
             this->Name = L"Form1";
@@ -305,15 +353,15 @@ namespace ProjCLR {
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
             this->grpbx_novo->ResumeLayout(false);
             this->grpbx_novo->PerformLayout();
+            this->groupBox1->ResumeLayout(false);
+            this->groupBox1->PerformLayout();
             this->ResumeLayout(false);
             this->PerformLayout();
 
         }
 #pragma endregion
     private: System::Void Txt_search_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-        int p;
-        //TODO
-
+       
     }
 private: System::Void Btn_inicializar_Click(System::Object^ sender, System::EventArgs^ e) {
     dataGridView1->Rows->Add("Miguel Borges", "Viana do Castelo", "1983");
@@ -334,6 +382,60 @@ private: System::Void Btn_messagebox_Click(System::Object^ sender, System::Event
         dados += "\n";
     }
     MessageBox::Show(dados, "Todos os Nomes");
+}
+private: System::Void Btn_insert_Click(System::Object^ sender, System::EventArgs^ e) {
+    dataGridView1->Rows->Add(txt_nome->Text, txt_cidade->Text, txt_ano->Text);
+}
+private: System::Void Btn_del_selected_Click(System::Object^ sender, System::EventArgs^ e) {
+//    DataGridViewSelectedRowCollection selected = dataGridView1->SelectedRows;
+    
+}
+private: System::Void Btn_remover_Click(System::Object^ sender, System::EventArgs^ e) {
+    String^ grid_name;
+    String^ nome_a_remover = txt_nome_a_remover->Text->ToUpper();
+
+    for (int i = 0; i < dataGridView1->Rows->Count; i++) // -1 porque a ultima linha é a de novo registo
+    {
+        grid_name = dataGridView1->Rows[i]->Cells[0]->Value->ToString()->ToUpper();
+
+        if (nome_a_remover == grid_name)
+        {
+            dataGridView1->Rows->RemoveAt(i);
+        }
+    }
+}
+private: System::Void Btn_del_incomplete_Click(System::Object^ sender, System::EventArgs^ e) {
+    for (int i = 0; i < dataGridView1->Rows->Count; i++) // -1 porque a ultima linha é a de novo registo
+    {
+        if ("" == dataGridView1->Rows[i]->Cells[0]->Value->ToString()->ToUpper())
+        {
+            dataGridView1->Rows->RemoveAt(i);
+        }
+    }
+}
+private: System::Void Txt_search_TextChanged_1(System::Object^ sender, System::EventArgs^ e) {
+    String^ grid_name;
+    String^ search_name = txt_search->Text->ToUpper();
+
+    for (int i = 0; i < dataGridView1->Rows->Count; i++)
+    {
+        grid_name = dataGridView1->Rows[i]->Cells[0]->Value->ToString()->ToUpper();
+
+        if (search_name == grid_name)
+        {
+            dataGridView1->Rows[i]->Selected = true;
+        } 
+    }
+
+}
+private: System::Void Btn_del_seleted_Click(System::Object^ sender, System::EventArgs^ e) {
+
+    for each (DataGridViewRow^ linha in dataGridView1->SelectedRows)
+    {
+        dataGridView1->Rows->Remove(linha);
+    }
+}
+private: System::Void Tooltip_pesquisa_Popup(System::Object^ sender, System::Windows::Forms::PopupEventArgs^ e) {
 }
 };
 }
