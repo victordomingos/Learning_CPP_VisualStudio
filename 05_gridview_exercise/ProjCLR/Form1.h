@@ -313,6 +313,7 @@ namespace ProjCLR {
             this->txt_nome_a_remover->Name = L"txt_nome_a_remover";
             this->txt_nome_a_remover->Size = System::Drawing::Size(221, 20);
             this->txt_nome_a_remover->TabIndex = 0;
+            this->txt_nome_a_remover->TextChanged += gcnew System::EventHandler(this, &Form1::Txt_nome_a_remover_TextChanged);
             // 
             // txt_search
             // 
@@ -405,37 +406,42 @@ private: System::Void Btn_remover_Click(System::Object^ sender, System::EventArg
     }
 }
 private: System::Void Btn_del_incomplete_Click(System::Object^ sender, System::EventArgs^ e) {
-    for (int i = 0; i < dataGridView1->Rows->Count; i++) // -1 porque a ultima linha é a de novo registo
+    int n_linhas = dataGridView1->Rows->Count;
+
+    for (int i = 0; i < n_linhas; i++) // -1 porque a ultima linha é a de novo registo
     {
         if ("" == dataGridView1->Rows[i]->Cells[0]->Value->ToString()->ToUpper())
         {
             dataGridView1->Rows->RemoveAt(i);
+            i--; // Ao apagar uma linha, linha seguinte muda de posição.
+            n_linhas--; // Ao apagar uma linha, o número de linhas fica menor.
         }
     }
 }
 private: System::Void Txt_search_TextChanged_1(System::Object^ sender, System::EventArgs^ e) {
     String^ grid_name;
     String^ search_name = txt_search->Text->ToUpper();
+    int n_linhas = dataGridView1->Rows->Count;
 
-    for (int i = 0; i < dataGridView1->Rows->Count; i++)
+    dataGridView1->ClearSelection();
+
+    for (int i = 0; i < n_linhas; i++)
     {
         grid_name = dataGridView1->Rows[i]->Cells[0]->Value->ToString()->ToUpper();
 
         if (search_name == grid_name)
-        {
             dataGridView1->Rows[i]->Selected = true;
-        } 
     }
 
 }
 private: System::Void Btn_del_seleted_Click(System::Object^ sender, System::EventArgs^ e) {
-
     for each (DataGridViewRow^ linha in dataGridView1->SelectedRows)
-    {
         dataGridView1->Rows->Remove(linha);
-    }
 }
+
 private: System::Void Tooltip_pesquisa_Popup(System::Object^ sender, System::Windows::Forms::PopupEventArgs^ e) {
+}
+private: System::Void Txt_nome_a_remover_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
