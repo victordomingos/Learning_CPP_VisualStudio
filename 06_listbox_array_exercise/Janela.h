@@ -14,6 +14,9 @@ namespace My06listboxarrayexercise {
 	/// </summary>
 	public ref class Janela : public System::Windows::Forms::Form
 	{
+    // Declare a new garbage-collected array that will be accessible to all methods.
+    public: static array<String^>^ arr_nomes = gcnew array<String^>(20);
+
 	public:
 		Janela(void)
 		{
@@ -83,17 +86,17 @@ namespace My06listboxarrayexercise {
             this->btn_clear = (gcnew System::Windows::Forms::Button());
             this->btn_search = (gcnew System::Windows::Forms::Button());
             this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+            this->lbl_name_position = (gcnew System::Windows::Forms::Label());
+            this->label5 = (gcnew System::Windows::Forms::Label());
             this->label2 = (gcnew System::Windows::Forms::Label());
             this->txt_name = (gcnew System::Windows::Forms::TextBox());
             this->grp_replace = (gcnew System::Windows::Forms::GroupBox());
-            this->txt_find = (gcnew System::Windows::Forms::TextBox());
-            this->label3 = (gcnew System::Windows::Forms::Label());
-            this->label4 = (gcnew System::Windows::Forms::Label());
-            this->txt_replace = (gcnew System::Windows::Forms::TextBox());
-            this->btn_replace = (gcnew System::Windows::Forms::Button());
-            this->label5 = (gcnew System::Windows::Forms::Label());
-            this->lbl_name_position = (gcnew System::Windows::Forms::Label());
             this->btn_locate = (gcnew System::Windows::Forms::Button());
+            this->btn_replace = (gcnew System::Windows::Forms::Button());
+            this->txt_replace = (gcnew System::Windows::Forms::TextBox());
+            this->label4 = (gcnew System::Windows::Forms::Label());
+            this->label3 = (gcnew System::Windows::Forms::Label());
+            this->txt_find = (gcnew System::Windows::Forms::TextBox());
             this->btn_update = (gcnew System::Windows::Forms::Button());
             this->lbx_listbox = (gcnew System::Windows::Forms::ListBox());
             this->chk_auto_update = (gcnew System::Windows::Forms::CheckBox());
@@ -116,7 +119,7 @@ namespace My06listboxarrayexercise {
             this->label1->AutoSize = true;
             this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label1->Location = System::Drawing::Point(9, 9);
+            this->label1->Location = System::Drawing::Point(6, 18);
             this->label1->Name = L"label1";
             this->label1->Size = System::Drawing::Size(209, 29);
             this->label1->TabIndex = 1;
@@ -130,10 +133,11 @@ namespace My06listboxarrayexercise {
             this->btn_clear->TabIndex = 2;
             this->btn_clear->Text = L"Clear array";
             this->btn_clear->UseVisualStyleBackColor = true;
+            this->btn_clear->Click += gcnew System::EventHandler(this, &Janela::Btn_clear_Click);
             // 
             // btn_search
             // 
-            this->btn_search->Location = System::Drawing::Point(134, 26);
+            this->btn_search->Location = System::Drawing::Point(132, 16);
             this->btn_search->Name = L"btn_search";
             this->btn_search->Size = System::Drawing::Size(62, 23);
             this->btn_search->TabIndex = 3;
@@ -153,6 +157,25 @@ namespace My06listboxarrayexercise {
             this->groupBox1->TabIndex = 4;
             this->groupBox1->TabStop = false;
             this->groupBox1->Text = L"Find position of name";
+            // 
+            // lbl_name_position
+            // 
+            this->lbl_name_position->AutoSize = true;
+            this->lbl_name_position->Location = System::Drawing::Point(53, 47);
+            this->lbl_name_position->Name = L"lbl_name_position";
+            this->lbl_name_position->Size = System::Drawing::Size(24, 13);
+            this->lbl_name_position->TabIndex = 8;
+            this->lbl_name_position->Text = L"n/a";
+            // 
+            // label5
+            // 
+            this->label5->AutoSize = true;
+            this->label5->Location = System::Drawing::Point(4, 21);
+            this->label5->Name = L"label5";
+            this->label5->Size = System::Drawing::Size(38, 13);
+            this->label5->TabIndex = 7;
+            this->label5->Text = L"Name:";
+            this->label5->Click += gcnew System::EventHandler(this, &Janela::Label5_Click);
             // 
             // label2
             // 
@@ -187,37 +210,14 @@ namespace My06listboxarrayexercise {
             this->grp_replace->TabStop = false;
             this->grp_replace->Text = L"Find/Replace";
             // 
-            // txt_find
+            // btn_locate
             // 
-            this->txt_find->Location = System::Drawing::Point(56, 19);
-            this->txt_find->Name = L"txt_find";
-            this->txt_find->Size = System::Drawing::Size(72, 20);
-            this->txt_find->TabIndex = 0;
-            // 
-            // label3
-            // 
-            this->label3->AutoSize = true;
-            this->label3->Location = System::Drawing::Point(6, 22);
-            this->label3->Name = L"label3";
-            this->label3->Size = System::Drawing::Size(30, 13);
-            this->label3->TabIndex = 1;
-            this->label3->Text = L"Find:";
-            // 
-            // label4
-            // 
-            this->label4->AutoSize = true;
-            this->label4->Location = System::Drawing::Point(6, 49);
-            this->label4->Name = L"label4";
-            this->label4->Size = System::Drawing::Size(50, 13);
-            this->label4->TabIndex = 2;
-            this->label4->Text = L"Replace:";
-            // 
-            // txt_replace
-            // 
-            this->txt_replace->Location = System::Drawing::Point(56, 46);
-            this->txt_replace->Name = L"txt_replace";
-            this->txt_replace->Size = System::Drawing::Size(72, 20);
-            this->txt_replace->TabIndex = 3;
+            this->btn_locate->Location = System::Drawing::Point(134, 17);
+            this->btn_locate->Name = L"btn_locate";
+            this->btn_locate->Size = System::Drawing::Size(62, 23);
+            this->btn_locate->TabIndex = 5;
+            this->btn_locate->Text = L"Locate";
+            this->btn_locate->UseVisualStyleBackColor = true;
             // 
             // btn_replace
             // 
@@ -228,33 +228,37 @@ namespace My06listboxarrayexercise {
             this->btn_replace->Text = L"Replace";
             this->btn_replace->UseVisualStyleBackColor = true;
             // 
-            // label5
+            // txt_replace
             // 
-            this->label5->AutoSize = true;
-            this->label5->Location = System::Drawing::Point(4, 21);
-            this->label5->Name = L"label5";
-            this->label5->Size = System::Drawing::Size(38, 13);
-            this->label5->TabIndex = 7;
-            this->label5->Text = L"Name:";
-            this->label5->Click += gcnew System::EventHandler(this, &Janela::Label5_Click);
+            this->txt_replace->Location = System::Drawing::Point(56, 46);
+            this->txt_replace->Name = L"txt_replace";
+            this->txt_replace->Size = System::Drawing::Size(72, 20);
+            this->txt_replace->TabIndex = 3;
             // 
-            // lbl_name_position
+            // label4
             // 
-            this->lbl_name_position->AutoSize = true;
-            this->lbl_name_position->Location = System::Drawing::Point(53, 47);
-            this->lbl_name_position->Name = L"lbl_name_position";
-            this->lbl_name_position->Size = System::Drawing::Size(24, 13);
-            this->lbl_name_position->TabIndex = 8;
-            this->lbl_name_position->Text = L"n/a";
+            this->label4->AutoSize = true;
+            this->label4->Location = System::Drawing::Point(6, 49);
+            this->label4->Name = L"label4";
+            this->label4->Size = System::Drawing::Size(50, 13);
+            this->label4->TabIndex = 2;
+            this->label4->Text = L"Replace:";
             // 
-            // btn_locate
+            // label3
             // 
-            this->btn_locate->Location = System::Drawing::Point(134, 17);
-            this->btn_locate->Name = L"btn_locate";
-            this->btn_locate->Size = System::Drawing::Size(62, 23);
-            this->btn_locate->TabIndex = 5;
-            this->btn_locate->Text = L"Locate";
-            this->btn_locate->UseVisualStyleBackColor = true;
+            this->label3->AutoSize = true;
+            this->label3->Location = System::Drawing::Point(6, 22);
+            this->label3->Name = L"label3";
+            this->label3->Size = System::Drawing::Size(30, 13);
+            this->label3->TabIndex = 1;
+            this->label3->Text = L"Find:";
+            // 
+            // txt_find
+            // 
+            this->txt_find->Location = System::Drawing::Point(56, 19);
+            this->txt_find->Name = L"txt_find";
+            this->txt_find->Size = System::Drawing::Size(72, 20);
+            this->txt_find->TabIndex = 0;
             // 
             // btn_update
             // 
@@ -264,6 +268,7 @@ namespace My06listboxarrayexercise {
             this->btn_update->TabIndex = 6;
             this->btn_update->Text = L"Update from array";
             this->btn_update->UseVisualStyleBackColor = true;
+            this->btn_update->Click += gcnew System::EventHandler(this, &Janela::Btn_update_Click);
             // 
             // lbx_listbox
             // 
@@ -308,18 +313,54 @@ namespace My06listboxarrayexercise {
 
         }
 #pragma endregion
-    private: System::Void Button1_Click(System::Object^ sender, System::EventArgs^ e) {
-    }
-    private: System::Void Label2_Click(System::Object^ sender, System::EventArgs^ e) {
-    }
-private: System::Void Label5_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void Txt_name_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void TextBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+
+private: void init_array()
+{
+    arr_nomes[0] = "Aarão Costa Gomes";
+    arr_nomes[1] = "Ana Rita Cunha";
+    arr_nomes[2] = "Bela Costa Silva";
+    arr_nomes[3] = "Carlos Alberto Costa";
+    arr_nomes[4] = "Carlos Serafim Ferreira";
+    arr_nomes[5] = "Daniel Bastos Gomes";
+    arr_nomes[6] = "Diogo Silva Ferraz";
+    arr_nomes[7] = "Elvira Gomes Pendes";
+    arr_nomes[8] = "Fernanda Maria Silva";
+    arr_nomes[9] = "Fernando Gomes Barros";
+    arr_nomes[10] = "Gilherme Alexandre Barros";
+    arr_nomes[11] = "Hilda Fonseca Silva";
+    arr_nomes[12] = "José Manuel Carvalho";
+    arr_nomes[13] = "José Alberto Gomes";
+    arr_nomes[14] = "Maria Silvéria Bastos";
+    arr_nomes[15] = "Anabela Bastos Torres";
+    arr_nomes[16] = "Teodoro Armando Matos";
 }
 
-private: System::Void CheckBox1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+private: void update_from_array()
+{
+    lbx_listbox->Items->Clear();
+    for (size_t i = 0; arr_nomes[i]!=nullptr; i++) 
+        lbx_listbox->Items->Add(arr_nomes[i]);
 }
+
+private: void clear_array()
+{
+    for (size_t i = 0; arr_nomes[i]!=nullptr; i++)
+    {
+        arr_nomes[i] = nullptr;
+    }
+}
+
+private: System::Void Button1_Click(System::Object^ sender, System::EventArgs^ e) { init_array(); }
+
+private: System::Void Label2_Click(System::Object^ sender, System::EventArgs^ e) {}
+private: System::Void Label5_Click(System::Object^ sender, System::EventArgs^ e) {}
+
+private: System::Void Txt_name_TextChanged(System::Object^ sender, System::EventArgs^ e) {}
+private: System::Void TextBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {}
+private: System::Void CheckBox1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {}
+
+
+private: System::Void Btn_update_Click(System::Object^ sender, System::EventArgs^ e) { update_from_array(); }
+private: System::Void Btn_clear_Click(System::Object^ sender, System::EventArgs^ e) { clear_array(); }
 };
 }
