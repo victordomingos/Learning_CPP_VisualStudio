@@ -37,9 +37,9 @@ namespace ProjCLR {
     private: System::Windows::Forms::DataGridView^ dataGridView1;
     private: System::Windows::Forms::ListBox^ listBox1;
     private: System::Windows::Forms::GroupBox^ groupBox1;
-    private: System::Windows::Forms::Button^ button9;
-    private: System::Windows::Forms::Button^ button8;
-    private: System::Windows::Forms::Button^ button7;
+
+
+
     private: System::Windows::Forms::Button^ button6;
     private: System::Windows::Forms::Button^ button5;
     private: System::Windows::Forms::Button^ button4;
@@ -61,17 +61,25 @@ namespace ProjCLR {
 
     private: System::Windows::Forms::ToolStripMenuItem^ identificarOMaisVelhoToolStripMenuItem;
     private: System::Windows::Forms::TextBox^ txt_freguesia;
-    private: System::Windows::Forms::Button^ btn_freguesia;
+    private: System::Windows::Forms::Button^ btn_masculino;
+
     private: System::Windows::Forms::GroupBox^ groupBox2;
+
+
+
+
+
+    private: System::Windows::Forms::ToolStripMenuItem^ visualizaçãoToolStripMenuItem;
+    private: System::Windows::Forms::ToolStripMenuItem^ mostrarToolStripMenuItem;
+    private: System::Windows::Forms::ToolStripMenuItem^ mostrarOcultarSeletorDeLinhasToolStripMenuItem;
+    private: System::Windows::Forms::ToolStripMenuItem^ mostrarOcultarColunaDelegadoToolStripMenuItem;
     private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nome;
     private: System::Windows::Forms::DataGridViewTextBoxColumn^ Localidade;
     private: System::Windows::Forms::DataGridViewTextBoxColumn^ Ano;
     private: System::Windows::Forms::DataGridViewTextBoxColumn^ Género;
     private: System::Windows::Forms::DataGridViewTextBoxColumn^ Delegado;
-    private: System::Windows::Forms::ToolStripMenuItem^ visualizaçãoToolStripMenuItem;
-    private: System::Windows::Forms::ToolStripMenuItem^ mostrarToolStripMenuItem;
-    private: System::Windows::Forms::ToolStripMenuItem^ mostrarOcultarSeletorDeLinhasToolStripMenuItem;
-    private: System::Windows::Forms::ToolStripMenuItem^ mostrarOcultarColunaDelegadoToolStripMenuItem;
+    private: System::Windows::Forms::Button^ btn_feminino;
+    private: System::Windows::Forms::ToolStripMenuItem^ novoDelegadoSortearToolStripMenuItem;
 
 
 
@@ -112,9 +120,6 @@ namespace ProjCLR {
             this->Delegado = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
             this->listBox1 = (gcnew System::Windows::Forms::ListBox());
             this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-            this->button9 = (gcnew System::Windows::Forms::Button());
-            this->button8 = (gcnew System::Windows::Forms::Button());
-            this->button7 = (gcnew System::Windows::Forms::Button());
             this->button6 = (gcnew System::Windows::Forms::Button());
             this->button5 = (gcnew System::Windows::Forms::Button());
             this->button4 = (gcnew System::Windows::Forms::Button());
@@ -127,12 +132,14 @@ namespace ProjCLR {
             this->visualizaçãoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->mostrarToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->mostrarOcultarSeletorDeLinhasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->mostrarOcultarColunaDelegadoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->ajudaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->acercaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->txt_freguesia = (gcnew System::Windows::Forms::TextBox());
-            this->btn_freguesia = (gcnew System::Windows::Forms::Button());
+            this->btn_masculino = (gcnew System::Windows::Forms::Button());
             this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
-            this->mostrarOcultarColunaDelegadoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->btn_feminino = (gcnew System::Windows::Forms::Button());
+            this->novoDelegadoSortearToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             this->groupBox1->SuspendLayout();
             this->menuStrip1->SuspendLayout();
@@ -151,11 +158,11 @@ namespace ProjCLR {
                 this->Nome, this->Localidade,
                     this->Ano, this->Género, this->Delegado
             });
-            this->dataGridView1->Location = System::Drawing::Point(0, 157);
+            this->dataGridView1->Location = System::Drawing::Point(0, 127);
             this->dataGridView1->Name = L"dataGridView1";
             this->dataGridView1->RowHeadersVisible = false;
             this->dataGridView1->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->dataGridView1->Size = System::Drawing::Size(751, 563);
+            this->dataGridView1->Size = System::Drawing::Size(751, 593);
             this->dataGridView1->TabIndex = 0;
             // 
             // Nome
@@ -191,6 +198,7 @@ namespace ProjCLR {
             // 
             // Delegado
             // 
+            this->Delegado->FillWeight = 80;
             this->Delegado->HeaderText = L"Delegado";
             this->Delegado->Name = L"Delegado";
             // 
@@ -199,16 +207,13 @@ namespace ProjCLR {
             this->listBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
                 | System::Windows::Forms::AnchorStyles::Right));
             this->listBox1->FormattingEnabled = true;
-            this->listBox1->Location = System::Drawing::Point(758, 157);
+            this->listBox1->Location = System::Drawing::Point(758, 127);
             this->listBox1->Name = L"listBox1";
-            this->listBox1->Size = System::Drawing::Size(248, 563);
+            this->listBox1->Size = System::Drawing::Size(248, 589);
             this->listBox1->TabIndex = 1;
             // 
             // groupBox1
             // 
-            this->groupBox1->Controls->Add(this->button9);
-            this->groupBox1->Controls->Add(this->button8);
-            this->groupBox1->Controls->Add(this->button7);
             this->groupBox1->Controls->Add(this->button6);
             this->groupBox1->Controls->Add(this->button5);
             this->groupBox1->Controls->Add(this->button4);
@@ -216,37 +221,10 @@ namespace ProjCLR {
             this->groupBox1->Controls->Add(this->button2);
             this->groupBox1->Location = System::Drawing::Point(12, 38);
             this->groupBox1->Name = L"groupBox1";
-            this->groupBox1->Size = System::Drawing::Size(265, 113);
+            this->groupBox1->Size = System::Drawing::Size(265, 83);
             this->groupBox1->TabIndex = 2;
             this->groupBox1->TabStop = false;
             this->groupBox1->Text = L"Ferramentas";
-            // 
-            // button9
-            // 
-            this->button9->Location = System::Drawing::Point(181, 79);
-            this->button9->Name = L"button9";
-            this->button9->Size = System::Drawing::Size(75, 23);
-            this->button9->TabIndex = 8;
-            this->button9->Text = L"button9";
-            this->button9->UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            this->button8->Location = System::Drawing::Point(99, 79);
-            this->button8->Name = L"button8";
-            this->button8->Size = System::Drawing::Size(75, 23);
-            this->button8->TabIndex = 7;
-            this->button8->Text = L"button8";
-            this->button8->UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this->button7->Location = System::Drawing::Point(17, 79);
-            this->button7->Name = L"button7";
-            this->button7->Size = System::Drawing::Size(75, 23);
-            this->button7->TabIndex = 6;
-            this->button7->Text = L"button7";
-            this->button7->UseVisualStyleBackColor = true;
             // 
             // button6
             // 
@@ -307,6 +285,7 @@ namespace ProjCLR {
             // 
             // delegadoToolStripMenuItem
             // 
+            this->delegadoToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->novoDelegadoSortearToolStripMenuItem });
             this->delegadoToolStripMenuItem->Name = L"delegadoToolStripMenuItem";
             this->delegadoToolStripMenuItem->Size = System::Drawing::Size(69, 20);
             this->delegadoToolStripMenuItem->Text = L"Delegado";
@@ -349,6 +328,13 @@ namespace ProjCLR {
             this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Text = L"Mostrar/Ocultar Coluna de Seleção de Linhas";
             this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MostrarOcultarSeletorDeLinhasToolStripMenuItem_Click);
             // 
+            // mostrarOcultarColunaDelegadoToolStripMenuItem
+            // 
+            this->mostrarOcultarColunaDelegadoToolStripMenuItem->Name = L"mostrarOcultarColunaDelegadoToolStripMenuItem";
+            this->mostrarOcultarColunaDelegadoToolStripMenuItem->Size = System::Drawing::Size(312, 22);
+            this->mostrarOcultarColunaDelegadoToolStripMenuItem->Text = L"Mostrar/Ocultar Coluna \"Delegado\"";
+            this->mostrarOcultarColunaDelegadoToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MostrarOcultarColunaDelegadoToolStripMenuItem_Click);
+            // 
             // ajudaToolStripMenuItem
             // 
             this->ajudaToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->acercaToolStripMenuItem });
@@ -366,37 +352,46 @@ namespace ProjCLR {
             // 
             this->txt_freguesia->Location = System::Drawing::Point(8, 23);
             this->txt_freguesia->Name = L"txt_freguesia";
-            this->txt_freguesia->Size = System::Drawing::Size(159, 20);
+            this->txt_freguesia->Size = System::Drawing::Size(202, 20);
             this->txt_freguesia->TabIndex = 4;
             this->txt_freguesia->Leave += gcnew System::EventHandler(this, &Form1::Btn_freguesia_Click);
             // 
-            // btn_freguesia
+            // btn_masculino
             // 
-            this->btn_freguesia->Location = System::Drawing::Point(8, 50);
-            this->btn_freguesia->Name = L"btn_freguesia";
-            this->btn_freguesia->Size = System::Drawing::Size(75, 23);
-            this->btn_freguesia->TabIndex = 5;
-            this->btn_freguesia->Text = L"Masculino";
-            this->btn_freguesia->UseVisualStyleBackColor = true;
-            this->btn_freguesia->Click += gcnew System::EventHandler(this, &Form1::Btn_freguesia_Click);
+            this->btn_masculino->Location = System::Drawing::Point(53, 50);
+            this->btn_masculino->Name = L"btn_masculino";
+            this->btn_masculino->Size = System::Drawing::Size(75, 23);
+            this->btn_masculino->TabIndex = 5;
+            this->btn_masculino->Text = L"Masculino";
+            this->btn_masculino->UseVisualStyleBackColor = true;
+            this->btn_masculino->Click += gcnew System::EventHandler(this, &Form1::Btn_freguesia_Click);
             // 
             // groupBox2
             // 
+            this->groupBox2->Controls->Add(this->btn_feminino);
             this->groupBox2->Controls->Add(this->txt_freguesia);
-            this->groupBox2->Controls->Add(this->btn_freguesia);
-            this->groupBox2->Location = System::Drawing::Point(294, 38);
+            this->groupBox2->Controls->Add(this->btn_masculino);
+            this->groupBox2->Location = System::Drawing::Point(295, 38);
             this->groupBox2->Name = L"groupBox2";
-            this->groupBox2->Size = System::Drawing::Size(180, 86);
+            this->groupBox2->Size = System::Drawing::Size(216, 83);
             this->groupBox2->TabIndex = 6;
             this->groupBox2->TabStop = false;
             this->groupBox2->Text = L"Pesquisar por localidade/género";
             // 
-            // mostrarOcultarColunaDelegadoToolStripMenuItem
+            // btn_feminino
             // 
-            this->mostrarOcultarColunaDelegadoToolStripMenuItem->Name = L"mostrarOcultarColunaDelegadoToolStripMenuItem";
-            this->mostrarOcultarColunaDelegadoToolStripMenuItem->Size = System::Drawing::Size(312, 22);
-            this->mostrarOcultarColunaDelegadoToolStripMenuItem->Text = L"Mostrar/Ocultar Coluna \"Delegado\"";
-            this->mostrarOcultarColunaDelegadoToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MostrarOcultarColunaDelegadoToolStripMenuItem_Click);
+            this->btn_feminino->Location = System::Drawing::Point(135, 50);
+            this->btn_feminino->Name = L"btn_feminino";
+            this->btn_feminino->Size = System::Drawing::Size(75, 23);
+            this->btn_feminino->TabIndex = 6;
+            this->btn_feminino->Text = L"Feminino";
+            this->btn_feminino->UseVisualStyleBackColor = true;
+            // 
+            // novoDelegadoSortearToolStripMenuItem
+            // 
+            this->novoDelegadoSortearToolStripMenuItem->Name = L"novoDelegadoSortearToolStripMenuItem";
+            this->novoDelegadoSortearToolStripMenuItem->Size = System::Drawing::Size(204, 22);
+            this->novoDelegadoSortearToolStripMenuItem->Text = L"Novo Delegado (Sortear)";
             // 
             // Form1
             // 
