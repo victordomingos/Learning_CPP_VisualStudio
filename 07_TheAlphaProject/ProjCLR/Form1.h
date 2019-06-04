@@ -70,6 +70,7 @@ namespace ProjCLR {
     private: System::Windows::Forms::DataGridViewTextBoxColumn^ Delegado;
     private: System::Windows::Forms::ToolStripMenuItem^ visualizaçãoToolStripMenuItem;
     private: System::Windows::Forms::ToolStripMenuItem^ mostrarToolStripMenuItem;
+    private: System::Windows::Forms::ToolStripMenuItem^ mostrarOcultarSeletorDeLinhasToolStripMenuItem;
 
 
 
@@ -129,6 +130,7 @@ namespace ProjCLR {
             this->txt_freguesia = (gcnew System::Windows::Forms::TextBox());
             this->btn_freguesia = (gcnew System::Windows::Forms::Button());
             this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
+            this->mostrarOcultarSeletorDeLinhasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             this->groupBox1->SuspendLayout();
             this->menuStrip1->SuspendLayout();
@@ -323,7 +325,10 @@ namespace ProjCLR {
             // 
             // visualizaçãoToolStripMenuItem
             // 
-            this->visualizaçãoToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->mostrarToolStripMenuItem });
+            this->visualizaçãoToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+                this->mostrarToolStripMenuItem,
+                    this->mostrarOcultarSeletorDeLinhasToolStripMenuItem
+            });
             this->visualizaçãoToolStripMenuItem->Name = L"visualizaçãoToolStripMenuItem";
             this->visualizaçãoToolStripMenuItem->Size = System::Drawing::Size(35, 20);
             this->visualizaçãoToolStripMenuItem->Text = L"Ver";
@@ -331,7 +336,7 @@ namespace ProjCLR {
             // mostrarToolStripMenuItem
             // 
             this->mostrarToolStripMenuItem->Name = L"mostrarToolStripMenuItem";
-            this->mostrarToolStripMenuItem->Size = System::Drawing::Size(268, 22);
+            this->mostrarToolStripMenuItem->Size = System::Drawing::Size(312, 22);
             this->mostrarToolStripMenuItem->Text = L"Mostrar/Ocultar Linha de Introdução";
             this->mostrarToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MostrarToolStripMenuItem_Click);
             // 
@@ -376,6 +381,13 @@ namespace ProjCLR {
             this->groupBox2->TabIndex = 6;
             this->groupBox2->TabStop = false;
             this->groupBox2->Text = L"Pesquisar por localidade/género";
+            // 
+            // mostrarOcultarSeletorDeLinhasToolStripMenuItem
+            // 
+            this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Name = L"mostrarOcultarSeletorDeLinhasToolStripMenuItem";
+            this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Size = System::Drawing::Size(312, 22);
+            this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Text = L"Mostrar/Ocultar Coluna de Seleção de Linhas";
+            this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MostrarOcultarSeletorDeLinhasToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -531,6 +543,18 @@ namespace ProjCLR {
         }
     }
 
+    private: void alternar_row_headers()
+    {
+        if (dataGridView1->RowHeadersVisible)
+        {
+            dataGridView1->RowHeadersVisible = false;
+
+        }
+        else
+        {
+            dataGridView1->RowHeadersVisible = true;
+        }
+    }
 
 
 
@@ -542,5 +566,6 @@ private: System::Void IdentificarOMaisVelhoToolStripMenuItem_Click(System::Objec
 private: System::Void Btn_freguesia_Click(System::Object^ sender, System::EventArgs^ e) { procurar_por_localidade(); }
 
 private: System::Void MostrarToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { alternar_linha_introducao(); }
+private: System::Void MostrarOcultarSeletorDeLinhasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { alternar_row_headers(); }
 };
 }
