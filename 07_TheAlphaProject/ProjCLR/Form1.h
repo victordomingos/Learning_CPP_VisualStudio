@@ -103,6 +103,11 @@ namespace ProjCLR {
 		void InitializeComponent(void)
 		{
             this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+            this->Nome = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+            this->Localidade = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+            this->Ano = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+            this->Género = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+            this->Delegado = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
             this->listBox1 = (gcnew System::Windows::Forms::ListBox());
             this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
             this->button9 = (gcnew System::Windows::Forms::Button());
@@ -117,18 +122,13 @@ namespace ProjCLR {
             this->delegadoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->estatísticasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->identificarOMaisVelhoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->visualizaçãoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->mostrarToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->ajudaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->acercaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->txt_freguesia = (gcnew System::Windows::Forms::TextBox());
             this->btn_freguesia = (gcnew System::Windows::Forms::Button());
             this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
-            this->Nome = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-            this->Localidade = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-            this->Ano = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-            this->Género = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-            this->Delegado = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-            this->visualizaçãoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-            this->mostrarToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             this->groupBox1->SuspendLayout();
             this->menuStrip1->SuspendLayout();
@@ -149,11 +149,46 @@ namespace ProjCLR {
             });
             this->dataGridView1->Location = System::Drawing::Point(0, 157);
             this->dataGridView1->Name = L"dataGridView1";
-            this->dataGridView1->ReadOnly = true;
             this->dataGridView1->RowHeadersVisible = false;
             this->dataGridView1->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
             this->dataGridView1->Size = System::Drawing::Size(751, 563);
             this->dataGridView1->TabIndex = 0;
+            // 
+            // Nome
+            // 
+            this->Nome->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+            this->Nome->FillWeight = 200;
+            this->Nome->HeaderText = L"Nome";
+            this->Nome->MinimumWidth = 250;
+            this->Nome->Name = L"Nome";
+            // 
+            // Localidade
+            // 
+            this->Localidade->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+            this->Localidade->HeaderText = L"Localidade";
+            this->Localidade->MinimumWidth = 80;
+            this->Localidade->Name = L"Localidade";
+            // 
+            // Ano
+            // 
+            this->Ano->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+            this->Ano->FillWeight = 57.94401F;
+            this->Ano->HeaderText = L"Ano";
+            this->Ano->MinimumWidth = 80;
+            this->Ano->Name = L"Ano";
+            // 
+            // Género
+            // 
+            this->Género->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+            this->Género->FillWeight = 50;
+            this->Género->HeaderText = L"Género";
+            this->Género->MinimumWidth = 25;
+            this->Género->Name = L"Género";
+            // 
+            // Delegado
+            // 
+            this->Delegado->HeaderText = L"Delegado";
+            this->Delegado->Name = L"Delegado";
             // 
             // listBox1
             // 
@@ -286,6 +321,20 @@ namespace ProjCLR {
             this->identificarOMaisVelhoToolStripMenuItem->Text = L"Identificar o mais velho";
             this->identificarOMaisVelhoToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::IdentificarOMaisVelhoToolStripMenuItem_Click);
             // 
+            // visualizaçãoToolStripMenuItem
+            // 
+            this->visualizaçãoToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->mostrarToolStripMenuItem });
+            this->visualizaçãoToolStripMenuItem->Name = L"visualizaçãoToolStripMenuItem";
+            this->visualizaçãoToolStripMenuItem->Size = System::Drawing::Size(35, 20);
+            this->visualizaçãoToolStripMenuItem->Text = L"Ver";
+            // 
+            // mostrarToolStripMenuItem
+            // 
+            this->mostrarToolStripMenuItem->Name = L"mostrarToolStripMenuItem";
+            this->mostrarToolStripMenuItem->Size = System::Drawing::Size(268, 22);
+            this->mostrarToolStripMenuItem->Text = L"Mostrar/Ocultar Linha de Introdução";
+            this->mostrarToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MostrarToolStripMenuItem_Click);
+            // 
             // ajudaToolStripMenuItem
             // 
             this->ajudaToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->acercaToolStripMenuItem });
@@ -327,60 +376,6 @@ namespace ProjCLR {
             this->groupBox2->TabIndex = 6;
             this->groupBox2->TabStop = false;
             this->groupBox2->Text = L"Pesquisar por localidade/género";
-            // 
-            // Nome
-            // 
-            this->Nome->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-            this->Nome->FillWeight = 200;
-            this->Nome->HeaderText = L"Nome";
-            this->Nome->MinimumWidth = 250;
-            this->Nome->Name = L"Nome";
-            this->Nome->ReadOnly = true;
-            // 
-            // Localidade
-            // 
-            this->Localidade->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-            this->Localidade->HeaderText = L"Localidade";
-            this->Localidade->MinimumWidth = 80;
-            this->Localidade->Name = L"Localidade";
-            this->Localidade->ReadOnly = true;
-            // 
-            // Ano
-            // 
-            this->Ano->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-            this->Ano->FillWeight = 57.94401F;
-            this->Ano->HeaderText = L"Ano";
-            this->Ano->MinimumWidth = 80;
-            this->Ano->Name = L"Ano";
-            this->Ano->ReadOnly = true;
-            // 
-            // Género
-            // 
-            this->Género->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-            this->Género->FillWeight = 50;
-            this->Género->HeaderText = L"Género";
-            this->Género->MinimumWidth = 25;
-            this->Género->Name = L"Género";
-            this->Género->ReadOnly = true;
-            // 
-            // Delegado
-            // 
-            this->Delegado->HeaderText = L"Delegado";
-            this->Delegado->Name = L"Delegado";
-            this->Delegado->ReadOnly = true;
-            // 
-            // visualizaçãoToolStripMenuItem
-            // 
-            this->visualizaçãoToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->mostrarToolStripMenuItem });
-            this->visualizaçãoToolStripMenuItem->Name = L"visualizaçãoToolStripMenuItem";
-            this->visualizaçãoToolStripMenuItem->Size = System::Drawing::Size(83, 20);
-            this->visualizaçãoToolStripMenuItem->Text = L"Visualização";
-            // 
-            // mostrarToolStripMenuItem
-            // 
-            this->mostrarToolStripMenuItem->Name = L"mostrarToolStripMenuItem";
-            this->mostrarToolStripMenuItem->Size = System::Drawing::Size(115, 22);
-            this->mostrarToolStripMenuItem->Text = L"Mostrar";
             // 
             // Form1
             // 
@@ -470,7 +465,8 @@ namespace ProjCLR {
 
         array<String^>^ resultados = gcnew array<String^>(100) {""};
         int linhas = -1;
-
+        bool linha_intro = dataGridView1->AllowUserToAddRows;
+        dataGridView1->AllowUserToAddRows = false;
 
         dataGridView1->ClearSelection();
         listBox1->Items->Clear();
@@ -518,9 +514,22 @@ namespace ProjCLR {
                 listBox1->Items->Add("Total: " + (linhas+1));
             }
         }
+        dataGridView1->AllowUserToAddRows = linha_intro;
+
     }
 
-
+    private: void alternar_linha_introducao()
+    {
+        if (dataGridView1->AllowUserToAddRows)
+        {
+            dataGridView1->AllowUserToAddRows = false;
+                        
+        }
+        else
+        {
+            dataGridView1->AllowUserToAddRows = true;
+        }
+    }
 
 
 
@@ -532,5 +541,6 @@ private: System::Void IdentificarOMaisVelhoToolStripMenuItem_Click(System::Objec
 }
 private: System::Void Btn_freguesia_Click(System::Object^ sender, System::EventArgs^ e) { procurar_por_localidade(); }
 
+private: System::Void MostrarToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { alternar_linha_introducao(); }
 };
 }
