@@ -71,6 +71,7 @@ namespace ProjCLR {
     private: System::Windows::Forms::ToolStripMenuItem^ visualizaçãoToolStripMenuItem;
     private: System::Windows::Forms::ToolStripMenuItem^ mostrarToolStripMenuItem;
     private: System::Windows::Forms::ToolStripMenuItem^ mostrarOcultarSeletorDeLinhasToolStripMenuItem;
+    private: System::Windows::Forms::ToolStripMenuItem^ mostrarOcultarColunaDelegadoToolStripMenuItem;
 
 
 
@@ -125,12 +126,13 @@ namespace ProjCLR {
             this->identificarOMaisVelhoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->visualizaçãoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->mostrarToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->mostrarOcultarSeletorDeLinhasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->ajudaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->acercaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->txt_freguesia = (gcnew System::Windows::Forms::TextBox());
             this->btn_freguesia = (gcnew System::Windows::Forms::Button());
             this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
-            this->mostrarOcultarSeletorDeLinhasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->mostrarOcultarColunaDelegadoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             this->groupBox1->SuspendLayout();
             this->menuStrip1->SuspendLayout();
@@ -325,9 +327,9 @@ namespace ProjCLR {
             // 
             // visualizaçãoToolStripMenuItem
             // 
-            this->visualizaçãoToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+            this->visualizaçãoToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
                 this->mostrarToolStripMenuItem,
-                    this->mostrarOcultarSeletorDeLinhasToolStripMenuItem
+                    this->mostrarOcultarSeletorDeLinhasToolStripMenuItem, this->mostrarOcultarColunaDelegadoToolStripMenuItem
             });
             this->visualizaçãoToolStripMenuItem->Name = L"visualizaçãoToolStripMenuItem";
             this->visualizaçãoToolStripMenuItem->Size = System::Drawing::Size(35, 20);
@@ -339,6 +341,13 @@ namespace ProjCLR {
             this->mostrarToolStripMenuItem->Size = System::Drawing::Size(312, 22);
             this->mostrarToolStripMenuItem->Text = L"Mostrar/Ocultar Linha de Introdução";
             this->mostrarToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MostrarToolStripMenuItem_Click);
+            // 
+            // mostrarOcultarSeletorDeLinhasToolStripMenuItem
+            // 
+            this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Name = L"mostrarOcultarSeletorDeLinhasToolStripMenuItem";
+            this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Size = System::Drawing::Size(312, 22);
+            this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Text = L"Mostrar/Ocultar Coluna de Seleção de Linhas";
+            this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MostrarOcultarSeletorDeLinhasToolStripMenuItem_Click);
             // 
             // ajudaToolStripMenuItem
             // 
@@ -382,12 +391,12 @@ namespace ProjCLR {
             this->groupBox2->TabStop = false;
             this->groupBox2->Text = L"Pesquisar por localidade/género";
             // 
-            // mostrarOcultarSeletorDeLinhasToolStripMenuItem
+            // mostrarOcultarColunaDelegadoToolStripMenuItem
             // 
-            this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Name = L"mostrarOcultarSeletorDeLinhasToolStripMenuItem";
-            this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Size = System::Drawing::Size(312, 22);
-            this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Text = L"Mostrar/Ocultar Coluna de Seleção de Linhas";
-            this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MostrarOcultarSeletorDeLinhasToolStripMenuItem_Click);
+            this->mostrarOcultarColunaDelegadoToolStripMenuItem->Name = L"mostrarOcultarColunaDelegadoToolStripMenuItem";
+            this->mostrarOcultarColunaDelegadoToolStripMenuItem->Size = System::Drawing::Size(312, 22);
+            this->mostrarOcultarColunaDelegadoToolStripMenuItem->Text = L"Mostrar/Ocultar Coluna \"Delegado\"";
+            this->mostrarOcultarColunaDelegadoToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MostrarOcultarColunaDelegadoToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -547,6 +556,14 @@ namespace ProjCLR {
     }
 
 
+    private: void alternar_col_delegado()
+    {
+        if (dataGridView1->Columns["Delegado"]->Visible)
+            dataGridView1->Columns["Delegado"]->Visible = false;
+        else
+            dataGridView1->Columns["Delegado"]->Visible = true;
+    }
+
 
     private: System::Void Btn_init_grid_Click(System::Object^ sender, System::EventArgs^ e) { init_grid(); }
 private: System::Void Form1_Load(System::Object^ sender, System::EventArgs^ e) { init_grid(); }
@@ -557,5 +574,6 @@ private: System::Void Btn_freguesia_Click(System::Object^ sender, System::EventA
 
 private: System::Void MostrarToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { alternar_linha_introducao(); }
 private: System::Void MostrarOcultarSeletorDeLinhasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { alternar_row_headers(); }
+private: System::Void MostrarOcultarColunaDelegadoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {alternar_col_delegado();}
 };
 }
