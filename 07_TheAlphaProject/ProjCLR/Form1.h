@@ -45,11 +45,47 @@ namespace ProjCLR {
     private: System::Windows::Forms::Button^ button4;
     private: System::Windows::Forms::Button^ button3;
     private: System::Windows::Forms::Button^ button2;
-    private: System::Windows::Forms::Button^ btn_init_grid;
+
+
+
+
+
+    private: System::Windows::Forms::MenuStrip^ menuStrip1;
+    private: System::Windows::Forms::ToolStripMenuItem^ delegadoToolStripMenuItem;
+    private: System::Windows::Forms::ToolStripMenuItem^ estatísticasToolStripMenuItem;
+    private: System::Windows::Forms::ToolStripMenuItem^ ajudaToolStripMenuItem;
+    private: System::Windows::Forms::ToolStripMenuItem^ acercaToolStripMenuItem;
+
+
+
+
+    private: System::Windows::Forms::ToolStripMenuItem^ identificarOMaisVelhoToolStripMenuItem;
+    private: System::Windows::Forms::TextBox^ txt_freguesia;
+    private: System::Windows::Forms::Button^ btn_freguesia;
+    private: System::Windows::Forms::GroupBox^ groupBox2;
     private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nome;
     private: System::Windows::Forms::DataGridViewTextBoxColumn^ Localidade;
     private: System::Windows::Forms::DataGridViewTextBoxColumn^ Ano;
     private: System::Windows::Forms::DataGridViewTextBoxColumn^ Género;
+    private: System::Windows::Forms::DataGridViewTextBoxColumn^ Delegado;
+    private: System::Windows::Forms::ToolStripMenuItem^ visualizaçãoToolStripMenuItem;
+    private: System::Windows::Forms::ToolStripMenuItem^ mostrarToolStripMenuItem;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     protected:
 
@@ -77,23 +113,39 @@ namespace ProjCLR {
             this->button4 = (gcnew System::Windows::Forms::Button());
             this->button3 = (gcnew System::Windows::Forms::Button());
             this->button2 = (gcnew System::Windows::Forms::Button());
-            this->btn_init_grid = (gcnew System::Windows::Forms::Button());
+            this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
+            this->delegadoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->estatísticasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->identificarOMaisVelhoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->ajudaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->acercaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->txt_freguesia = (gcnew System::Windows::Forms::TextBox());
+            this->btn_freguesia = (gcnew System::Windows::Forms::Button());
+            this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
             this->Nome = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
             this->Localidade = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
             this->Ano = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
             this->Género = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+            this->Delegado = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+            this->visualizaçãoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->mostrarToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             this->groupBox1->SuspendLayout();
+            this->menuStrip1->SuspendLayout();
+            this->groupBox2->SuspendLayout();
             this->SuspendLayout();
             // 
             // dataGridView1
             // 
             this->dataGridView1->AllowUserToAddRows = false;
             this->dataGridView1->AllowUserToDeleteRows = false;
+            this->dataGridView1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+                | System::Windows::Forms::AnchorStyles::Left)
+                | System::Windows::Forms::AnchorStyles::Right));
             this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-            this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+            this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
                 this->Nome, this->Localidade,
-                    this->Ano, this->Género
+                    this->Ano, this->Género, this->Delegado
             });
             this->dataGridView1->Location = System::Drawing::Point(0, 157);
             this->dataGridView1->Name = L"dataGridView1";
@@ -105,6 +157,8 @@ namespace ProjCLR {
             // 
             // listBox1
             // 
+            this->listBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+                | System::Windows::Forms::AnchorStyles::Right));
             this->listBox1->FormattingEnabled = true;
             this->listBox1->Location = System::Drawing::Point(758, 157);
             this->listBox1->Name = L"listBox1";
@@ -121,7 +175,6 @@ namespace ProjCLR {
             this->groupBox1->Controls->Add(this->button4);
             this->groupBox1->Controls->Add(this->button3);
             this->groupBox1->Controls->Add(this->button2);
-            this->groupBox1->Controls->Add(this->btn_init_grid);
             this->groupBox1->Location = System::Drawing::Point(12, 38);
             this->groupBox1->Name = L"groupBox1";
             this->groupBox1->Size = System::Drawing::Size(265, 113);
@@ -201,53 +254,156 @@ namespace ProjCLR {
             this->button2->Text = L"button2";
             this->button2->UseVisualStyleBackColor = true;
             // 
-            // btn_init_grid
+            // menuStrip1
             // 
-            this->btn_init_grid->Location = System::Drawing::Point(17, 20);
-            this->btn_init_grid->Name = L"btn_init_grid";
-            this->btn_init_grid->Size = System::Drawing::Size(75, 23);
-            this->btn_init_grid->TabIndex = 0;
-            this->btn_init_grid->Text = L"InitGrid";
-            this->btn_init_grid->UseVisualStyleBackColor = true;
-            this->btn_init_grid->Click += gcnew System::EventHandler(this, &Form1::Btn_init_grid_Click);
+            this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
+                this->delegadoToolStripMenuItem,
+                    this->estatísticasToolStripMenuItem, this->visualizaçãoToolStripMenuItem, this->ajudaToolStripMenuItem
+            });
+            this->menuStrip1->Location = System::Drawing::Point(0, 0);
+            this->menuStrip1->Name = L"menuStrip1";
+            this->menuStrip1->Size = System::Drawing::Size(1008, 24);
+            this->menuStrip1->TabIndex = 3;
+            this->menuStrip1->Text = L"menuStrip1";
+            // 
+            // delegadoToolStripMenuItem
+            // 
+            this->delegadoToolStripMenuItem->Name = L"delegadoToolStripMenuItem";
+            this->delegadoToolStripMenuItem->Size = System::Drawing::Size(69, 20);
+            this->delegadoToolStripMenuItem->Text = L"Delegado";
+            // 
+            // estatísticasToolStripMenuItem
+            // 
+            this->estatísticasToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->identificarOMaisVelhoToolStripMenuItem });
+            this->estatísticasToolStripMenuItem->Name = L"estatísticasToolStripMenuItem";
+            this->estatísticasToolStripMenuItem->Size = System::Drawing::Size(76, 20);
+            this->estatísticasToolStripMenuItem->Text = L"Estatísticas";
+            // 
+            // identificarOMaisVelhoToolStripMenuItem
+            // 
+            this->identificarOMaisVelhoToolStripMenuItem->Name = L"identificarOMaisVelhoToolStripMenuItem";
+            this->identificarOMaisVelhoToolStripMenuItem->Size = System::Drawing::Size(197, 22);
+            this->identificarOMaisVelhoToolStripMenuItem->Text = L"Identificar o mais velho";
+            this->identificarOMaisVelhoToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::IdentificarOMaisVelhoToolStripMenuItem_Click);
+            // 
+            // ajudaToolStripMenuItem
+            // 
+            this->ajudaToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->acercaToolStripMenuItem });
+            this->ajudaToolStripMenuItem->Name = L"ajudaToolStripMenuItem";
+            this->ajudaToolStripMenuItem->Size = System::Drawing::Size(50, 20);
+            this->ajudaToolStripMenuItem->Text = L"Ajuda";
+            // 
+            // acercaToolStripMenuItem
+            // 
+            this->acercaToolStripMenuItem->Name = L"acercaToolStripMenuItem";
+            this->acercaToolStripMenuItem->Size = System::Drawing::Size(119, 22);
+            this->acercaToolStripMenuItem->Text = L"Acerca...";
+            // 
+            // txt_freguesia
+            // 
+            this->txt_freguesia->Location = System::Drawing::Point(8, 23);
+            this->txt_freguesia->Name = L"txt_freguesia";
+            this->txt_freguesia->Size = System::Drawing::Size(159, 20);
+            this->txt_freguesia->TabIndex = 4;
+            this->txt_freguesia->Leave += gcnew System::EventHandler(this, &Form1::Btn_freguesia_Click);
+            // 
+            // btn_freguesia
+            // 
+            this->btn_freguesia->Location = System::Drawing::Point(8, 50);
+            this->btn_freguesia->Name = L"btn_freguesia";
+            this->btn_freguesia->Size = System::Drawing::Size(75, 23);
+            this->btn_freguesia->TabIndex = 5;
+            this->btn_freguesia->Text = L"Masculino";
+            this->btn_freguesia->UseVisualStyleBackColor = true;
+            this->btn_freguesia->Click += gcnew System::EventHandler(this, &Form1::Btn_freguesia_Click);
+            // 
+            // groupBox2
+            // 
+            this->groupBox2->Controls->Add(this->txt_freguesia);
+            this->groupBox2->Controls->Add(this->btn_freguesia);
+            this->groupBox2->Location = System::Drawing::Point(294, 38);
+            this->groupBox2->Name = L"groupBox2";
+            this->groupBox2->Size = System::Drawing::Size(180, 86);
+            this->groupBox2->TabIndex = 6;
+            this->groupBox2->TabStop = false;
+            this->groupBox2->Text = L"Pesquisar por localidade/género";
             // 
             // Nome
             // 
+            this->Nome->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+            this->Nome->FillWeight = 200;
             this->Nome->HeaderText = L"Nome";
+            this->Nome->MinimumWidth = 250;
             this->Nome->Name = L"Nome";
             this->Nome->ReadOnly = true;
             // 
             // Localidade
             // 
+            this->Localidade->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
             this->Localidade->HeaderText = L"Localidade";
+            this->Localidade->MinimumWidth = 80;
             this->Localidade->Name = L"Localidade";
             this->Localidade->ReadOnly = true;
             // 
             // Ano
             // 
+            this->Ano->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+            this->Ano->FillWeight = 57.94401F;
             this->Ano->HeaderText = L"Ano";
+            this->Ano->MinimumWidth = 80;
             this->Ano->Name = L"Ano";
             this->Ano->ReadOnly = true;
             // 
             // Género
             // 
+            this->Género->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+            this->Género->FillWeight = 50;
             this->Género->HeaderText = L"Género";
+            this->Género->MinimumWidth = 25;
             this->Género->Name = L"Género";
             this->Género->ReadOnly = true;
+            // 
+            // Delegado
+            // 
+            this->Delegado->HeaderText = L"Delegado";
+            this->Delegado->Name = L"Delegado";
+            this->Delegado->ReadOnly = true;
+            // 
+            // visualizaçãoToolStripMenuItem
+            // 
+            this->visualizaçãoToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->mostrarToolStripMenuItem });
+            this->visualizaçãoToolStripMenuItem->Name = L"visualizaçãoToolStripMenuItem";
+            this->visualizaçãoToolStripMenuItem->Size = System::Drawing::Size(83, 20);
+            this->visualizaçãoToolStripMenuItem->Text = L"Visualização";
+            // 
+            // mostrarToolStripMenuItem
+            // 
+            this->mostrarToolStripMenuItem->Name = L"mostrarToolStripMenuItem";
+            this->mostrarToolStripMenuItem->Size = System::Drawing::Size(115, 22);
+            this->mostrarToolStripMenuItem->Text = L"Mostrar";
             // 
             // Form1
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
             this->ClientSize = System::Drawing::Size(1008, 721);
+            this->Controls->Add(this->groupBox2);
             this->Controls->Add(this->groupBox1);
             this->Controls->Add(this->listBox1);
             this->Controls->Add(this->dataGridView1);
+            this->Controls->Add(this->menuStrip1);
+            this->MainMenuStrip = this->menuStrip1;
             this->Name = L"Form1";
             this->Text = L"Form1";
+            this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
             this->groupBox1->ResumeLayout(false);
+            this->menuStrip1->ResumeLayout(false);
+            this->menuStrip1->PerformLayout();
+            this->groupBox2->ResumeLayout(false);
+            this->groupBox2->PerformLayout();
             this->ResumeLayout(false);
+            this->PerformLayout();
 
         }
 #pragma endregion
@@ -274,6 +430,106 @@ namespace ProjCLR {
         dataGridView1->Rows->Add("Teodoro Armando Matos", "Maximinos", 2002, "M");
         dataGridView1->Rows->Add("Zacarias Alexandre Sampaio", "Ferreiros", 1998, "M");
     }
+    
+    private: void identificar_mais_velho()
+    {
+        String^ nome_mais_velho = dataGridView1->Rows[0]->Cells[0]->Value->ToString();
+        String^ resultado = nome_mais_velho;
+        int ano_mais_velho = Convert::ToInt16(dataGridView1->Rows[0]->Cells[2]->Value);
+        int ano_linha = ano_mais_velho;
+        int p = 1;
+        
+
+        for (size_t i = 1; i < dataGridView1->Rows->Count; i++)
+        {
+            ano_linha = Convert::ToInt16(dataGridView1->Rows[i]->Cells[2]->Value);
+
+            if (ano_mais_velho < ano_linha)
+            {
+                nome_mais_velho = dataGridView1->Rows[i]->Cells[0]->Value->ToString();
+                ano_mais_velho = Convert::ToInt16(ano_linha);
+
+                resultado = nome_mais_velho + ", " + dataGridView1->Rows[i]->Cells[2]->Value;
+                p = i;
+            }
+            
+        }
+        dataGridView1->ClearSelection();
+        dataGridView1->Rows[p]->Selected = true;
+        listBox1->Items->Clear();
+        listBox1->Items->Add(resultado);
+    }
+
+
+    private: void procurar_por_localidade()
+    {
+        String^ localidade = txt_freguesia->Text;
+        String^ genero_linha = "M";
+        String^ nome_linha;
+        String^ localidade_linha;
+
+        array<String^>^ resultados = gcnew array<String^>(100) {""};
+        int linhas = -1;
+
+
+        dataGridView1->ClearSelection();
+        listBox1->Items->Clear();
+
+        for (size_t i = 0; i < dataGridView1->Rows->Count; i++)
+        {
+            nome_linha = dataGridView1->Rows[i]->Cells[0]->Value->ToString()->ToUpper();
+            localidade_linha = dataGridView1->Rows[i]->Cells[1]->Value->ToString()->ToUpper();
+            genero_linha = dataGridView1->Rows[i]->Cells[3]->Value->ToString()->ToUpper();
+
+            if ("M" == genero_linha && localidade_linha == localidade->ToUpper())
+            {
+                linhas++;
+                resultados[i] = nome_linha + ", " + localidade_linha;
+                dataGridView1->Rows[i]->Selected = true;
+                //MessageBox::Show(Convert::ToString(resultados[i]));
+
+            }
+            
+        }
+        
+
+        if (localidade == "")
+        {
+            listBox1->Items->Add(" - Não foi indicada uma localidade.");
+        }
+        else
+        {
+            listBox1->Items->Add("Elementos do género masculino");
+            listBox1->Items->Add("em " + localidade + ":");
+            listBox1->Items->Add(" ");
+
+            if (linhas == -1)
+            {
+                listBox1->Items->Add(" - Não foram encontrados elementos.");
+            }
+            else
+            {
+                for (size_t i = 0; i <= linhas; i++)
+                {
+
+                    listBox1->Items->Add(resultados[i]);
+                }
+                listBox1->Items->Add("Total: " + (linhas+1));
+            }
+        }
+    }
+
+
+
+
+
+
     private: System::Void Btn_init_grid_Click(System::Object^ sender, System::EventArgs^ e) { init_grid(); }
+private: System::Void Form1_Load(System::Object^ sender, System::EventArgs^ e) { init_grid(); }
+private: System::Void ToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) { identificar_mais_velho();  }
+private: System::Void IdentificarOMaisVelhoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {identificar_mais_velho();
+}
+private: System::Void Btn_freguesia_Click(System::Object^ sender, System::EventArgs^ e) { procurar_por_localidade(); }
+
 };
 }
