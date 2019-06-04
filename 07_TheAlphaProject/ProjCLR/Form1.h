@@ -533,27 +533,17 @@ namespace ProjCLR {
     private: void alternar_linha_introducao()
     {
         if (dataGridView1->AllowUserToAddRows)
-        {
             dataGridView1->AllowUserToAddRows = false;
-                        
-        }
         else
-        {
             dataGridView1->AllowUserToAddRows = true;
-        }
     }
 
     private: void alternar_row_headers()
     {
         if (dataGridView1->RowHeadersVisible)
-        {
             dataGridView1->RowHeadersVisible = false;
-
-        }
         else
-        {
             dataGridView1->RowHeadersVisible = true;
-        }
     }
 
 
