@@ -477,14 +477,14 @@ namespace ProjCLR {
 
         for (size_t i = 0; i < dataGridView1->Rows->Count; i++)
         {
-            nome_linha = dataGridView1->Rows[i]->Cells[0]->Value->ToString()->ToUpper();
-            localidade_linha = dataGridView1->Rows[i]->Cells[1]->Value->ToString()->ToUpper();
+            nome_linha = dataGridView1->Rows[i]->Cells[0]->Value->ToString();
+            localidade_linha = dataGridView1->Rows[i]->Cells[1]->Value->ToString();
             genero_linha = dataGridView1->Rows[i]->Cells[3]->Value->ToString()->ToUpper();
 
-            if ("M" == genero_linha && localidade_linha == localidade->ToUpper())
+            if ("M" == genero_linha && localidade_linha->ToUpper() == localidade->ToUpper())
             {
                 linhas++;
-                resultados[i] = nome_linha + ", " + localidade_linha;
+                resultados[linhas] = nome_linha + ", " + localidade_linha;
                 dataGridView1->Rows[i]->Selected = true;
                 //MessageBox::Show(Convert::ToString(resultados[i]));
 
@@ -514,6 +514,7 @@ namespace ProjCLR {
 
                     listBox1->Items->Add(resultados[i]);
                 }
+                listBox1->Items->Add(" ");
                 listBox1->Items->Add("Total: " + (linhas+1));
             }
         }
