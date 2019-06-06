@@ -80,6 +80,12 @@ namespace ProjCLR {
 
     private: System::Windows::Forms::Button^ btn_feminino;
     private: System::Windows::Forms::ToolStripMenuItem^ novoDelegadoSortearToolStripMenuItem;
+
+
+
+
+
+    private: System::Windows::Forms::ToolStripMenuItem^ médiaDeIdadesToolStripMenuItem;
     private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nome;
     private: System::Windows::Forms::DataGridViewTextBoxColumn^ Localidade;
     private: System::Windows::Forms::DataGridViewTextBoxColumn^ AnoNasc;
@@ -130,6 +136,7 @@ namespace ProjCLR {
             this->novoDelegadoSortearToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->estatísticasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->identificarOMaisVelhoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->médiaDeIdadesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->visualizaçãoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->mostrarToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->mostrarOcultarSeletorDeLinhasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -267,7 +274,10 @@ namespace ProjCLR {
             // 
             // estatísticasToolStripMenuItem
             // 
-            this->estatísticasToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->identificarOMaisVelhoToolStripMenuItem });
+            this->estatísticasToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+                this->identificarOMaisVelhoToolStripMenuItem,
+                    this->médiaDeIdadesToolStripMenuItem
+            });
             this->estatísticasToolStripMenuItem->Name = L"estatísticasToolStripMenuItem";
             this->estatísticasToolStripMenuItem->Size = System::Drawing::Size(76, 20);
             this->estatísticasToolStripMenuItem->Text = L"Estatísticas";
@@ -278,6 +288,13 @@ namespace ProjCLR {
             this->identificarOMaisVelhoToolStripMenuItem->Size = System::Drawing::Size(197, 22);
             this->identificarOMaisVelhoToolStripMenuItem->Text = L"Identificar o mais velho";
             this->identificarOMaisVelhoToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::IdentificarOMaisVelhoToolStripMenuItem_Click);
+            // 
+            // médiaDeIdadesToolStripMenuItem
+            // 
+            this->médiaDeIdadesToolStripMenuItem->Name = L"médiaDeIdadesToolStripMenuItem";
+            this->médiaDeIdadesToolStripMenuItem->Size = System::Drawing::Size(197, 22);
+            this->médiaDeIdadesToolStripMenuItem->Text = L"Média de idades";
+            this->médiaDeIdadesToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MédiaDeIdadesToolStripMenuItem_Click);
             // 
             // visualizaçãoToolStripMenuItem
             // 
@@ -398,6 +415,7 @@ namespace ProjCLR {
             this->Delegado->FillWeight = 80;
             this->Delegado->HeaderText = L"Delegado";
             this->Delegado->Name = L"Delegado";
+            this->Delegado->Visible = false;
             // 
             // Form1
             // 
@@ -411,7 +429,7 @@ namespace ProjCLR {
             this->Controls->Add(this->menuStrip1);
             this->MainMenuStrip = this->menuStrip1;
             this->Name = L"Form1";
-            this->Text = L"Form1";
+            this->Text = L"Projecto Alpha";
             this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
             this->groupBox1->ResumeLayout(false);
@@ -471,11 +489,9 @@ namespace ProjCLR {
                 ano_mais_velho = ano_linha;
         }
 
-
         dataGridView1->ClearSelection();
         listBox1->Items->Clear();
         
-
         // Recolher todos os elementos com o ano igual ao mais antigo
         for (size_t i = 1; i < n_linhas; i++)
         {
@@ -483,17 +499,12 @@ namespace ProjCLR {
 
             if (ano_mais_velho == ano_linha)
             {
-                
                 nome = dataGridView1->Rows[i]->Cells["Nome"]->Value->ToString();
-
                 resultado = nome + ", " + ano_mais_velho;               
                 listBox1->Items->Add(resultado);
-                
                 dataGridView1->Rows[i]->Selected = true;
             }
-            
         }
-       
     }
 
 
@@ -607,9 +618,80 @@ namespace ProjCLR {
 
         // Repor o estado original da linha de introdução de registos.
         dataGridView1->AllowUserToAddRows = linha_intro;
+        dataGridView1->Columns["Delegado"]->Visible = true;
     }
 
-    private: System::Void Btn_init_grid_Click(System::Object^ sender, System::EventArgs^ e) { init_grid(); }
+
+// Gerar uma nota aleatória com ponderação (menos probabilidade de ocorrência nos extremos)
+private: int gerar_nota_especial()
+{
+    int nota;
+    int extra;
+
+    Random^ r = gcnew Random(); // inicializar gerador de numeros aleatórios
+    nota = r->Next(8, 16); // gerar número aleatório para nota mediana
+
+
+    extra = r->Next(0, 6);
+    switch (extra)
+    {
+    case 0:  // Nota muito baixa
+        extra = r->Next(0, nota);
+        nota = nota - extra;
+        break;
+    case 1:  // Nota muito alta
+        extra = r->Next(nota, 21);
+        nota = nota + extra;
+        break;
+    default:
+        break;
+    }
+    return nota;
+}
+
+private: void calcular_media()
+{
+    int n, idade_linha, ano_linha;
+    int idade_max, idade_min;
+    float idade_media, idade_desv_padrao=0;
+    int idades[100];
+
+    bool linha_intro = dataGridView1->AllowUserToAddRows;
+    dataGridView1->AllowUserToAddRows = false;
+    n = dataGridView1->Rows->Count;
+
+    for (size_t i = 0; i < n; i++)
+    {
+        ano_linha = Convert::ToInt16(dataGridView1->Rows[i]->Cells["AnoNasc"]->Value);
+        idade_linha = System::DateTime::Now.Year - ano_linha;
+        idades[i] = idade_linha;
+    }
+
+    // Calcular idade média, min e max
+    idade_max = idade_min = idades[0];
+    for (size_t i = 0; i < n; i++)
+    {
+        if (idade_max < idades[i])  idade_max = idades[i];
+        if (idade_min > idades[i])  idade_min = idades[i];
+
+        idade_media += idades[i];
+    }
+    idade_media = (float)idade_media / (float)n;
+
+    
+    // Calcular desvio-padrão das idades
+
+    
+
+    // Mostrar resultados
+    listBox1->Items->Add("Média: " + Convert::ToString(idade_media));
+    listBox1->Items->Add("Desv. Padrão: " + Convert::ToString(idade_desv_padrao));
+
+
+    dataGridView1->AllowUserToAddRows = linha_intro;
+}
+
+private: System::Void Btn_init_grid_Click(System::Object^ sender, System::EventArgs^ e) { init_grid(); }
 private: System::Void Form1_Load(System::Object^ sender, System::EventArgs^ e) { on_form_load(); }
 private: System::Void ToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) { identificar_mais_velho();  }
 private: System::Void IdentificarOMaisVelhoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {identificar_mais_velho();
@@ -620,5 +702,6 @@ private: System::Void MostrarToolStripMenuItem_Click(System::Object^ sender, Sys
 private: System::Void MostrarOcultarSeletorDeLinhasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { alternar_row_headers(); }
 private: System::Void MostrarOcultarColunaDelegadoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {alternar_col_delegado();}
 private: System::Void NovoDelegadoSortearToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { sortear_delegado();}
+private: System::Void MédiaDeIdadesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {calcular_media();}
 };
 }
