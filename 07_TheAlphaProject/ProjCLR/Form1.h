@@ -423,7 +423,6 @@ namespace ProjCLR {
         private: void on_form_load()
         {
             init_grid();
-            listBox1->Hide();
             
         }
     private: void init_grid()
@@ -461,6 +460,9 @@ namespace ProjCLR {
 
         for (size_t i = 1; i < dataGridView1->Rows->Count; i++)
         {
+        }
+        for (size_t i = 1; i < dataGridView1->Rows->Count; i++)
+        {
             ano_linha = Convert::ToInt16(dataGridView1->Rows[i]->Cells[2]->Value);
 
             if (ano_mais_velho < ano_linha)
@@ -476,7 +478,6 @@ namespace ProjCLR {
         dataGridView1->ClearSelection();
         dataGridView1->Rows[p]->Selected = true;
         listBox1->Items->Clear();
-        listBox1->Show();
         listBox1->Items->Add(resultado);
     }
 
@@ -495,7 +496,6 @@ namespace ProjCLR {
 
         dataGridView1->ClearSelection();
         listBox1->Items->Clear();
-        listBox1->Show();
 
         for (size_t i = 0; i < dataGridView1->Rows->Count; i++)
         {
