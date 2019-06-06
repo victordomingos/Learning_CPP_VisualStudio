@@ -127,6 +127,7 @@ namespace ProjCLR {
             this->button2 = (gcnew System::Windows::Forms::Button());
             this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
             this->delegadoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->novoDelegadoSortearToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->estatísticasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->identificarOMaisVelhoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->visualizaçãoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -139,7 +140,6 @@ namespace ProjCLR {
             this->btn_masculino = (gcnew System::Windows::Forms::Button());
             this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
             this->btn_feminino = (gcnew System::Windows::Forms::Button());
-            this->novoDelegadoSortearToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             this->groupBox1->SuspendLayout();
             this->menuStrip1->SuspendLayout();
@@ -290,6 +290,13 @@ namespace ProjCLR {
             this->delegadoToolStripMenuItem->Size = System::Drawing::Size(69, 20);
             this->delegadoToolStripMenuItem->Text = L"Delegado";
             // 
+            // novoDelegadoSortearToolStripMenuItem
+            // 
+            this->novoDelegadoSortearToolStripMenuItem->Name = L"novoDelegadoSortearToolStripMenuItem";
+            this->novoDelegadoSortearToolStripMenuItem->Size = System::Drawing::Size(204, 22);
+            this->novoDelegadoSortearToolStripMenuItem->Text = L"Novo Delegado (Sortear)";
+            this->novoDelegadoSortearToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::NovoDelegadoSortearToolStripMenuItem_Click);
+            // 
             // estatísticasToolStripMenuItem
             // 
             this->estatísticasToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->identificarOMaisVelhoToolStripMenuItem });
@@ -387,12 +394,6 @@ namespace ProjCLR {
             this->btn_feminino->Text = L"Feminino";
             this->btn_feminino->UseVisualStyleBackColor = true;
             // 
-            // novoDelegadoSortearToolStripMenuItem
-            // 
-            this->novoDelegadoSortearToolStripMenuItem->Name = L"novoDelegadoSortearToolStripMenuItem";
-            this->novoDelegadoSortearToolStripMenuItem->Size = System::Drawing::Size(204, 22);
-            this->novoDelegadoSortearToolStripMenuItem->Text = L"Novo Delegado (Sortear)";
-            // 
             // Form1
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -418,6 +419,13 @@ namespace ProjCLR {
 
         }
 #pragma endregion
+
+        private: void on_form_load()
+        {
+            init_grid();
+            listBox1->Hide();
+            
+        }
     private: void init_grid()
     {
         dataGridView1->Rows->Add("Ana Rita Cunha", "Maximinos", 1998, "F");
@@ -468,6 +476,7 @@ namespace ProjCLR {
         dataGridView1->ClearSelection();
         dataGridView1->Rows[p]->Selected = true;
         listBox1->Items->Clear();
+        listBox1->Show();
         listBox1->Items->Add(resultado);
     }
 
@@ -486,6 +495,7 @@ namespace ProjCLR {
 
         dataGridView1->ClearSelection();
         listBox1->Items->Clear();
+        listBox1->Show();
 
         for (size_t i = 0; i < dataGridView1->Rows->Count; i++)
         {
@@ -559,9 +569,33 @@ namespace ProjCLR {
             dataGridView1->Columns["Delegado"]->Visible = true;
     }
 
+    private: void sortear_delegado()
+    {
+        Random^ r = gcnew Random(); // inicializar gerador de numeros aleatórios
+        int n;
+        
+        // Como vamos usar o número de linhas no sorteio, retiramos a linha de introdução de registos
+        bool linha_intro = dataGridView1->AllowUserToAddRows;
+        dataGridView1->AllowUserToAddRows = false;
+
+        n = r->Next(1, dataGridView1->Rows->Count); // gerar número aleatório
+        
+        // Limpar células da coluna delegado e assinalar o novo delegado.
+        for (size_t i = 0; i < dataGridView1->Rows->Count; i++)
+        {
+            if (i==n)
+                dataGridView1->Rows[i]->Cells["Delegado"]->Value = "X";
+            else
+                dataGridView1->Rows[i]->Cells["Delegado"]->Value = "";
+
+        }
+
+        // Repor o estado original da linha de introdução de registos.
+        dataGridView1->AllowUserToAddRows = linha_intro;
+    }
 
     private: System::Void Btn_init_grid_Click(System::Object^ sender, System::EventArgs^ e) { init_grid(); }
-private: System::Void Form1_Load(System::Object^ sender, System::EventArgs^ e) { init_grid(); }
+private: System::Void Form1_Load(System::Object^ sender, System::EventArgs^ e) { on_form_load(); }
 private: System::Void ToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) { identificar_mais_velho();  }
 private: System::Void IdentificarOMaisVelhoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {identificar_mais_velho();
 }
@@ -570,5 +604,6 @@ private: System::Void Btn_freguesia_Click(System::Object^ sender, System::EventA
 private: System::Void MostrarToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { alternar_linha_introducao(); }
 private: System::Void MostrarOcultarSeletorDeLinhasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { alternar_row_headers(); }
 private: System::Void MostrarOcultarColunaDelegadoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {alternar_col_delegado();}
+private: System::Void NovoDelegadoSortearToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { sortear_delegado();}
 };
 }
