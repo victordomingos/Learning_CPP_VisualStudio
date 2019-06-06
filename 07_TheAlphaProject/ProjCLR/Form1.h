@@ -478,8 +478,10 @@ namespace ProjCLR {
     {
         String^ nome = dataGridView1->Rows[0]->Cells["Nome"]->Value->ToString();
         String^ resultado = nome;
+        
         int ano_mais_velho = Convert::ToInt16(dataGridView1->Rows[0]->Cells["AnoNasc"]->Value);
         int ano_linha = ano_mais_velho;
+        int n_mais_velhos = 0;
         
         int n_linhas = dataGridView1->Rows->Count;
         // Encontrar o ano mais antigo
@@ -487,13 +489,14 @@ namespace ProjCLR {
         {
             ano_linha = Convert::ToInt16(dataGridView1->Rows[i]->Cells["AnoNasc"]->Value);
 
-            if (ano_mais_velho < ano_linha)
+            if (ano_mais_velho > ano_linha)
                 ano_mais_velho = ano_linha;
         }
 
         dataGridView1->ClearSelection();
         listBox1->Items->Clear();
-        
+        listBox1->Items->Add("Elemento(s) mais velho(s):");
+        listBox1->Items->Add("");
         // Recolher todos os elementos com o ano igual ao mais antigo
         for (size_t i = 1; i < n_linhas; i++)
         {
@@ -505,8 +508,14 @@ namespace ProjCLR {
                 resultado = nome + ", " + ano_mais_velho;               
                 listBox1->Items->Add(resultado);
                 dataGridView1->Rows[i]->Selected = true;
+                n_mais_velhos++;
             }
         }
+        listBox1->Items->Add("");
+
+        listBox1->Items->Add("Encontrado(s) " + Convert::ToString(n_mais_velhos) + " elemento(s).");
+
+
     }
 
 
@@ -531,7 +540,7 @@ namespace ProjCLR {
             localidade_linha = dataGridView1->Rows[i]->Cells["Localidade"]->Value->ToString();
             genero_linha = dataGridView1->Rows[i]->Cells["Género"]->Value->ToString()->ToUpper();
 
-            if ("M" == genero_linha && localidade_linha->ToUpper() == localidade->ToUpper())
+            if (genero == genero_linha && localidade_linha->ToUpper() == localidade->ToUpper())
             {
                 linhas++;
                 resultados[linhas] = nome_linha + ", " + localidade_linha;
