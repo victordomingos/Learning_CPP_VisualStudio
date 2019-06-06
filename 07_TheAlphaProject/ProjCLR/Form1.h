@@ -73,13 +73,18 @@ namespace ProjCLR {
     private: System::Windows::Forms::ToolStripMenuItem^ mostrarToolStripMenuItem;
     private: System::Windows::Forms::ToolStripMenuItem^ mostrarOcultarSeletorDeLinhasToolStripMenuItem;
     private: System::Windows::Forms::ToolStripMenuItem^ mostrarOcultarColunaDelegadoToolStripMenuItem;
-    private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nome;
-    private: System::Windows::Forms::DataGridViewTextBoxColumn^ Localidade;
-    private: System::Windows::Forms::DataGridViewTextBoxColumn^ Ano;
-    private: System::Windows::Forms::DataGridViewTextBoxColumn^ Género;
-    private: System::Windows::Forms::DataGridViewTextBoxColumn^ Delegado;
+
+
+
+
+
     private: System::Windows::Forms::Button^ btn_feminino;
     private: System::Windows::Forms::ToolStripMenuItem^ novoDelegadoSortearToolStripMenuItem;
+    private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nome;
+    private: System::Windows::Forms::DataGridViewTextBoxColumn^ Localidade;
+    private: System::Windows::Forms::DataGridViewTextBoxColumn^ AnoNasc;
+    private: System::Windows::Forms::DataGridViewTextBoxColumn^ Género;
+    private: System::Windows::Forms::DataGridViewTextBoxColumn^ Delegado;
 
 
 
@@ -113,11 +118,6 @@ namespace ProjCLR {
 		void InitializeComponent(void)
 		{
             this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-            this->Nome = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-            this->Localidade = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-            this->Ano = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-            this->Género = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-            this->Delegado = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
             this->listBox1 = (gcnew System::Windows::Forms::ListBox());
             this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
             this->button6 = (gcnew System::Windows::Forms::Button());
@@ -140,6 +140,11 @@ namespace ProjCLR {
             this->btn_masculino = (gcnew System::Windows::Forms::Button());
             this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
             this->btn_feminino = (gcnew System::Windows::Forms::Button());
+            this->Nome = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+            this->Localidade = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+            this->AnoNasc = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+            this->Género = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+            this->Delegado = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             this->groupBox1->SuspendLayout();
             this->menuStrip1->SuspendLayout();
@@ -156,7 +161,7 @@ namespace ProjCLR {
             this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
             this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
                 this->Nome, this->Localidade,
-                    this->Ano, this->Género, this->Delegado
+                    this->AnoNasc, this->Género, this->Delegado
             });
             this->dataGridView1->Location = System::Drawing::Point(0, 127);
             this->dataGridView1->Name = L"dataGridView1";
@@ -164,43 +169,6 @@ namespace ProjCLR {
             this->dataGridView1->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
             this->dataGridView1->Size = System::Drawing::Size(751, 593);
             this->dataGridView1->TabIndex = 0;
-            // 
-            // Nome
-            // 
-            this->Nome->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-            this->Nome->FillWeight = 200;
-            this->Nome->HeaderText = L"Nome";
-            this->Nome->MinimumWidth = 250;
-            this->Nome->Name = L"Nome";
-            // 
-            // Localidade
-            // 
-            this->Localidade->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-            this->Localidade->HeaderText = L"Localidade";
-            this->Localidade->MinimumWidth = 80;
-            this->Localidade->Name = L"Localidade";
-            // 
-            // Ano
-            // 
-            this->Ano->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-            this->Ano->FillWeight = 57.94401F;
-            this->Ano->HeaderText = L"Ano";
-            this->Ano->MinimumWidth = 80;
-            this->Ano->Name = L"Ano";
-            // 
-            // Género
-            // 
-            this->Género->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-            this->Género->FillWeight = 50;
-            this->Género->HeaderText = L"Género";
-            this->Género->MinimumWidth = 25;
-            this->Género->Name = L"Género";
-            // 
-            // Delegado
-            // 
-            this->Delegado->FillWeight = 80;
-            this->Delegado->HeaderText = L"Delegado";
-            this->Delegado->Name = L"Delegado";
             // 
             // listBox1
             // 
@@ -394,6 +362,43 @@ namespace ProjCLR {
             this->btn_feminino->Text = L"Feminino";
             this->btn_feminino->UseVisualStyleBackColor = true;
             // 
+            // Nome
+            // 
+            this->Nome->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+            this->Nome->FillWeight = 200;
+            this->Nome->HeaderText = L"Nome";
+            this->Nome->MinimumWidth = 250;
+            this->Nome->Name = L"Nome";
+            // 
+            // Localidade
+            // 
+            this->Localidade->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+            this->Localidade->HeaderText = L"Localidade";
+            this->Localidade->MinimumWidth = 80;
+            this->Localidade->Name = L"Localidade";
+            // 
+            // AnoNasc
+            // 
+            this->AnoNasc->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+            this->AnoNasc->FillWeight = 57.94401F;
+            this->AnoNasc->HeaderText = L"Ano Nasc.";
+            this->AnoNasc->MinimumWidth = 80;
+            this->AnoNasc->Name = L"AnoNasc";
+            // 
+            // Género
+            // 
+            this->Género->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+            this->Género->FillWeight = 50;
+            this->Género->HeaderText = L"Género";
+            this->Género->MinimumWidth = 25;
+            this->Género->Name = L"Género";
+            // 
+            // Delegado
+            // 
+            this->Delegado->FillWeight = 80;
+            this->Delegado->HeaderText = L"Delegado";
+            this->Delegado->Name = L"Delegado";
+            // 
             // Form1
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -451,34 +456,44 @@ namespace ProjCLR {
     
     private: void identificar_mais_velho()
     {
-        String^ nome_mais_velho = dataGridView1->Rows[0]->Cells[0]->Value->ToString();
-        String^ resultado = nome_mais_velho;
-        int ano_mais_velho = Convert::ToInt16(dataGridView1->Rows[0]->Cells[2]->Value);
+        String^ nome = dataGridView1->Rows[0]->Cells["Nome"]->Value->ToString();
+        String^ resultado = nome;
+        int ano_mais_velho = Convert::ToInt16(dataGridView1->Rows[0]->Cells["AnoNasc"]->Value);
         int ano_linha = ano_mais_velho;
-        int p = 1;
         
-
-        for (size_t i = 1; i < dataGridView1->Rows->Count; i++)
+        int n_linhas = dataGridView1->Rows->Count;
+        // Encontrar o ano mais antigo
+        for (size_t i = 1; i < n_linhas; i++)
         {
-        }
-        for (size_t i = 1; i < dataGridView1->Rows->Count; i++)
-        {
-            ano_linha = Convert::ToInt16(dataGridView1->Rows[i]->Cells[2]->Value);
+            ano_linha = Convert::ToInt16(dataGridView1->Rows[i]->Cells["AnoNasc"]->Value);
 
             if (ano_mais_velho < ano_linha)
-            {
-                nome_mais_velho = dataGridView1->Rows[i]->Cells[0]->Value->ToString();
-                ano_mais_velho = Convert::ToInt16(ano_linha);
+                ano_mais_velho = ano_linha;
+        }
 
-                resultado = nome_mais_velho + ", " + dataGridView1->Rows[i]->Cells[2]->Value;
-                p = i;
+
+        dataGridView1->ClearSelection();
+        listBox1->Items->Clear();
+        
+
+        // Recolher todos os elementos com o ano igual ao mais antigo
+        for (size_t i = 1; i < n_linhas; i++)
+        {
+            ano_linha = Convert::ToInt16(dataGridView1->Rows[i]->Cells["AnoNasc"]->Value);
+
+            if (ano_mais_velho == ano_linha)
+            {
+                
+                nome = dataGridView1->Rows[i]->Cells["Nome"]->Value->ToString();
+
+                resultado = nome + ", " + ano_mais_velho;               
+                listBox1->Items->Add(resultado);
+                
+                dataGridView1->Rows[i]->Selected = true;
             }
             
         }
-        dataGridView1->ClearSelection();
-        dataGridView1->Rows[p]->Selected = true;
-        listBox1->Items->Clear();
-        listBox1->Items->Add(resultado);
+       
     }
 
 
@@ -499,9 +514,9 @@ namespace ProjCLR {
 
         for (size_t i = 0; i < dataGridView1->Rows->Count; i++)
         {
-            nome_linha = dataGridView1->Rows[i]->Cells[0]->Value->ToString();
-            localidade_linha = dataGridView1->Rows[i]->Cells[1]->Value->ToString();
-            genero_linha = dataGridView1->Rows[i]->Cells[3]->Value->ToString()->ToUpper();
+            nome_linha = dataGridView1->Rows[i]->Cells["Nome"]->Value->ToString();
+            localidade_linha = dataGridView1->Rows[i]->Cells["Localidade"]->Value->ToString();
+            genero_linha = dataGridView1->Rows[i]->Cells["Género"]->Value->ToString()->ToUpper();
 
             if ("M" == genero_linha && localidade_linha->ToUpper() == localidade->ToUpper())
             {
