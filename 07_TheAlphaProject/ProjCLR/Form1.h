@@ -87,11 +87,39 @@ namespace ProjCLR {
 
 
     private: System::Windows::Forms::ToolStripMenuItem^ médiaDeIdadesToolStripMenuItem;
-    private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nome;
-    private: System::Windows::Forms::DataGridViewTextBoxColumn^ Localidade;
-    private: System::Windows::Forms::DataGridViewTextBoxColumn^ AnoNasc;
-    private: System::Windows::Forms::DataGridViewTextBoxColumn^ Género;
-    private: System::Windows::Forms::DataGridViewTextBoxColumn^ Delegado;
+
+
+
+
+
+	private: System::Windows::Forms::ToolStripMenuItem^ ferramentasToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ inicializarTurmaToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ adicionarColunasDeDisciplinasToolStripMenuItem;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nome;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Localidade;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ AnoNasc;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Género;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Delegado;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -124,325 +152,355 @@ namespace ProjCLR {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-            this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-            this->Nome = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-            this->Localidade = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-            this->AnoNasc = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-            this->Género = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-            this->Delegado = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-            this->listBox1 = (gcnew System::Windows::Forms::ListBox());
-            this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-            this->button6 = (gcnew System::Windows::Forms::Button());
-            this->button5 = (gcnew System::Windows::Forms::Button());
-            this->button4 = (gcnew System::Windows::Forms::Button());
-            this->button3 = (gcnew System::Windows::Forms::Button());
-            this->button2 = (gcnew System::Windows::Forms::Button());
-            this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
-            this->delegadoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-            this->novoDelegadoSortearToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-            this->estatísticasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-            this->identificarOMaisVelhoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-            this->médiaDeIdadesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-            this->visualizaçãoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-            this->mostrarToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-            this->mostrarOcultarSeletorDeLinhasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-            this->mostrarOcultarColunaDelegadoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-            this->ajudaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-            this->acercaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-            this->txt_freguesia = (gcnew System::Windows::Forms::TextBox());
-            this->btn_masculino = (gcnew System::Windows::Forms::Button());
-            this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
-            this->btn_feminino = (gcnew System::Windows::Forms::Button());
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
-            this->groupBox1->SuspendLayout();
-            this->menuStrip1->SuspendLayout();
-            this->groupBox2->SuspendLayout();
-            this->SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            this->dataGridView1->AllowUserToAddRows = false;
-            this->dataGridView1->AllowUserToDeleteRows = false;
-            this->dataGridView1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-                | System::Windows::Forms::AnchorStyles::Left)
-                | System::Windows::Forms::AnchorStyles::Right));
-            this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-            this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
-                this->Nome, this->Localidade,
-                    this->AnoNasc, this->Género, this->Delegado
-            });
-            this->dataGridView1->Location = System::Drawing::Point(0, 127);
-            this->dataGridView1->Name = L"dataGridView1";
-            this->dataGridView1->RowHeadersVisible = false;
-            this->dataGridView1->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->dataGridView1->Size = System::Drawing::Size(751, 593);
-            this->dataGridView1->TabIndex = 0;
-            // 
-            // Nome
-            // 
-            this->Nome->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-            this->Nome->FillWeight = 200;
-            this->Nome->HeaderText = L"Nome";
-            this->Nome->MinimumWidth = 250;
-            this->Nome->Name = L"Nome";
-            // 
-            // Localidade
-            // 
-            this->Localidade->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-            this->Localidade->HeaderText = L"Localidade";
-            this->Localidade->MinimumWidth = 80;
-            this->Localidade->Name = L"Localidade";
-            // 
-            // AnoNasc
-            // 
-            this->AnoNasc->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-            this->AnoNasc->FillWeight = 57.94401F;
-            this->AnoNasc->HeaderText = L"Ano Nasc.";
-            this->AnoNasc->MinimumWidth = 80;
-            this->AnoNasc->Name = L"AnoNasc";
-            // 
-            // Género
-            // 
-            this->Género->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-            this->Género->FillWeight = 50;
-            this->Género->HeaderText = L"Género";
-            this->Género->MinimumWidth = 25;
-            this->Género->Name = L"Género";
-            // 
-            // Delegado
-            // 
-            this->Delegado->FillWeight = 80;
-            this->Delegado->HeaderText = L"Delegado";
-            this->Delegado->Name = L"Delegado";
-            this->Delegado->Visible = false;
-            // 
-            // listBox1
-            // 
-            this->listBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-                | System::Windows::Forms::AnchorStyles::Right));
-            this->listBox1->FormattingEnabled = true;
-            this->listBox1->Location = System::Drawing::Point(758, 127);
-            this->listBox1->Name = L"listBox1";
-            this->listBox1->Size = System::Drawing::Size(248, 589);
-            this->listBox1->TabIndex = 1;
-            // 
-            // groupBox1
-            // 
-            this->groupBox1->Controls->Add(this->button6);
-            this->groupBox1->Controls->Add(this->button5);
-            this->groupBox1->Controls->Add(this->button4);
-            this->groupBox1->Controls->Add(this->button3);
-            this->groupBox1->Controls->Add(this->button2);
-            this->groupBox1->Location = System::Drawing::Point(12, 38);
-            this->groupBox1->Name = L"groupBox1";
-            this->groupBox1->Size = System::Drawing::Size(265, 83);
-            this->groupBox1->TabIndex = 2;
-            this->groupBox1->TabStop = false;
-            this->groupBox1->Text = L"Ferramentas";
-            // 
-            // button6
-            // 
-            this->button6->Location = System::Drawing::Point(181, 50);
-            this->button6->Name = L"button6";
-            this->button6->Size = System::Drawing::Size(75, 23);
-            this->button6->TabIndex = 5;
-            this->button6->Text = L"button6";
-            this->button6->UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this->button5->Location = System::Drawing::Point(181, 20);
-            this->button5->Name = L"button5";
-            this->button5->Size = System::Drawing::Size(75, 23);
-            this->button5->TabIndex = 4;
-            this->button5->Text = L"button5";
-            this->button5->UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this->button4->Location = System::Drawing::Point(99, 50);
-            this->button4->Name = L"button4";
-            this->button4->Size = System::Drawing::Size(75, 23);
-            this->button4->TabIndex = 3;
-            this->button4->Text = L"button4";
-            this->button4->UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this->button3->Location = System::Drawing::Point(99, 20);
-            this->button3->Name = L"button3";
-            this->button3->Size = System::Drawing::Size(75, 23);
-            this->button3->TabIndex = 2;
-            this->button3->Text = L"button3";
-            this->button3->UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this->button2->Location = System::Drawing::Point(17, 50);
-            this->button2->Name = L"button2";
-            this->button2->Size = System::Drawing::Size(75, 23);
-            this->button2->TabIndex = 1;
-            this->button2->Text = L"button2";
-            this->button2->UseVisualStyleBackColor = true;
-            // 
-            // menuStrip1
-            // 
-            this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
-                this->delegadoToolStripMenuItem,
-                    this->estatísticasToolStripMenuItem, this->visualizaçãoToolStripMenuItem, this->ajudaToolStripMenuItem
-            });
-            this->menuStrip1->Location = System::Drawing::Point(0, 0);
-            this->menuStrip1->Name = L"menuStrip1";
-            this->menuStrip1->Size = System::Drawing::Size(1008, 24);
-            this->menuStrip1->TabIndex = 3;
-            this->menuStrip1->Text = L"menuStrip1";
-            // 
-            // delegadoToolStripMenuItem
-            // 
-            this->delegadoToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->novoDelegadoSortearToolStripMenuItem });
-            this->delegadoToolStripMenuItem->Name = L"delegadoToolStripMenuItem";
-            this->delegadoToolStripMenuItem->Size = System::Drawing::Size(69, 20);
-            this->delegadoToolStripMenuItem->Text = L"Delegado";
-            // 
-            // novoDelegadoSortearToolStripMenuItem
-            // 
-            this->novoDelegadoSortearToolStripMenuItem->Name = L"novoDelegadoSortearToolStripMenuItem";
-            this->novoDelegadoSortearToolStripMenuItem->Size = System::Drawing::Size(204, 22);
-            this->novoDelegadoSortearToolStripMenuItem->Text = L"Novo Delegado (Sortear)";
-            this->novoDelegadoSortearToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::NovoDelegadoSortearToolStripMenuItem_Click);
-            // 
-            // estatísticasToolStripMenuItem
-            // 
-            this->estatísticasToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
-                this->identificarOMaisVelhoToolStripMenuItem,
-                    this->médiaDeIdadesToolStripMenuItem
-            });
-            this->estatísticasToolStripMenuItem->Name = L"estatísticasToolStripMenuItem";
-            this->estatísticasToolStripMenuItem->Size = System::Drawing::Size(76, 20);
-            this->estatísticasToolStripMenuItem->Text = L"Estatísticas";
-            // 
-            // identificarOMaisVelhoToolStripMenuItem
-            // 
-            this->identificarOMaisVelhoToolStripMenuItem->Name = L"identificarOMaisVelhoToolStripMenuItem";
-            this->identificarOMaisVelhoToolStripMenuItem->Size = System::Drawing::Size(197, 22);
-            this->identificarOMaisVelhoToolStripMenuItem->Text = L"Identificar o mais velho";
-            this->identificarOMaisVelhoToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::IdentificarOMaisVelhoToolStripMenuItem_Click);
-            // 
-            // médiaDeIdadesToolStripMenuItem
-            // 
-            this->médiaDeIdadesToolStripMenuItem->Name = L"médiaDeIdadesToolStripMenuItem";
-            this->médiaDeIdadesToolStripMenuItem->Size = System::Drawing::Size(197, 22);
-            this->médiaDeIdadesToolStripMenuItem->Text = L"Média de idades";
-            this->médiaDeIdadesToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MédiaDeIdadesToolStripMenuItem_Click);
-            // 
-            // visualizaçãoToolStripMenuItem
-            // 
-            this->visualizaçãoToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
-                this->mostrarToolStripMenuItem,
-                    this->mostrarOcultarSeletorDeLinhasToolStripMenuItem, this->mostrarOcultarColunaDelegadoToolStripMenuItem
-            });
-            this->visualizaçãoToolStripMenuItem->Name = L"visualizaçãoToolStripMenuItem";
-            this->visualizaçãoToolStripMenuItem->Size = System::Drawing::Size(35, 20);
-            this->visualizaçãoToolStripMenuItem->Text = L"Ver";
-            // 
-            // mostrarToolStripMenuItem
-            // 
-            this->mostrarToolStripMenuItem->Name = L"mostrarToolStripMenuItem";
-            this->mostrarToolStripMenuItem->Size = System::Drawing::Size(312, 22);
-            this->mostrarToolStripMenuItem->Text = L"Mostrar/Ocultar Linha de Introdução";
-            this->mostrarToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MostrarToolStripMenuItem_Click);
-            // 
-            // mostrarOcultarSeletorDeLinhasToolStripMenuItem
-            // 
-            this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Name = L"mostrarOcultarSeletorDeLinhasToolStripMenuItem";
-            this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Size = System::Drawing::Size(312, 22);
-            this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Text = L"Mostrar/Ocultar Coluna de Seleção de Linhas";
-            this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MostrarOcultarSeletorDeLinhasToolStripMenuItem_Click);
-            // 
-            // mostrarOcultarColunaDelegadoToolStripMenuItem
-            // 
-            this->mostrarOcultarColunaDelegadoToolStripMenuItem->Name = L"mostrarOcultarColunaDelegadoToolStripMenuItem";
-            this->mostrarOcultarColunaDelegadoToolStripMenuItem->Size = System::Drawing::Size(312, 22);
-            this->mostrarOcultarColunaDelegadoToolStripMenuItem->Text = L"Mostrar/Ocultar Coluna \"Delegado\"";
-            this->mostrarOcultarColunaDelegadoToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MostrarOcultarColunaDelegadoToolStripMenuItem_Click);
-            // 
-            // ajudaToolStripMenuItem
-            // 
-            this->ajudaToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->acercaToolStripMenuItem });
-            this->ajudaToolStripMenuItem->Name = L"ajudaToolStripMenuItem";
-            this->ajudaToolStripMenuItem->Size = System::Drawing::Size(50, 20);
-            this->ajudaToolStripMenuItem->Text = L"Ajuda";
-            // 
-            // acercaToolStripMenuItem
-            // 
-            this->acercaToolStripMenuItem->Name = L"acercaToolStripMenuItem";
-            this->acercaToolStripMenuItem->Size = System::Drawing::Size(119, 22);
-            this->acercaToolStripMenuItem->Text = L"Acerca...";
-            // 
-            // txt_freguesia
-            // 
-            this->txt_freguesia->Location = System::Drawing::Point(8, 23);
-            this->txt_freguesia->Name = L"txt_freguesia";
-            this->txt_freguesia->Size = System::Drawing::Size(202, 20);
-            this->txt_freguesia->TabIndex = 4;
-            this->txt_freguesia->Leave += gcnew System::EventHandler(this, &Form1::Btn_freguesia_Click);
-            // 
-            // btn_masculino
-            // 
-            this->btn_masculino->Location = System::Drawing::Point(53, 50);
-            this->btn_masculino->Name = L"btn_masculino";
-            this->btn_masculino->Size = System::Drawing::Size(75, 23);
-            this->btn_masculino->TabIndex = 5;
-            this->btn_masculino->Text = L"Masculino";
-            this->btn_masculino->UseVisualStyleBackColor = true;
-            this->btn_masculino->Click += gcnew System::EventHandler(this, &Form1::Btn_freguesia_Click);
-            // 
-            // groupBox2
-            // 
-            this->groupBox2->Controls->Add(this->btn_feminino);
-            this->groupBox2->Controls->Add(this->txt_freguesia);
-            this->groupBox2->Controls->Add(this->btn_masculino);
-            this->groupBox2->Location = System::Drawing::Point(295, 38);
-            this->groupBox2->Name = L"groupBox2";
-            this->groupBox2->Size = System::Drawing::Size(216, 83);
-            this->groupBox2->TabIndex = 6;
-            this->groupBox2->TabStop = false;
-            this->groupBox2->Text = L"Pesquisar por localidade/género";
-            // 
-            // btn_feminino
-            // 
-            this->btn_feminino->Location = System::Drawing::Point(135, 50);
-            this->btn_feminino->Name = L"btn_feminino";
-            this->btn_feminino->Size = System::Drawing::Size(75, 23);
-            this->btn_feminino->TabIndex = 6;
-            this->btn_feminino->Text = L"Feminino";
-            this->btn_feminino->UseVisualStyleBackColor = true;
-            this->btn_feminino->Click += gcnew System::EventHandler(this, &Form1::Btn_feminino_Click);
-            // 
-            // Form1
-            // 
-            this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
-            this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-            this->ClientSize = System::Drawing::Size(1008, 721);
-            this->Controls->Add(this->groupBox2);
-            this->Controls->Add(this->groupBox1);
-            this->Controls->Add(this->listBox1);
-            this->Controls->Add(this->dataGridView1);
-            this->Controls->Add(this->menuStrip1);
-            this->MainMenuStrip = this->menuStrip1;
-            this->Name = L"Form1";
-            this->Text = L"Projecto Alpha";
-            this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
-            this->groupBox1->ResumeLayout(false);
-            this->menuStrip1->ResumeLayout(false);
-            this->menuStrip1->PerformLayout();
-            this->groupBox2->ResumeLayout(false);
-            this->groupBox2->PerformLayout();
-            this->ResumeLayout(false);
-            this->PerformLayout();
+			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
+			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->button6 = (gcnew System::Windows::Forms::Button());
+			this->button5 = (gcnew System::Windows::Forms::Button());
+			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
+			this->delegadoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->novoDelegadoSortearToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->estatísticasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->identificarOMaisVelhoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->médiaDeIdadesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->visualizaçãoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->mostrarToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->mostrarOcultarSeletorDeLinhasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->mostrarOcultarColunaDelegadoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ferramentasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->inicializarTurmaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->adicionarColunasDeDisciplinasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ajudaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->acercaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->txt_freguesia = (gcnew System::Windows::Forms::TextBox());
+			this->btn_masculino = (gcnew System::Windows::Forms::Button());
+			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
+			this->btn_feminino = (gcnew System::Windows::Forms::Button());
+			this->Nome = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Localidade = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->AnoNasc = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Género = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Delegado = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
+			this->groupBox1->SuspendLayout();
+			this->menuStrip1->SuspendLayout();
+			this->groupBox2->SuspendLayout();
+			this->SuspendLayout();
+			// 
+			// dataGridView1
+			// 
+			this->dataGridView1->AllowUserToAddRows = false;
+			this->dataGridView1->AllowUserToDeleteRows = false;
+			this->dataGridView1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
+				this->Nome, this->Localidade,
+					this->AnoNasc, this->Género, this->Delegado
+			});
+			this->dataGridView1->Location = System::Drawing::Point(0, 127);
+			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->RowHeadersVisible = false;
+			this->dataGridView1->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
+			this->dataGridView1->Size = System::Drawing::Size(751, 593);
+			this->dataGridView1->TabIndex = 0;
+			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Form1::DataGridView1_CellContentClick);
+			// 
+			// listBox1
+			// 
+			this->listBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->listBox1->FormattingEnabled = true;
+			this->listBox1->Location = System::Drawing::Point(758, 127);
+			this->listBox1->Name = L"listBox1";
+			this->listBox1->Size = System::Drawing::Size(248, 589);
+			this->listBox1->TabIndex = 1;
+			// 
+			// groupBox1
+			// 
+			this->groupBox1->Controls->Add(this->button6);
+			this->groupBox1->Controls->Add(this->button5);
+			this->groupBox1->Controls->Add(this->button4);
+			this->groupBox1->Controls->Add(this->button3);
+			this->groupBox1->Controls->Add(this->button2);
+			this->groupBox1->Location = System::Drawing::Point(12, 38);
+			this->groupBox1->Name = L"groupBox1";
+			this->groupBox1->Size = System::Drawing::Size(265, 83);
+			this->groupBox1->TabIndex = 2;
+			this->groupBox1->TabStop = false;
+			this->groupBox1->Text = L"Ferramentas";
+			// 
+			// button6
+			// 
+			this->button6->Location = System::Drawing::Point(181, 50);
+			this->button6->Name = L"button6";
+			this->button6->Size = System::Drawing::Size(75, 23);
+			this->button6->TabIndex = 5;
+			this->button6->Text = L"button6";
+			this->button6->UseVisualStyleBackColor = true;
+			// 
+			// button5
+			// 
+			this->button5->Location = System::Drawing::Point(181, 20);
+			this->button5->Name = L"button5";
+			this->button5->Size = System::Drawing::Size(75, 23);
+			this->button5->TabIndex = 4;
+			this->button5->Text = L"button5";
+			this->button5->UseVisualStyleBackColor = true;
+			// 
+			// button4
+			// 
+			this->button4->Location = System::Drawing::Point(99, 50);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(75, 23);
+			this->button4->TabIndex = 3;
+			this->button4->Text = L"button4";
+			this->button4->UseVisualStyleBackColor = true;
+			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(99, 20);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(75, 23);
+			this->button3->TabIndex = 2;
+			this->button3->Text = L"button3";
+			this->button3->UseVisualStyleBackColor = true;
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(17, 50);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->TabIndex = 1;
+			this->button2->Text = L"button2";
+			this->button2->UseVisualStyleBackColor = true;
+			// 
+			// menuStrip1
+			// 
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
+				this->delegadoToolStripMenuItem,
+					this->estatísticasToolStripMenuItem, this->visualizaçãoToolStripMenuItem, this->ferramentasToolStripMenuItem, this->ajudaToolStripMenuItem
+			});
+			this->menuStrip1->Location = System::Drawing::Point(0, 0);
+			this->menuStrip1->Name = L"menuStrip1";
+			this->menuStrip1->Size = System::Drawing::Size(1008, 24);
+			this->menuStrip1->TabIndex = 3;
+			this->menuStrip1->Text = L"menuStrip1";
+			// 
+			// delegadoToolStripMenuItem
+			// 
+			this->delegadoToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->novoDelegadoSortearToolStripMenuItem });
+			this->delegadoToolStripMenuItem->Name = L"delegadoToolStripMenuItem";
+			this->delegadoToolStripMenuItem->Size = System::Drawing::Size(69, 20);
+			this->delegadoToolStripMenuItem->Text = L"Delegado";
+			// 
+			// novoDelegadoSortearToolStripMenuItem
+			// 
+			this->novoDelegadoSortearToolStripMenuItem->Name = L"novoDelegadoSortearToolStripMenuItem";
+			this->novoDelegadoSortearToolStripMenuItem->Size = System::Drawing::Size(204, 22);
+			this->novoDelegadoSortearToolStripMenuItem->Text = L"Novo Delegado (Sortear)";
+			this->novoDelegadoSortearToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::NovoDelegadoSortearToolStripMenuItem_Click);
+			// 
+			// estatísticasToolStripMenuItem
+			// 
+			this->estatísticasToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+				this->identificarOMaisVelhoToolStripMenuItem,
+					this->médiaDeIdadesToolStripMenuItem
+			});
+			this->estatísticasToolStripMenuItem->Name = L"estatísticasToolStripMenuItem";
+			this->estatísticasToolStripMenuItem->Size = System::Drawing::Size(76, 20);
+			this->estatísticasToolStripMenuItem->Text = L"Estatísticas";
+			// 
+			// identificarOMaisVelhoToolStripMenuItem
+			// 
+			this->identificarOMaisVelhoToolStripMenuItem->Name = L"identificarOMaisVelhoToolStripMenuItem";
+			this->identificarOMaisVelhoToolStripMenuItem->Size = System::Drawing::Size(197, 22);
+			this->identificarOMaisVelhoToolStripMenuItem->Text = L"Identificar o mais velho";
+			this->identificarOMaisVelhoToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::IdentificarOMaisVelhoToolStripMenuItem_Click);
+			// 
+			// médiaDeIdadesToolStripMenuItem
+			// 
+			this->médiaDeIdadesToolStripMenuItem->Name = L"médiaDeIdadesToolStripMenuItem";
+			this->médiaDeIdadesToolStripMenuItem->Size = System::Drawing::Size(197, 22);
+			this->médiaDeIdadesToolStripMenuItem->Text = L"Média de idades";
+			this->médiaDeIdadesToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MédiaDeIdadesToolStripMenuItem_Click);
+			// 
+			// visualizaçãoToolStripMenuItem
+			// 
+			this->visualizaçãoToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+				this->mostrarToolStripMenuItem,
+					this->mostrarOcultarSeletorDeLinhasToolStripMenuItem, this->mostrarOcultarColunaDelegadoToolStripMenuItem
+			});
+			this->visualizaçãoToolStripMenuItem->Name = L"visualizaçãoToolStripMenuItem";
+			this->visualizaçãoToolStripMenuItem->Size = System::Drawing::Size(36, 20);
+			this->visualizaçãoToolStripMenuItem->Text = L"Ver";
+			// 
+			// mostrarToolStripMenuItem
+			// 
+			this->mostrarToolStripMenuItem->Name = L"mostrarToolStripMenuItem";
+			this->mostrarToolStripMenuItem->Size = System::Drawing::Size(312, 22);
+			this->mostrarToolStripMenuItem->Text = L"Mostrar/Ocultar Linha de Introdução";
+			this->mostrarToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MostrarToolStripMenuItem_Click);
+			// 
+			// mostrarOcultarSeletorDeLinhasToolStripMenuItem
+			// 
+			this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Name = L"mostrarOcultarSeletorDeLinhasToolStripMenuItem";
+			this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Size = System::Drawing::Size(312, 22);
+			this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Text = L"Mostrar/Ocultar Coluna de Seleção de Linhas";
+			this->mostrarOcultarSeletorDeLinhasToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MostrarOcultarSeletorDeLinhasToolStripMenuItem_Click);
+			// 
+			// mostrarOcultarColunaDelegadoToolStripMenuItem
+			// 
+			this->mostrarOcultarColunaDelegadoToolStripMenuItem->Name = L"mostrarOcultarColunaDelegadoToolStripMenuItem";
+			this->mostrarOcultarColunaDelegadoToolStripMenuItem->Size = System::Drawing::Size(312, 22);
+			this->mostrarOcultarColunaDelegadoToolStripMenuItem->Text = L"Mostrar/Ocultar Coluna \"Delegado\"";
+			this->mostrarOcultarColunaDelegadoToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MostrarOcultarColunaDelegadoToolStripMenuItem_Click);
+			// 
+			// ferramentasToolStripMenuItem
+			// 
+			this->ferramentasToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+				this->inicializarTurmaToolStripMenuItem,
+					this->adicionarColunasDeDisciplinasToolStripMenuItem
+			});
+			this->ferramentasToolStripMenuItem->Name = L"ferramentasToolStripMenuItem";
+			this->ferramentasToolStripMenuItem->Size = System::Drawing::Size(84, 20);
+			this->ferramentasToolStripMenuItem->Text = L"Ferramentas";
+			// 
+			// inicializarTurmaToolStripMenuItem
+			// 
+			this->inicializarTurmaToolStripMenuItem->Name = L"inicializarTurmaToolStripMenuItem";
+			this->inicializarTurmaToolStripMenuItem->Size = System::Drawing::Size(246, 22);
+			this->inicializarTurmaToolStripMenuItem->Text = L"Inicializar Turma";
+			this->inicializarTurmaToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::InicializarTurmaToolStripMenuItem_Click);
+			// 
+			// adicionarColunasDeDisciplinasToolStripMenuItem
+			// 
+			this->adicionarColunasDeDisciplinasToolStripMenuItem->Name = L"adicionarColunasDeDisciplinasToolStripMenuItem";
+			this->adicionarColunasDeDisciplinasToolStripMenuItem->Size = System::Drawing::Size(246, 22);
+			this->adicionarColunasDeDisciplinasToolStripMenuItem->Text = L"Adicionar Colunas de Disciplinas";
+			this->adicionarColunasDeDisciplinasToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::AdicionarColunasDeDisciplinasToolStripMenuItem_Click);
+			// 
+			// ajudaToolStripMenuItem
+			// 
+			this->ajudaToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->acercaToolStripMenuItem });
+			this->ajudaToolStripMenuItem->Name = L"ajudaToolStripMenuItem";
+			this->ajudaToolStripMenuItem->Size = System::Drawing::Size(50, 20);
+			this->ajudaToolStripMenuItem->Text = L"Ajuda";
+			// 
+			// acercaToolStripMenuItem
+			// 
+			this->acercaToolStripMenuItem->Name = L"acercaToolStripMenuItem";
+			this->acercaToolStripMenuItem->Size = System::Drawing::Size(119, 22);
+			this->acercaToolStripMenuItem->Text = L"Acerca...";
+			// 
+			// txt_freguesia
+			// 
+			this->txt_freguesia->Location = System::Drawing::Point(8, 23);
+			this->txt_freguesia->Name = L"txt_freguesia";
+			this->txt_freguesia->Size = System::Drawing::Size(202, 20);
+			this->txt_freguesia->TabIndex = 4;
+			this->txt_freguesia->Leave += gcnew System::EventHandler(this, &Form1::Btn_freguesia_Click);
+			// 
+			// btn_masculino
+			// 
+			this->btn_masculino->Location = System::Drawing::Point(53, 50);
+			this->btn_masculino->Name = L"btn_masculino";
+			this->btn_masculino->Size = System::Drawing::Size(75, 23);
+			this->btn_masculino->TabIndex = 5;
+			this->btn_masculino->Text = L"Masculino";
+			this->btn_masculino->UseVisualStyleBackColor = true;
+			this->btn_masculino->Click += gcnew System::EventHandler(this, &Form1::Btn_freguesia_Click);
+			// 
+			// groupBox2
+			// 
+			this->groupBox2->Controls->Add(this->btn_feminino);
+			this->groupBox2->Controls->Add(this->txt_freguesia);
+			this->groupBox2->Controls->Add(this->btn_masculino);
+			this->groupBox2->Location = System::Drawing::Point(295, 38);
+			this->groupBox2->Name = L"groupBox2";
+			this->groupBox2->Size = System::Drawing::Size(216, 83);
+			this->groupBox2->TabIndex = 6;
+			this->groupBox2->TabStop = false;
+			this->groupBox2->Text = L"Pesquisar por localidade/género";
+			// 
+			// btn_feminino
+			// 
+			this->btn_feminino->Location = System::Drawing::Point(135, 50);
+			this->btn_feminino->Name = L"btn_feminino";
+			this->btn_feminino->Size = System::Drawing::Size(75, 23);
+			this->btn_feminino->TabIndex = 6;
+			this->btn_feminino->Text = L"Feminino";
+			this->btn_feminino->UseVisualStyleBackColor = true;
+			this->btn_feminino->Click += gcnew System::EventHandler(this, &Form1::Btn_feminino_Click);
+			// 
+			// Nome
+			// 
+			this->Nome->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Nome->FillWeight = 170;
+			this->Nome->HeaderText = L"Nome";
+			this->Nome->MinimumWidth = 200;
+			this->Nome->Name = L"Nome";
+			// 
+			// Localidade
+			// 
+			this->Localidade->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Localidade->FillWeight = 90;
+			this->Localidade->HeaderText = L"Localidade";
+			this->Localidade->MinimumWidth = 75;
+			this->Localidade->Name = L"Localidade";
+			// 
+			// AnoNasc
+			// 
+			this->AnoNasc->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->AnoNasc->FillWeight = 20;
+			this->AnoNasc->HeaderText = L"Ano Nasc.";
+			this->AnoNasc->MinimumWidth = 80;
+			this->AnoNasc->Name = L"AnoNasc";
+			// 
+			// Género
+			// 
+			this->Género->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Género->FillWeight = 20;
+			this->Género->HeaderText = L"Género";
+			this->Género->MinimumWidth = 40;
+			this->Género->Name = L"Género";
+			// 
+			// Delegado
+			// 
+			this->Delegado->FillWeight = 80;
+			this->Delegado->HeaderText = L"Delegado";
+			this->Delegado->MinimumWidth = 40;
+			this->Delegado->Name = L"Delegado";
+			this->Delegado->Visible = false;
+			// 
+			// Form1
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->ClientSize = System::Drawing::Size(1008, 721);
+			this->Controls->Add(this->groupBox2);
+			this->Controls->Add(this->groupBox1);
+			this->Controls->Add(this->listBox1);
+			this->Controls->Add(this->dataGridView1);
+			this->Controls->Add(this->menuStrip1);
+			this->MainMenuStrip = this->menuStrip1;
+			this->Name = L"Form1";
+			this->Text = L"Projecto Alpha";
+			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
+			this->groupBox1->ResumeLayout(false);
+			this->menuStrip1->ResumeLayout(false);
+			this->menuStrip1->PerformLayout();
+			this->groupBox2->ResumeLayout(false);
+			this->groupBox2->PerformLayout();
+			this->ResumeLayout(false);
+			this->PerformLayout();
 
-        }
+		}
 #pragma endregion
 
         private: void on_form_load()
@@ -452,6 +510,7 @@ namespace ProjCLR {
         }
     private: void init_grid()
     {
+		dataGridView1->Rows->Clear();
         dataGridView1->Rows->Add("Ana Rita Cunha", "Maximinos", 1998, "F");
         dataGridView1->Rows->Add("Bela Costa Silva", "Lomar", 2002, "F");
         dataGridView1->Rows->Add("Carlos Alberto Costa", "Sequeira", 1999, "M");
@@ -709,6 +768,26 @@ private: void calcular_media()
     dataGridView1->AllowUserToAddRows = linha_intro;
 }
 
+
+private: void gerar_colunas()
+{
+	int cur_n;
+	int target_n;
+
+	cur_n = dataGridView1->ColumnCount;
+	target_n = cur_n + 10;
+
+	dataGridView1->ColumnCount = target_n;
+
+	for (size_t i = cur_n ; i < target_n; i++)
+	{
+		dataGridView1->Columns[i]->HeaderText = "Nota" + i;
+		dataGridView1->Columns[i]->Name = "Nota" + i;
+		dataGridView1->Columns[i]->Width = 45;
+	}	
+}
+
+
 private: System::Void Btn_init_grid_Click(System::Object^ sender, System::EventArgs^ e) { init_grid(); }
 private: System::Void Form1_Load(System::Object^ sender, System::EventArgs^ e) { on_form_load(); }
 private: System::Void ToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) { identificar_mais_velho();  }
@@ -720,5 +799,10 @@ private: System::Void MostrarOcultarSeletorDeLinhasToolStripMenuItem_Click(Syste
 private: System::Void MostrarOcultarColunaDelegadoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {alternar_col_delegado();}
 private: System::Void NovoDelegadoSortearToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { sortear_delegado();}
 private: System::Void MédiaDeIdadesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {calcular_media();}
+private: System::Void DataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {}
+private: System::Void InicializarTurmaToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { init_grid();}
+private: System::Void AdicionarColunasDeDisciplinasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	gerar_colunas();
+}
 };
 }
