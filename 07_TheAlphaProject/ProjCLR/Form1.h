@@ -566,6 +566,7 @@ namespace ProjCLR {
             }
             calcula_medias();
             calcula_negas();
+            atualizar_cores();
         }
     private: void init_grid()
     {
@@ -787,7 +788,7 @@ private: int gerar_nota_especial()
     
     nota = rnd->Next(8, 16); // gerar número aleatório para nota mediana
 
-    extra = rnd->Next(0, 6);
+    extra = rnd->Next(1, 20);
     switch (extra)
     {
     case 0:  // Nota muito baixa
@@ -1019,10 +1020,12 @@ private: void calcula_negas()
     int end_col = 14;
     int n_disciplinas = end_col - start_col;
     int col_negas = 16;
+    int col_estado = 17;
   
     int negas_0_7;
     int negas_8_9;
     int nota;
+    String^ estado = "APROVADO";
 
     bool linha_intro = dataGridView1->AllowUserToAddRows;
     dataGridView1->AllowUserToAddRows = false;
@@ -1039,50 +1042,27 @@ private: void calcula_negas()
             else if (nota < 10)
                 negas_8_9++;
         }
+        if (negas_0_7 > 0)
+            estado = "REPROVADO ";
+        else if ((negas_0_7 + negas_8_9) > 2)
+            estado = "REPROVADO ";
 
         dataGridView1->Rows[i]->Cells[col_negas]->Value = (negas_0_7 + negas_8_9).ToString();
+        dataGridView1->Rows[i]->Cells[col_estado]->Value = estado;
     }
 
     dataGridView1->AllowUserToAddRows = linha_intro;
 }
 
 
-private: void calcula_estados()
+
+private: void atualizar_cores()
 {
-    int start_col = 5;
-    int end_col = 14;
-    int n_disciplinas = end_col - start_col;
-    int col_media = 15;
-    int col_negas = 16;
-    int col_estado = 17;
+    // Colorir notas negativas : vermelho até 7, amarelo 8 ou 9
+    
+    // Colorir reprovados
 
-    Double soma;
-    Double media;
-
-    bool linha_intro = dataGridView1->AllowUserToAddRows;
-    dataGridView1->AllowUserToAddRows = false;
-
-
-    for (size_t i = 0; i < dataGridView1->Rows->Count; i++)
-    {
-        soma = 0;
-        for (int j = start_col; j <= end_col; j++)
-        {
-            soma += Convert::ToDouble(dataGridView1->Rows[i]->Cells[j]->Value);
-            //colecionar negativas para obter estado
-        }
-
-        media = soma / n_disciplinas;
-        //estado = 
-
-        dataGridView1->Rows[i]->Cells[col_media]->Value = Convert::ToString(media);
-        // registar estado da linha
-    }
-
-
-    dataGridView1->AllowUserToAddRows = linha_intro;
 }
-
 
 
 private: System::Void Btn_init_grid_Click(System::Object^ sender, System::EventArgs^ e) { init_grid(); }
