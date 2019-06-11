@@ -893,7 +893,7 @@ private: void stats_notas()
         }
     }
 
-    // Calcular idade média, min e max
+    // Calcular nota média, min e max
     nota_max = nota_min = notas[0][5];
     for (int i = 0; i < n_linhas; i++)
     {
@@ -907,7 +907,7 @@ private: void stats_notas()
     }
     nota_media = soma / (n_linhas * n_disciplinas);
 
-    // Calcular desvio-padrão das idades
+    // Calcular desvio-padrão das notas
     soma = 0;
     for (int i = 0; i < n_linhas; i++)
     {
