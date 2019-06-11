@@ -106,6 +106,7 @@ namespace ProjCLR {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Delegado;
     private: System::Windows::Forms::ToolStripMenuItem^ mostrarOcultarPainelLateralToolStripMenuItem;
     private: System::Windows::Forms::ToolStripMenuItem^ gerarNotasToolStripMenuItem;
+    private: System::Windows::Forms::ToolStripMenuItem^ notasToolStripMenuItem;
 
 
 
@@ -158,6 +159,7 @@ namespace ProjCLR {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
             this->Nome = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
             this->Localidade = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -185,13 +187,14 @@ namespace ProjCLR {
             this->ferramentasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->inicializarTurmaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->adicionarColunasDeDisciplinasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->gerarNotasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->ajudaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->acercaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->txt_freguesia = (gcnew System::Windows::Forms::TextBox());
             this->btn_masculino = (gcnew System::Windows::Forms::Button());
             this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
             this->btn_feminino = (gcnew System::Windows::Forms::Button());
-            this->gerarNotasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->notasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             this->groupBox1->SuspendLayout();
             this->menuStrip1->SuspendLayout();
@@ -202,8 +205,19 @@ namespace ProjCLR {
             // 
             this->dataGridView1->AllowUserToAddRows = false;
             this->dataGridView1->AllowUserToDeleteRows = false;
-            this->dataGridView1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+            this->dataGridView1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+                | System::Windows::Forms::AnchorStyles::Left)
                 | System::Windows::Forms::AnchorStyles::Right));
+            this->dataGridView1->BorderStyle = System::Windows::Forms::BorderStyle::None;
+            dataGridViewCellStyle3->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+            dataGridViewCellStyle3->BackColor = System::Drawing::SystemColors::Control;
+            dataGridViewCellStyle3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
+                System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+            dataGridViewCellStyle3->ForeColor = System::Drawing::SystemColors::WindowText;
+            dataGridViewCellStyle3->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+            dataGridViewCellStyle3->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+            dataGridViewCellStyle3->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+            this->dataGridView1->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
             this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
                 this->Nome, this->Localidade,
@@ -275,14 +289,14 @@ namespace ProjCLR {
             this->groupBox1->Controls->Add(this->button3);
             this->groupBox1->Location = System::Drawing::Point(12, 38);
             this->groupBox1->Name = L"groupBox1";
-            this->groupBox1->Size = System::Drawing::Size(265, 83);
+            this->groupBox1->Size = System::Drawing::Size(177, 83);
             this->groupBox1->TabIndex = 2;
             this->groupBox1->TabStop = false;
             this->groupBox1->Text = L"Ferramentas";
             // 
             // button6
             // 
-            this->button6->Location = System::Drawing::Point(181, 50);
+            this->button6->Location = System::Drawing::Point(88, 53);
             this->button6->Name = L"button6";
             this->button6->Size = System::Drawing::Size(75, 23);
             this->button6->TabIndex = 5;
@@ -291,7 +305,7 @@ namespace ProjCLR {
             // 
             // button5
             // 
-            this->button5->Location = System::Drawing::Point(181, 20);
+            this->button5->Location = System::Drawing::Point(88, 23);
             this->button5->Name = L"button5";
             this->button5->Size = System::Drawing::Size(75, 23);
             this->button5->TabIndex = 4;
@@ -300,7 +314,7 @@ namespace ProjCLR {
             // 
             // button4
             // 
-            this->button4->Location = System::Drawing::Point(99, 50);
+            this->button4->Location = System::Drawing::Point(6, 53);
             this->button4->Name = L"button4";
             this->button4->Size = System::Drawing::Size(75, 23);
             this->button4->TabIndex = 3;
@@ -309,7 +323,7 @@ namespace ProjCLR {
             // 
             // button3
             // 
-            this->button3->Location = System::Drawing::Point(99, 20);
+            this->button3->Location = System::Drawing::Point(6, 23);
             this->button3->Name = L"button3";
             this->button3->Size = System::Drawing::Size(75, 23);
             this->button3->TabIndex = 2;
@@ -355,9 +369,9 @@ namespace ProjCLR {
             // 
             // estatísticasToolStripMenuItem
             // 
-            this->estatísticasToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+            this->estatísticasToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
                 this->identificarOMaisVelhoToolStripMenuItem,
-                    this->médiaDeIdadesToolStripMenuItem
+                    this->médiaDeIdadesToolStripMenuItem, this->notasToolStripMenuItem
             });
             this->estatísticasToolStripMenuItem->Name = L"estatísticasToolStripMenuItem";
             this->estatísticasToolStripMenuItem->Size = System::Drawing::Size(76, 20);
@@ -439,6 +453,13 @@ namespace ProjCLR {
             this->adicionarColunasDeDisciplinasToolStripMenuItem->Text = L"Adicionar Colunas de Disciplinas";
             this->adicionarColunasDeDisciplinasToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::AdicionarColunasDeDisciplinasToolStripMenuItem_Click);
             // 
+            // gerarNotasToolStripMenuItem
+            // 
+            this->gerarNotasToolStripMenuItem->Name = L"gerarNotasToolStripMenuItem";
+            this->gerarNotasToolStripMenuItem->Size = System::Drawing::Size(246, 22);
+            this->gerarNotasToolStripMenuItem->Text = L"Gerar Notas";
+            this->gerarNotasToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::GerarNotasToolStripMenuItem_Click);
+            // 
             // ajudaToolStripMenuItem
             // 
             this->ajudaToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->acercaToolStripMenuItem });
@@ -475,7 +496,7 @@ namespace ProjCLR {
             this->groupBox2->Controls->Add(this->btn_feminino);
             this->groupBox2->Controls->Add(this->txt_freguesia);
             this->groupBox2->Controls->Add(this->btn_masculino);
-            this->groupBox2->Location = System::Drawing::Point(295, 38);
+            this->groupBox2->Location = System::Drawing::Point(195, 38);
             this->groupBox2->Name = L"groupBox2";
             this->groupBox2->Size = System::Drawing::Size(216, 83);
             this->groupBox2->TabIndex = 6;
@@ -492,18 +513,18 @@ namespace ProjCLR {
             this->btn_feminino->UseVisualStyleBackColor = true;
             this->btn_feminino->Click += gcnew System::EventHandler(this, &Form1::Btn_feminino_Click);
             // 
-            // gerarNotasToolStripMenuItem
+            // notasToolStripMenuItem
             // 
-            this->gerarNotasToolStripMenuItem->Name = L"gerarNotasToolStripMenuItem";
-            this->gerarNotasToolStripMenuItem->Size = System::Drawing::Size(246, 22);
-            this->gerarNotasToolStripMenuItem->Text = L"Gerar Notas";
-            this->gerarNotasToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::GerarNotasToolStripMenuItem_Click);
+            this->notasToolStripMenuItem->Name = L"notasToolStripMenuItem";
+            this->notasToolStripMenuItem->Size = System::Drawing::Size(197, 22);
+            this->notasToolStripMenuItem->Text = L"Notas";
+            this->notasToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::NotasToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-            this->ClientSize = System::Drawing::Size(1008, 721);
+            this->ClientSize = System::Drawing::Size(1008, 729);
             this->Controls->Add(this->groupBox2);
             this->Controls->Add(this->groupBox1);
             this->Controls->Add(this->listBox1);
@@ -532,6 +553,10 @@ namespace ProjCLR {
             alternar_painel_lateral();
             gerar_colunas();
             
+            for (size_t i = 2; i < dataGridView1->Columns->Count; i++)
+            {
+                dataGridView1->Columns[i]->DefaultCellStyle->Alignment = DataGridViewContentAlignment::MiddleCenter;
+            }
         }
     private: void init_grid()
     {
@@ -839,6 +864,70 @@ private: void calcular_media()
 }
 
 
+private: void stats_notas()
+{
+    Double notas[30][20] = { -1 };
+    int n_linhas, n_cols, n_disciplinas;
+
+
+    Int16 nota_max, nota_min;
+    Double soma = 0;
+    Double nota_media = 0;
+    Double nota_desv_padrao = 0;
+
+    bool linha_intro = dataGridView1->AllowUserToAddRows;
+    dataGridView1->AllowUserToAddRows = false;
+    n_linhas = dataGridView1->Rows->Count;
+    n_cols = dataGridView1->ColumnCount;
+    n_disciplinas = dataGridView1->ColumnCount - 5;
+
+
+    for (int i = 0; i < n_linhas; i++)
+    {
+        for (int j = 5; j < n_cols; j++)
+        {
+            if (dataGridView1->Rows[i]->Cells[j]->Value == "")
+                notas[i][j] = 0.0;
+            else
+                notas[i][j] = Convert::ToDouble(dataGridView1->Rows[i]->Cells[j]->Value);
+        }
+    }
+
+    // Calcular idade média, min e max
+    nota_max = nota_min = notas[0][5];
+    for (int i = 0; i < n_linhas; i++)
+    {
+        for (int j = 5; j < n_cols; j++)
+        {
+            if (nota_max < notas[i][j])  nota_max = notas[i][j];
+            if (nota_min > notas[i][j])  nota_min = notas[i][j];
+
+            soma += notas[i][j];
+        }
+    }
+    nota_media = soma / (n_linhas * n_disciplinas);
+
+    // Calcular desvio-padrão das idades
+    soma = 0;
+    for (int i = 0; i < n_linhas; i++)
+    {
+        for (int j = 5; j < n_cols; j++)
+            soma += pow((notas[i][j] - nota_media), 2);
+    }
+    nota_desv_padrao = sqrt(soma / (n_linhas * n_disciplinas));
+
+    // Mostrar resultados
+    listBox1->Items->Clear();
+    mostrar_painel_lateral();
+    listBox1->Items->Add("Nota máxima: " + Convert::ToString(nota_max));
+    listBox1->Items->Add("Nota mínima: " + Convert::ToString(nota_min));
+    listBox1->Items->Add("");
+    listBox1->Items->Add("Média global de notas: " + Convert::ToString(nota_media));
+    listBox1->Items->Add("Desv. Padrão: " + Convert::ToString(nota_desv_padrao));
+
+    dataGridView1->AllowUserToAddRows = linha_intro;
+}
+
 private: void gerar_colunas()
 {
 	int cur_n;
@@ -857,8 +946,9 @@ private: void gerar_colunas()
 	{
 		dataGridView1->Columns[i]->HeaderText = disciplinas[i - cur_n];
 		dataGridView1->Columns[i]->Name = "d" + (i - cur_n);
-		dataGridView1->Columns[i]->Width = 35;
-	}	
+		dataGridView1->Columns[i]->Width = 40;
+        
+    }	
 }
 
 
@@ -879,5 +969,6 @@ private: System::Void AdicionarColunasDeDisciplinasToolStripMenuItem_Click(Syste
 private: System::Void MostrarOcultarPainelLateralToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {alternar_painel_lateral();}
 private: System::Void Btn_painel_Click(System::Object^ sender, System::EventArgs^ e) { alternar_painel_lateral();}
 private: System::Void GerarNotasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { gerar_notas();}
+private: System::Void NotasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { stats_notas(); }
 };
 }
