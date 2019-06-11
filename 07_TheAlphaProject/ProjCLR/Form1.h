@@ -13,8 +13,11 @@ namespace ProjCLR {
 	/// <summary>
 	/// Summary for Form1
 	/// </summary>
+
 	public ref class Form1 : public System::Windows::Forms::Form
 	{
+        Random^ rnd = gcnew Random(); // inicializar gerador de numeros aleatórios
+
 	public:
 		Form1(void)
 		{
@@ -102,6 +105,7 @@ namespace ProjCLR {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Género;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Delegado;
     private: System::Windows::Forms::ToolStripMenuItem^ mostrarOcultarPainelLateralToolStripMenuItem;
+    private: System::Windows::Forms::ToolStripMenuItem^ gerarNotasToolStripMenuItem;
 
 
 
@@ -187,6 +191,7 @@ namespace ProjCLR {
             this->btn_masculino = (gcnew System::Windows::Forms::Button());
             this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
             this->btn_feminino = (gcnew System::Windows::Forms::Button());
+            this->gerarNotasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             this->groupBox1->SuspendLayout();
             this->menuStrip1->SuspendLayout();
@@ -412,9 +417,9 @@ namespace ProjCLR {
             // 
             // ferramentasToolStripMenuItem
             // 
-            this->ferramentasToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+            this->ferramentasToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
                 this->inicializarTurmaToolStripMenuItem,
-                    this->adicionarColunasDeDisciplinasToolStripMenuItem
+                    this->adicionarColunasDeDisciplinasToolStripMenuItem, this->gerarNotasToolStripMenuItem
             });
             this->ferramentasToolStripMenuItem->Name = L"ferramentasToolStripMenuItem";
             this->ferramentasToolStripMenuItem->Size = System::Drawing::Size(84, 20);
@@ -486,6 +491,13 @@ namespace ProjCLR {
             this->btn_feminino->Text = L"Feminino";
             this->btn_feminino->UseVisualStyleBackColor = true;
             this->btn_feminino->Click += gcnew System::EventHandler(this, &Form1::Btn_feminino_Click);
+            // 
+            // gerarNotasToolStripMenuItem
+            // 
+            this->gerarNotasToolStripMenuItem->Name = L"gerarNotasToolStripMenuItem";
+            this->gerarNotasToolStripMenuItem->Size = System::Drawing::Size(246, 22);
+            this->gerarNotasToolStripMenuItem->Text = L"Gerar Notas";
+            this->gerarNotasToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::GerarNotasToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -739,26 +751,45 @@ private: int gerar_nota_especial()
 {
     int nota;
     int extra;
+    
+    nota = rnd->Next(8, 16); // gerar número aleatório para nota mediana
 
-    Random^ r = gcnew Random(); // inicializar gerador de numeros aleatórios
-    nota = r->Next(8, 16); // gerar número aleatório para nota mediana
 
-
-    extra = r->Next(0, 6);
+    extra = rnd->Next(0, 6);
     switch (extra)
     {
     case 0:  // Nota muito baixa
-        extra = r->Next(0, nota);
+        extra = rnd->Next(0, nota);
         nota = nota - extra;
         break;
     case 1:  // Nota muito alta
-        extra = r->Next(nota, 21);
+        extra = rnd->Next(nota, 21);
         nota = nota + extra;
         break;
     default:
         break;
     }
     return nota;
+}
+
+private: void gerar_notas()
+{
+    int n_notas = 10;
+    int n_linhas;
+
+    bool linha_intro = dataGridView1->AllowUserToAddRows;
+    dataGridView1->AllowUserToAddRows = false;
+    n_linhas = dataGridView1->Rows->Count;
+
+    for (int i = 0;  i < n_linhas;  i++)
+    {
+        for (int j = dataGridView1->Columns->Count - n_notas; j < dataGridView1->Columns->Count; j++)
+        {
+            dataGridView1->Rows[i]->Cells[j]->Value = gerar_nota_especial();
+        }
+
+    }
+    dataGridView1->AllowUserToAddRows = linha_intro;
 }
 
 private: void calcular_media()
@@ -851,5 +882,6 @@ private: System::Void InicializarTurmaToolStripMenuItem_Click(System::Object^ se
 private: System::Void AdicionarColunasDeDisciplinasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { gerar_colunas(); }
 private: System::Void MostrarOcultarPainelLateralToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {alternar_painel_lateral();}
 private: System::Void Btn_painel_Click(System::Object^ sender, System::EventArgs^ e) { alternar_painel_lateral();}
+private: System::Void GerarNotasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { gerar_notas();}
 };
 }
