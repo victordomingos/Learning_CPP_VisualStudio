@@ -749,22 +749,18 @@ namespace ProjCLR {
 // Gerar uma nota aleatória com ponderação (menos probabilidade de ocorrência nos extremos)
 private: int gerar_nota_especial()
 {
-    int nota;
-    int extra;
+    int nota, extra;
     
     nota = rnd->Next(8, 16); // gerar número aleatório para nota mediana
-
 
     extra = rnd->Next(0, 6);
     switch (extra)
     {
     case 0:  // Nota muito baixa
-        extra = rnd->Next(0, nota);
-        nota = nota - extra;
+        nota = rnd->Next(0, nota);
         break;
     case 1:  // Nota muito alta
-        extra = rnd->Next(nota, 21);
-        nota = nota + extra;
+        nota = rnd->Next(nota, 21);
         break;
     default:
         break;
