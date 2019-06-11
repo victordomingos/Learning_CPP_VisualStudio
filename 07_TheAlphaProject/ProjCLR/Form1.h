@@ -4,6 +4,7 @@
 namespace ProjCLR {
 
 	using namespace System;
+    using namespace System::IO;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
@@ -99,14 +100,19 @@ namespace ProjCLR {
 	private: System::Windows::Forms::ToolStripMenuItem^ ferramentasToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ inicializarTurmaToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ adicionarColunasDeDisciplinasToolStripMenuItem;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nome;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Localidade;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ AnoNasc;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Género;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Delegado;
+
+
+
+
+
     private: System::Windows::Forms::ToolStripMenuItem^ mostrarOcultarPainelLateralToolStripMenuItem;
     private: System::Windows::Forms::ToolStripMenuItem^ gerarNotasToolStripMenuItem;
     private: System::Windows::Forms::ToolStripMenuItem^ notasToolStripMenuItem;
+    private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nome;
+    private: System::Windows::Forms::DataGridViewTextBoxColumn^ Localidade;
+    private: System::Windows::Forms::DataGridViewTextBoxColumn^ AnoNasc;
+    private: System::Windows::Forms::DataGridViewTextBoxColumn^ Género;
+    private: System::Windows::Forms::DataGridViewTextBoxColumn^ Delegado;
 
 
 
@@ -159,13 +165,8 @@ namespace ProjCLR {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-            this->Nome = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-            this->Localidade = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-            this->AnoNasc = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-            this->Género = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-            this->Delegado = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
             this->listBox1 = (gcnew System::Windows::Forms::ListBox());
             this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
             this->button6 = (gcnew System::Windows::Forms::Button());
@@ -179,6 +180,7 @@ namespace ProjCLR {
             this->estatísticasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->identificarOMaisVelhoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->médiaDeIdadesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->notasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->visualizaçãoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->mostrarToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->mostrarOcultarSeletorDeLinhasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -194,7 +196,11 @@ namespace ProjCLR {
             this->btn_masculino = (gcnew System::Windows::Forms::Button());
             this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
             this->btn_feminino = (gcnew System::Windows::Forms::Button());
-            this->notasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->Nome = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+            this->Localidade = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+            this->AnoNasc = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+            this->Género = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+            this->Delegado = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             this->groupBox1->SuspendLayout();
             this->menuStrip1->SuspendLayout();
@@ -209,15 +215,15 @@ namespace ProjCLR {
                 | System::Windows::Forms::AnchorStyles::Left)
                 | System::Windows::Forms::AnchorStyles::Right));
             this->dataGridView1->BorderStyle = System::Windows::Forms::BorderStyle::None;
-            dataGridViewCellStyle3->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-            dataGridViewCellStyle3->BackColor = System::Drawing::SystemColors::Control;
-            dataGridViewCellStyle3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
+            dataGridViewCellStyle1->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+            dataGridViewCellStyle1->BackColor = System::Drawing::SystemColors::Control;
+            dataGridViewCellStyle1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
                 System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-            dataGridViewCellStyle3->ForeColor = System::Drawing::SystemColors::WindowText;
-            dataGridViewCellStyle3->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-            dataGridViewCellStyle3->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-            dataGridViewCellStyle3->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-            this->dataGridView1->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1->ForeColor = System::Drawing::SystemColors::WindowText;
+            dataGridViewCellStyle1->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+            dataGridViewCellStyle1->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+            dataGridViewCellStyle1->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+            this->dataGridView1->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
             this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
                 this->Nome, this->Localidade,
@@ -230,46 +236,6 @@ namespace ProjCLR {
             this->dataGridView1->Size = System::Drawing::Size(752, 593);
             this->dataGridView1->TabIndex = 0;
             this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Form1::DataGridView1_CellContentClick);
-            // 
-            // Nome
-            // 
-            this->Nome->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-            this->Nome->FillWeight = 170;
-            this->Nome->HeaderText = L"Nome";
-            this->Nome->MinimumWidth = 200;
-            this->Nome->Name = L"Nome";
-            // 
-            // Localidade
-            // 
-            this->Localidade->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-            this->Localidade->FillWeight = 90;
-            this->Localidade->HeaderText = L"Localidade";
-            this->Localidade->MinimumWidth = 75;
-            this->Localidade->Name = L"Localidade";
-            // 
-            // AnoNasc
-            // 
-            this->AnoNasc->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-            this->AnoNasc->FillWeight = 20;
-            this->AnoNasc->HeaderText = L"Ano Nasc.";
-            this->AnoNasc->MinimumWidth = 80;
-            this->AnoNasc->Name = L"AnoNasc";
-            // 
-            // Género
-            // 
-            this->Género->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-            this->Género->FillWeight = 20;
-            this->Género->HeaderText = L"Género";
-            this->Género->MinimumWidth = 40;
-            this->Género->Name = L"Género";
-            // 
-            // Delegado
-            // 
-            this->Delegado->FillWeight = 80;
-            this->Delegado->HeaderText = L"Delegado";
-            this->Delegado->MinimumWidth = 40;
-            this->Delegado->Name = L"Delegado";
-            this->Delegado->Visible = false;
             // 
             // listBox1
             // 
@@ -390,6 +356,13 @@ namespace ProjCLR {
             this->médiaDeIdadesToolStripMenuItem->Size = System::Drawing::Size(197, 22);
             this->médiaDeIdadesToolStripMenuItem->Text = L"Média de idades";
             this->médiaDeIdadesToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MédiaDeIdadesToolStripMenuItem_Click);
+            // 
+            // notasToolStripMenuItem
+            // 
+            this->notasToolStripMenuItem->Name = L"notasToolStripMenuItem";
+            this->notasToolStripMenuItem->Size = System::Drawing::Size(197, 22);
+            this->notasToolStripMenuItem->Text = L"Notas";
+            this->notasToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::NotasToolStripMenuItem_Click);
             // 
             // visualizaçãoToolStripMenuItem
             // 
@@ -513,12 +486,46 @@ namespace ProjCLR {
             this->btn_feminino->UseVisualStyleBackColor = true;
             this->btn_feminino->Click += gcnew System::EventHandler(this, &Form1::Btn_feminino_Click);
             // 
-            // notasToolStripMenuItem
+            // Nome
             // 
-            this->notasToolStripMenuItem->Name = L"notasToolStripMenuItem";
-            this->notasToolStripMenuItem->Size = System::Drawing::Size(197, 22);
-            this->notasToolStripMenuItem->Text = L"Notas";
-            this->notasToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::NotasToolStripMenuItem_Click);
+            this->Nome->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+            this->Nome->FillWeight = 170;
+            this->Nome->HeaderText = L"Nome";
+            this->Nome->MinimumWidth = 200;
+            this->Nome->Name = L"Nome";
+            // 
+            // Localidade
+            // 
+            this->Localidade->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+            this->Localidade->FillWeight = 90;
+            this->Localidade->HeaderText = L"Localidade";
+            this->Localidade->MinimumWidth = 75;
+            this->Localidade->Name = L"Localidade";
+            // 
+            // AnoNasc
+            // 
+            this->AnoNasc->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::None;
+            this->AnoNasc->FillWeight = 20;
+            this->AnoNasc->HeaderText = L"Ano Nasc.";
+            this->AnoNasc->MinimumWidth = 80;
+            this->AnoNasc->Name = L"AnoNasc";
+            this->AnoNasc->Width = 80;
+            // 
+            // Género
+            // 
+            this->Género->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+            this->Género->FillWeight = 20;
+            this->Género->HeaderText = L"Género";
+            this->Género->MinimumWidth = 40;
+            this->Género->Name = L"Género";
+            // 
+            // Delegado
+            // 
+            this->Delegado->FillWeight = 80;
+            this->Delegado->HeaderText = L"Delegado";
+            this->Delegado->MinimumWidth = 40;
+            this->Delegado->Name = L"Delegado";
+            this->Delegado->Visible = false;
             // 
             // Form1
             // 
@@ -557,6 +564,8 @@ namespace ProjCLR {
             {
                 dataGridView1->Columns[i]->DefaultCellStyle->Alignment = DataGridViewContentAlignment::MiddleCenter;
             }
+            calcula_medias();
+            calcula_negas();
         }
     private: void init_grid()
     {
@@ -796,24 +805,29 @@ private: int gerar_nota_especial()
 private: void gerar_notas()
 {
     int n_notas = 10;
+    int cols_extra_direita = 3;
     int n_linhas;
+    int col_start;
+    int col_end;
 
     bool linha_intro = dataGridView1->AllowUserToAddRows;
     dataGridView1->AllowUserToAddRows = false;
     n_linhas = dataGridView1->Rows->Count;
 
+    col_start = dataGridView1->Columns->Count - n_notas - cols_extra_direita;
+    col_end = dataGridView1->Columns->Count - cols_extra_direita;
+
     for (int i = 0;  i < n_linhas;  i++)
     {
-        for (int j = dataGridView1->Columns->Count - n_notas; j < dataGridView1->Columns->Count; j++)
-        {
+        for (int j = col_start; j < col_end; j++) //-2: ultimas 2 colunas são média e estado
             dataGridView1->Rows[i]->Cells[j]->Value = gerar_nota_especial();
-        }
-
     }
+    calcula_medias();
+    calcula_negas();
     dataGridView1->AllowUserToAddRows = linha_intro;
 }
 
-private: void calcular_media()
+private: void calcular_media_idades()
 {
     int idades[100];
     int n, idade_linha, ano_linha;
@@ -878,8 +892,8 @@ private: void stats_notas()
     bool linha_intro = dataGridView1->AllowUserToAddRows;
     dataGridView1->AllowUserToAddRows = false;
     n_linhas = dataGridView1->Rows->Count;
-    n_cols = dataGridView1->ColumnCount;
-    n_disciplinas = dataGridView1->ColumnCount - 5;
+    n_cols = dataGridView1->ColumnCount-3;
+    n_disciplinas = dataGridView1->ColumnCount - 8;
 
 
     for (int i = 0; i < n_linhas; i++)
@@ -932,24 +946,143 @@ private: void gerar_colunas()
 {
 	int cur_n;
 	int target_n;
+    int i;
 
-    array<String^>^ disciplinas = gcnew array<String^>(10) {
-        "POR", "ING", "FIL", "MAT", "FÍS", "QUÍ", "GEO", "HIS", "EF", "MOR"
+    array<String^>^ novas_colunas = gcnew array<String^>(13) {
+        "POR", "ING", "FIL", "MAT", "FÍS", "QUÍ", "GEO", "HIS", "EF", "MOR", "Média", "Negativas", "Estado"
     };
 
     cur_n = dataGridView1->ColumnCount;
-	target_n = cur_n + disciplinas->Length;
+	target_n = cur_n + novas_colunas->Length;
 
 	dataGridView1->ColumnCount = target_n;
 
-	for (size_t i = cur_n ; i < target_n; i++)
-	{
-		dataGridView1->Columns[i]->HeaderText = disciplinas[i - cur_n];
-		dataGridView1->Columns[i]->Name = "d" + (i - cur_n);
-		dataGridView1->Columns[i]->Width = 40;
-        
-    }	
+    for (int i = cur_n; i < target_n; i++)
+    {
+        dataGridView1->Columns[i]->HeaderText = novas_colunas[i - cur_n];
+
+        if (novas_colunas[i - cur_n] == "Média")
+        {
+            dataGridView1->Columns[i]->Name = "media";
+            dataGridView1->Columns[i]->Width = 50;
+        }
+        else if (novas_colunas[i - cur_n] == "Negativas")
+        {
+            dataGridView1->Columns[i]->Name = "negativas";
+            dataGridView1->Columns[i]->Width = 60;
+        }
+        else if (novas_colunas[i - cur_n] == "Estado")
+        {
+            dataGridView1->Columns[i]->Name = "estado";
+            dataGridView1->Columns[i]->Width = 60;
+        }
+        else
+        {
+            dataGridView1->Columns[i]->Name = "d" + (i - cur_n);
+            dataGridView1->Columns[i]->Width = 40;
+            
+        }
+    }
 }
+
+
+private: void calcula_medias()
+{
+    int start_col = 5;
+    int end_col = 14;
+    int n_disciplinas = end_col + 1 - start_col;
+    int col_media = 15;
+
+    Double soma;
+    Double media;
+        
+    bool linha_intro = dataGridView1->AllowUserToAddRows;
+    dataGridView1->AllowUserToAddRows = false;
+    
+    for (size_t i = 0; i < dataGridView1->Rows->Count; i++)
+    {
+        soma = 0;
+        for (int j = start_col; j <= end_col; j++)
+            soma += Convert::ToDouble(dataGridView1->Rows[i]->Cells[j]->Value);
+        
+        media = soma / n_disciplinas;
+        dataGridView1->Rows[i]->Cells[col_media]->Value = media.ToString("f2");
+    }
+       
+    dataGridView1->AllowUserToAddRows = linha_intro;
+}
+
+
+private: void calcula_negas()
+{
+    int start_col = 5;
+    int end_col = 14;
+    int n_disciplinas = end_col - start_col;
+    int col_negas = 16;
+  
+    int negas_0_7;
+    int negas_8_9;
+    int nota;
+
+    bool linha_intro = dataGridView1->AllowUserToAddRows;
+    dataGridView1->AllowUserToAddRows = false;
+
+    for (size_t i = 0; i < dataGridView1->Rows->Count; i++)
+    {
+        negas_0_7 = 0;
+        negas_8_9 = 0;
+        for (int j = start_col; j <= end_col; j++)
+        {
+            nota = Convert::ToInt16(dataGridView1->Rows[i]->Cells[j]->Value);
+            if (nota < 8)
+                negas_0_7++;
+            else if (nota < 10)
+                negas_8_9++;
+        }
+
+        dataGridView1->Rows[i]->Cells[col_negas]->Value = (negas_0_7 + negas_8_9).ToString();
+    }
+
+    dataGridView1->AllowUserToAddRows = linha_intro;
+}
+
+
+private: void calcula_estados()
+{
+    int start_col = 5;
+    int end_col = 14;
+    int n_disciplinas = end_col - start_col;
+    int col_media = 15;
+    int col_negas = 16;
+    int col_estado = 17;
+
+    Double soma;
+    Double media;
+
+    bool linha_intro = dataGridView1->AllowUserToAddRows;
+    dataGridView1->AllowUserToAddRows = false;
+
+
+    for (size_t i = 0; i < dataGridView1->Rows->Count; i++)
+    {
+        soma = 0;
+        for (int j = start_col; j <= end_col; j++)
+        {
+            soma += Convert::ToDouble(dataGridView1->Rows[i]->Cells[j]->Value);
+            //colecionar negativas para obter estado
+        }
+
+        media = soma / n_disciplinas;
+        //estado = 
+
+        dataGridView1->Rows[i]->Cells[col_media]->Value = Convert::ToString(media);
+        // registar estado da linha
+    }
+
+
+    dataGridView1->AllowUserToAddRows = linha_intro;
+}
+
 
 
 private: System::Void Btn_init_grid_Click(System::Object^ sender, System::EventArgs^ e) { init_grid(); }
@@ -962,7 +1095,7 @@ private: System::Void MostrarToolStripMenuItem_Click(System::Object^ sender, Sys
 private: System::Void MostrarOcultarSeletorDeLinhasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { alternar_row_headers(); }
 private: System::Void MostrarOcultarColunaDelegadoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {alternar_col_delegado();}
 private: System::Void NovoDelegadoSortearToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { sortear_delegado();}
-private: System::Void MédiaDeIdadesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {calcular_media();}
+private: System::Void MédiaDeIdadesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {calcular_media_idades();}
 private: System::Void DataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {}
 private: System::Void InicializarTurmaToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { init_grid();}
 private: System::Void AdicionarColunasDeDisciplinasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { gerar_colunas(); }
