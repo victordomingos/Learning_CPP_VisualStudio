@@ -150,6 +150,86 @@ namespace ProjCLR {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     protected:
 
 	private:
@@ -233,7 +313,7 @@ namespace ProjCLR {
             this->dataGridView1->Name = L"dataGridView1";
             this->dataGridView1->RowHeadersVisible = false;
             this->dataGridView1->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->dataGridView1->Size = System::Drawing::Size(752, 593);
+            this->dataGridView1->Size = System::Drawing::Size(752, 525);
             this->dataGridView1->TabIndex = 0;
             this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Form1::DataGridView1_CellContentClick);
             // 
@@ -244,7 +324,7 @@ namespace ProjCLR {
             this->listBox1->FormattingEnabled = true;
             this->listBox1->Location = System::Drawing::Point(758, 127);
             this->listBox1->Name = L"listBox1";
-            this->listBox1->Size = System::Drawing::Size(248, 589);
+            this->listBox1->Size = System::Drawing::Size(248, 511);
             this->listBox1->TabIndex = 1;
             // 
             // groupBox1
@@ -491,47 +571,49 @@ namespace ProjCLR {
             this->Nome->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
             this->Nome->FillWeight = 170;
             this->Nome->HeaderText = L"Nome";
-            this->Nome->MinimumWidth = 200;
+            this->Nome->MinimumWidth = 150;
             this->Nome->Name = L"Nome";
             // 
             // Localidade
             // 
             this->Localidade->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-            this->Localidade->FillWeight = 90;
+            this->Localidade->FillWeight = 80;
             this->Localidade->HeaderText = L"Localidade";
             this->Localidade->MinimumWidth = 75;
             this->Localidade->Name = L"Localidade";
             // 
             // AnoNasc
             // 
-            this->AnoNasc->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::None;
-            this->AnoNasc->FillWeight = 20;
+            this->AnoNasc->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
+            this->AnoNasc->FillWeight = 10;
             this->AnoNasc->HeaderText = L"Ano Nasc.";
-            this->AnoNasc->MinimumWidth = 80;
+            this->AnoNasc->MinimumWidth = 78;
             this->AnoNasc->Name = L"AnoNasc";
-            this->AnoNasc->Width = 80;
+            this->AnoNasc->Width = 82;
             // 
             // Género
             // 
-            this->Género->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-            this->Género->FillWeight = 20;
+            this->Género->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
+            this->Género->FillWeight = 80;
             this->Género->HeaderText = L"Género";
-            this->Género->MinimumWidth = 40;
+            this->Género->MinimumWidth = 45;
             this->Género->Name = L"Género";
+            this->Género->Width = 67;
             // 
             // Delegado
             // 
             this->Delegado->FillWeight = 80;
             this->Delegado->HeaderText = L"Delegado";
-            this->Delegado->MinimumWidth = 40;
+            this->Delegado->MinimumWidth = 55;
             this->Delegado->Name = L"Delegado";
             this->Delegado->Visible = false;
+            this->Delegado->Width = 55;
             // 
             // Form1
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-            this->ClientSize = System::Drawing::Size(1008, 729);
+            this->ClientSize = System::Drawing::Size(1008, 661);
             this->Controls->Add(this->groupBox2);
             this->Controls->Add(this->groupBox1);
             this->Controls->Add(this->listBox1);
@@ -539,6 +621,7 @@ namespace ProjCLR {
             this->Controls->Add(this->btn_painel);
             this->Controls->Add(this->menuStrip1);
             this->MainMenuStrip = this->menuStrip1;
+            this->MinimumSize = System::Drawing::Size(1000, 640);
             this->Name = L"Form1";
             this->Text = L"Projecto Alpha";
             this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
@@ -688,7 +771,7 @@ namespace ProjCLR {
             }
             else
             {
-                for (size_t i = 0; i <= linhas; i++)
+                for (int i = 0; i <= linhas; i++)
                 {
 
                     listBox1->Items->Add(resultados[i]);
@@ -832,9 +915,9 @@ private: void calcular_media_idades()
     int idades[100];
     int n, idade_linha, ano_linha;
     int idade_max, idade_min;
-    float soma = 0; 
-    float idade_media = 0;
-    float idade_desv_padrao = 0;
+    double soma = 0; 
+    double idade_media = 0;
+    double idade_desv_padrao = 0;
     
     bool linha_intro = dataGridView1->AllowUserToAddRows;
     dataGridView1->AllowUserToAddRows = false;
@@ -883,11 +966,10 @@ private: void stats_notas()
     Double notas[30][20] = { -1 };
     int n_linhas, n_cols, n_disciplinas;
 
-
-    Int16 nota_max, nota_min;
-    Double soma = 0;
-    Double nota_media = 0;
-    Double nota_desv_padrao = 0;
+    Double nota_max, nota_min;
+    Double soma = 0.0;
+    Double nota_media = 0.0;
+    Double nota_desv_padrao = 0.0;
 
     bool linha_intro = dataGridView1->AllowUserToAddRows;
     dataGridView1->AllowUserToAddRows = false;
@@ -957,7 +1039,7 @@ private: void gerar_colunas()
 
 	dataGridView1->ColumnCount = target_n;
 
-    for (int i = cur_n; i < target_n; i++)
+    for (i = cur_n; i < target_n; i++)
     {
         dataGridView1->Columns[i]->HeaderText = novas_colunas[i - cur_n];
 
@@ -965,6 +1047,7 @@ private: void gerar_colunas()
         {
             dataGridView1->Columns[i]->Name = "media";
             dataGridView1->Columns[i]->Width = 50;
+            
         }
         else if (novas_colunas[i - cur_n] == "Negativas")
         {
@@ -974,12 +1057,13 @@ private: void gerar_colunas()
         else if (novas_colunas[i - cur_n] == "Estado")
         {
             dataGridView1->Columns[i]->Name = "estado";
-            dataGridView1->Columns[i]->Width = 80;
+            dataGridView1->Columns[i]->Width = 100;
+            dataGridView1->Columns[i]->MinimumWidth = 100;
         }
         else
         {
             dataGridView1->Columns[i]->Name = "d" + (i - cur_n);
-            dataGridView1->Columns[i]->Width = 40;
+            dataGridView1->Columns[i]->Width = 38;
             
         }
     }
