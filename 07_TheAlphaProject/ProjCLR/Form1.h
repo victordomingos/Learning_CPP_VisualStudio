@@ -559,14 +559,13 @@ namespace ProjCLR {
             init_grid();
             alternar_painel_lateral();
             gerar_colunas();
-            
-            for (size_t i = 2; i < dataGridView1->Columns->Count; i++)
-            {
-                dataGridView1->Columns[i]->DefaultCellStyle->Alignment = DataGridViewContentAlignment::MiddleCenter;
-            }
             calcula_medias();
             calcula_negas();
-            atualizar_cores();
+			
+			for (size_t i = 2; i < dataGridView1->Columns->Count; i++)
+				dataGridView1->Columns[i]->DefaultCellStyle->Alignment = DataGridViewContentAlignment::MiddleCenter;
+			
+			atualizar_cores();
         }
     private: void init_grid()
     {
@@ -975,7 +974,7 @@ private: void gerar_colunas()
         else if (novas_colunas[i - cur_n] == "Estado")
         {
             dataGridView1->Columns[i]->Name = "estado";
-            dataGridView1->Columns[i]->Width = 60;
+            dataGridView1->Columns[i]->Width = 80;
         }
         else
         {
@@ -1058,12 +1057,50 @@ private: void calcula_negas()
 
 private: void atualizar_cores()
 {
-    // Colorir notas negativas : vermelho até 7, amarelo 8 ou 9
-    
-    // Colorir reprovados
+   	int start_col = 5;
+	int end_col = 14;
+	int n_disciplinas = end_col + 1 - start_col;
+	int nota;
+
+	bool linha_intro = dataGridView1->AllowUserToAddRows;
+	dataGridView1->AllowUserToAddRows = false;
+
+	for (size_t i = 0; i < dataGridView1->Rows->Count; i++)
+	{
+		for (int j = start_col; j <= end_col; j++)
+		{
+			// Colorir notas negativas : vermelho até 7, amarelo 8 ou 9
+   
+			nota = Convert::ToInt16(dataGridView1->Rows[i]->Cells[j]->Value);
+			if (nota < 8)
+				//vermelho
+				;
+			else if (nota < 10)
+				// amarelo
+				; //TODO
+
+
+		}
+
+		// Colorir reprovados
+	}
+
+	dataGridView1->AllowUserToAddRows = linha_intro;
+}
+
+
+// Guardar o nome do delegado num ficheiro de texto
+private: void guardar_delegado()
+{
 
 }
 
+		 
+// Recuperar o nome do delegado a partir de um ficheiro de texto
+private: void recuperar_delegado()
+{
+
+}
 
 private: System::Void Btn_init_grid_Click(System::Object^ sender, System::EventArgs^ e) { init_grid(); }
 private: System::Void Form1_Load(System::Object^ sender, System::EventArgs^ e) { on_form_load(); }
