@@ -251,7 +251,7 @@ namespace ProjCLR {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
             this->Nome = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
             this->Localidade = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -268,6 +268,8 @@ namespace ProjCLR {
             this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
             this->delegadoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->novoDelegadoSortearToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->guardarDelegadoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->toolStripComboBox1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->estatísticasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->identificarOMaisVelhoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->médiaDeIdadesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -289,8 +291,6 @@ namespace ProjCLR {
             this->btn_feminino = (gcnew System::Windows::Forms::Button());
             this->statusStrip1 = (gcnew System::Windows::Forms::StatusStrip());
             this->lbl_status = (gcnew System::Windows::Forms::ToolStripStatusLabel());
-            this->guardarDelegadoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-            this->toolStripComboBox1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             this->groupBox1->SuspendLayout();
             this->menuStrip1->SuspendLayout();
@@ -306,15 +306,15 @@ namespace ProjCLR {
                 | System::Windows::Forms::AnchorStyles::Left)
                 | System::Windows::Forms::AnchorStyles::Right));
             this->dataGridView1->BorderStyle = System::Windows::Forms::BorderStyle::None;
-            dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-            dataGridViewCellStyle2->BackColor = System::Drawing::SystemColors::Control;
-            dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
+            dataGridViewCellStyle1->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+            dataGridViewCellStyle1->BackColor = System::Drawing::SystemColors::Control;
+            dataGridViewCellStyle1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
                 System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-            dataGridViewCellStyle2->ForeColor = System::Drawing::SystemColors::WindowText;
-            dataGridViewCellStyle2->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-            dataGridViewCellStyle2->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-            dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-            this->dataGridView1->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1->ForeColor = System::Drawing::SystemColors::WindowText;
+            dataGridViewCellStyle1->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+            dataGridViewCellStyle1->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+            dataGridViewCellStyle1->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+            this->dataGridView1->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
             this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
                 this->Nome, this->Localidade,
@@ -469,6 +469,20 @@ namespace ProjCLR {
             this->novoDelegadoSortearToolStripMenuItem->Size = System::Drawing::Size(204, 22);
             this->novoDelegadoSortearToolStripMenuItem->Text = L"Novo Delegado (Sortear)";
             this->novoDelegadoSortearToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::NovoDelegadoSortearToolStripMenuItem_Click);
+            // 
+            // guardarDelegadoToolStripMenuItem
+            // 
+            this->guardarDelegadoToolStripMenuItem->Name = L"guardarDelegadoToolStripMenuItem";
+            this->guardarDelegadoToolStripMenuItem->Size = System::Drawing::Size(204, 22);
+            this->guardarDelegadoToolStripMenuItem->Text = L"Guardar Delegado";
+            this->guardarDelegadoToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::GuardarDelegadoToolStripMenuItem_Click);
+            // 
+            // toolStripComboBox1
+            // 
+            this->toolStripComboBox1->Name = L"toolStripComboBox1";
+            this->toolStripComboBox1->Size = System::Drawing::Size(204, 22);
+            this->toolStripComboBox1->Text = L"Recuperar Delegado";
+            this->toolStripComboBox1->Click += gcnew System::EventHandler(this, &Form1::ToolStripComboBox1_Click);
             // 
             // estatísticasToolStripMenuItem
             // 
@@ -637,19 +651,6 @@ namespace ProjCLR {
             this->lbl_status->Name = L"lbl_status";
             this->lbl_status->Size = System::Drawing::Size(0, 17);
             // 
-            // guardarDelegadoToolStripMenuItem
-            // 
-            this->guardarDelegadoToolStripMenuItem->Name = L"guardarDelegadoToolStripMenuItem";
-            this->guardarDelegadoToolStripMenuItem->Size = System::Drawing::Size(204, 22);
-            this->guardarDelegadoToolStripMenuItem->Text = L"Guardar Delegado";
-            // 
-            // toolStripComboBox1
-            // 
-            this->toolStripComboBox1->Name = L"toolStripComboBox1";
-            this->toolStripComboBox1->Size = System::Drawing::Size(204, 22);
-            this->toolStripComboBox1->Text = L"Recuperar Delegado";
-            this->toolStripComboBox1->Click += gcnew System::EventHandler(this, &Form1::ToolStripComboBox1_Click);
-            // 
             // Form1
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -665,7 +666,7 @@ namespace ProjCLR {
             this->MainMenuStrip = this->menuStrip1;
             this->MinimumSize = System::Drawing::Size(1000, 640);
             this->Name = L"Form1";
-            this->Text = L"Projecto Alpha";
+            this->Text = L"Projeto Alpha";
             this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
             this->groupBox1->ResumeLayout(false);
@@ -1089,12 +1090,13 @@ private: void gerar_colunas()
         {
             dataGridView1->Columns[i]->Name = "media";
             dataGridView1->Columns[i]->Width = 50;
-            
+            dataGridView1->Columns[i]->DefaultCellStyle->ForeColor = Color::Blue;
         }
         else if (novas_colunas[i - cur_n] == "Negativas")
         {
             dataGridView1->Columns[i]->Name = "negativas";
             dataGridView1->Columns[i]->Width = 60;
+            dataGridView1->Columns[i]->DefaultCellStyle->ForeColor = Color::Blue;
         }
         else if (novas_colunas[i - cur_n] == "Estado")
         {
@@ -1106,7 +1108,6 @@ private: void gerar_colunas()
         {
             dataGridView1->Columns[i]->Name = "d" + (i - cur_n);
             dataGridView1->Columns[i]->Width = 38;
-            
         }
     }
 }
@@ -1241,7 +1242,24 @@ private: void atualizar_estado()
          // Guardar o nome do delegado num ficheiro de texto
 private: void guardar_delegado()
 {
+    String^ filename = "_Projeto_Alpha__delegado.txt";
+    StreamWriter^ fp = gcnew StreamWriter(filename);
+    String^ delegado = "";
+    int n_formandos;
 
+    bool linha_intro = dataGridView1->AllowUserToAddRows;
+    dataGridView1->AllowUserToAddRows = false;
+    n_formandos = dataGridView1->Rows->Count;
+    dataGridView1->AllowUserToAddRows = linha_intro;
+
+    for (int i = 0; i < n_formandos && delegado==""; i++)
+    {
+        if (dataGridView1->Rows[i]->Cells["Delegado"]->Value == "X")
+            delegado = dataGridView1->Rows[i]->Cells["Nome"]->Value->ToString();
+    }
+
+    fp->WriteLine(delegado);
+    fp->Close();
 }
 
 
@@ -1249,6 +1267,41 @@ private: void guardar_delegado()
 private: void recuperar_delegado()
 {
 
+    String^ filename = "_Projeto_Alpha__delegado.txt";
+    StreamReader^ fp;
+    String^ delegado;
+    int n_formandos;
+
+    bool linha_intro = dataGridView1->AllowUserToAddRows;
+    dataGridView1->AllowUserToAddRows = false;
+    n_formandos = dataGridView1->Rows->Count;
+    dataGridView1->AllowUserToAddRows = linha_intro;
+
+    try
+    {
+        fp = gcnew StreamReader(filename);
+    }
+    catch (FileNotFoundException^)
+    {
+        MessageBox::Show("Não há nenhum delegado guardado.");
+        return;
+    }
+    delegado = fp->ReadLine();
+    
+
+    if (delegado == "" || delegado == nullptr)
+        MessageBox::Show("Não há nenhum delegado guardado.");
+
+    for (int i = 0; i < n_formandos; i++)
+    {
+        if (dataGridView1->Rows[i]->Cells["Nome"]->Value->ToString() == delegado)
+            dataGridView1->Rows[i]->Cells["Delegado"]->Value = "X";
+        else
+            dataGridView1->Rows[i]->Cells["Delegado"]->Value = "";
+    }
+
+    fp->Close();
+    dataGridView1->Columns["Delegado"]->Visible = true;
 }
 
 private: void status_formando()
@@ -1302,7 +1355,7 @@ private: System::Void MostrarOcultarPainelLateralToolStripMenuItem_Click(System:
 private: System::Void Btn_painel_Click(System::Object^ sender, System::EventArgs^ e) { alternar_painel_lateral();}
 private: System::Void GerarNotasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { gerar_notas();}
 private: System::Void NotasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { stats_notas(); }
-private: System::Void ToolStripComboBox1_Click(System::Object^ sender, System::EventArgs^ e) {
-}
+private: System::Void ToolStripComboBox1_Click(System::Object^ sender, System::EventArgs^ e) { recuperar_delegado(); }
+private: System::Void GuardarDelegadoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { guardar_delegado();}
 };
 }
