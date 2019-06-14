@@ -400,8 +400,9 @@ namespace ProjCLR {
             this->button6->Name = L"button6";
             this->button6->Size = System::Drawing::Size(75, 23);
             this->button6->TabIndex = 5;
-            this->button6->Text = L"button6";
+            this->button6->Text = L"GerarNotas";
             this->button6->UseVisualStyleBackColor = true;
+            this->button6->Click += gcnew System::EventHandler(this, &Form1::Button6_Click);
             // 
             // button5
             // 
@@ -910,20 +911,28 @@ namespace ProjCLR {
 // Gerar uma nota aleatória com ponderação (menos probabilidade de ocorrência nos extremos)
 private: int gerar_nota_especial()
 {
-    int nota, extra;
-    
-    nota = rnd->Next(8, 16); // gerar número aleatório para nota mediana
-
-    extra = rnd->Next(1, 20);
-    switch (extra)
+    int nota, pimPamPum;
+ 
+    pimPamPum = rnd->Next(1, 180);
+    switch (pimPamPum)
     {
-    case 0:  // Nota muito baixa
-        nota = rnd->Next(0, nota);
+    case 1:  // Negativa muito baixa
+        nota = rnd->Next(1, 8);
         break;
-    case 1:  // Nota muito alta
-        nota = rnd->Next(nota, 21);
+    case 2: case 3: case 4: case 5: case 6: // Negativa alta
+        nota = rnd->Next(8, 10);
+        break;
+    case 10: case 11: case 12: case 13: case 14: case 15: case 16: case 17: case 18: // Nota alta
+        nota = rnd->Next(15, 18);
+        break;
+    case 20: case 21: case 22: // Nota muito alta
+        nota = rnd->Next(18, 20);
+        break;
+    case 100: // Nota máxima
+        nota = 20;
         break;
     default:
+        nota = rnd->Next(10, 16); // gerar número aleatório para nota mediana
         break;
     }
     return nota;
@@ -1151,7 +1160,7 @@ private: void calcula_negas()
     int negas_0_7;
     int negas_8_9;
     int nota;
-    String^ estado = "APROVADO";
+    String^ estado;
 
     bool linha_intro = dataGridView1->AllowUserToAddRows;
     dataGridView1->AllowUserToAddRows = false;
@@ -1172,6 +1181,8 @@ private: void calcula_negas()
             estado = "REPROVADO";
         else if ((negas_0_7 + negas_8_9) > 2)
             estado = "REPROVADO";
+        else
+            estado = "APROVADO";
 
         dataGridView1->Rows[i]->Cells[col_negas]->Value = (negas_0_7 + negas_8_9).ToString();
         dataGridView1->Rows[i]->Cells[col_estado]->Value = estado;
@@ -1357,5 +1368,6 @@ private: System::Void GerarNotasToolStripMenuItem_Click(System::Object^ sender, 
 private: System::Void NotasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { stats_notas(); }
 private: System::Void ToolStripComboBox1_Click(System::Object^ sender, System::EventArgs^ e) { recuperar_delegado(); }
 private: System::Void GuardarDelegadoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { guardar_delegado();}
+private: System::Void Button6_Click(System::Object^ sender, System::EventArgs^ e) { gerar_notas();}
 };
 }
