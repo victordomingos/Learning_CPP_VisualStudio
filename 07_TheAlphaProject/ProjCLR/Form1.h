@@ -912,29 +912,17 @@ namespace ProjCLR {
 private: int gerar_nota_especial()
 {
     int nota, pimPamPum;
- 
+
     pimPamPum = rnd->Next(1, 180);
-    switch (pimPamPum)
-    {
-    case 1:  // Negativa muito baixa
-        nota = rnd->Next(1, 8);
-        break;
-    case 2: case 3: case 4: case 5: case 6: // Negativa alta
-        nota = rnd->Next(8, 10);
-        break;
-    case 10: case 11: case 12: case 13: case 14: case 15: case 16: case 17: case 18: // Nota alta
-        nota = rnd->Next(15, 18);
-        break;
-    case 20: case 21: case 22: // Nota muito alta
-        nota = rnd->Next(18, 20);
-        break;
-    case 100: // Nota máxima
-        nota = 20;
-        break;
-    default:
-        nota = rnd->Next(10, 16); // gerar número aleatório para nota mediana
-        break;
-    }
+    for (int k = 0; k < 99; k++) { pimPamPum = rnd->Next(1, 100); }
+   
+    if (pimPamPum ==1 )                          nota = rnd->Next(1, 8);   // Negativa baixa
+    else if (pimPamPum >= 5  && pimPamPum < 10)  nota = rnd->Next(8, 10);  // Negativa alta
+    else if (pimPamPum >= 20 && pimPamPum < 50)  nota = rnd->Next(15, 18); // Nota alta
+    else if (pimPamPum >= 50 && pimPamPum < 70)  nota = rnd->Next(18, 20); // Nota muito alta
+    else if (pimPamPum >= 95)                    nota = 20;                // Nota máxima
+    else nota = rnd->Next(10, 15); // gerar número aleatório para nota mediana
+
     return nota;
 }
 
