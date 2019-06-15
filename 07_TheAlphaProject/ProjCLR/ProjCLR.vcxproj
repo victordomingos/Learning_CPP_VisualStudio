@@ -141,6 +141,9 @@
     <ClInclude Include="Form1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="GeradorAvaliacoes.h" />
+    <ClInclude Include="Janela.h" />
+    <ClInclude Include="Tabela.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">

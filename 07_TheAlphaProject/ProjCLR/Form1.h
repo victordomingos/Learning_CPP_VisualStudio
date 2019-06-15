@@ -1,5 +1,9 @@
 #pragma once
 #include <math.h>
+#include "GeradorAvaliacoes.h"
+#include "Janela.h"
+#include "Tabela.h"
+
 
 namespace ProjCLR {
 
@@ -17,7 +21,9 @@ namespace ProjCLR {
 
 	public ref class Form1 : public System::Windows::Forms::Form
 	{
-        Random^ rnd = gcnew Random(); // inicializar gerador de numeros aleatórios
+        GeradorAvaliacoes^ ga = gcnew GeradorAvaliacoes();
+        Tabela^ tabela = gcnew Tabela();
+        Janela^ janela = gcnew Janela();
 
 	public:
 		Form1(void)
@@ -686,14 +692,14 @@ namespace ProjCLR {
         private: void on_form_load()
         {
             init_grid();
-            alternar_painel_lateral();
-            gerar_colunas();
+            janela->alternar_painel_lateral(listBox1, dataGridView1, btn_painel);
+            tabela->gerar_colunas(dataGridView1);
             
 			
 			for (size_t i = 2; i < dataGridView1->Columns->Count; i++)
 				dataGridView1->Columns[i]->DefaultCellStyle->Alignment = DataGridViewContentAlignment::MiddleCenter;
 			
-			atualizar_tabela();
+			tabela->atualizar_tabela(dataGridView1, lbl_status);
         }
     private: void init_grid()
     {
@@ -739,7 +745,7 @@ namespace ProjCLR {
                 ano_mais_velho = ano_linha;
         }
 
-        mostrar_painel_lateral();
+        janela->mostrar_painel_lateral(listBox1, dataGridView1, btn_painel);
         dataGridView1->ClearSelection();
         listBox1->Items->Clear();
         listBox1->Items->Add("Elemento(s) mais velho(s):");
@@ -780,7 +786,7 @@ namespace ProjCLR {
 
         dataGridView1->ClearSelection();
         listBox1->Items->Clear();
-        mostrar_painel_lateral();
+        janela->mostrar_painel_lateral(listBox1, dataGridView1, btn_painel);
 
         for (size_t i = 0; i < dataGridView1->Rows->Count; i++)
         {
@@ -829,57 +835,7 @@ namespace ProjCLR {
 
     }
 
-    private: void alternar_linha_introducao()
-    {
-        if (dataGridView1->AllowUserToAddRows)
-            dataGridView1->AllowUserToAddRows = false;
-        else
-            dataGridView1->AllowUserToAddRows = true;
-    }
-
-    private: void alternar_row_headers()
-    {
-        if (dataGridView1->RowHeadersVisible)
-            dataGridView1->RowHeadersVisible = false;
-        else
-            dataGridView1->RowHeadersVisible = true;
-    }
-
-
-    private: void alternar_col_delegado()
-    {
-        if (dataGridView1->Columns["Delegado"]->Visible)
-            dataGridView1->Columns["Delegado"]->Visible = false;
-        else
-            dataGridView1->Columns["Delegado"]->Visible = true;
-    }
-
-             
-    private: void alternar_painel_lateral()
-    {
-        int w = listBox1->Width + 8;
-
-        if (listBox1->Visible)
-        {
-            listBox1->Visible = false;
-            dataGridView1->Width += w;
-            btn_painel->Text = "Mostrar Painel";
-        }
-        else
-        {
-            dataGridView1->Width = dataGridView1->Width - w;
-            listBox1->Visible = true;
-            btn_painel->Text = "Ocultar Painel";
-        }
-    }
-
-
-    private: void mostrar_painel_lateral()
-    {
-        if (listBox1->Visible == false)
-            alternar_painel_lateral();
-    }
-
+      
     
     private: void sortear_delegado()
     {
@@ -908,47 +864,6 @@ namespace ProjCLR {
     }
 
 
-// Gerar uma nota aleatória com ponderação (menos probabilidade de ocorrência nos extremos)
-private: int gerar_nota_especial()
-{
-    int nota, pimPamPum;
-
-    pimPamPum = rnd->Next(1, 180);
-    for (int k = 0; k < 99; k++) { pimPamPum = rnd->Next(1, 100); }
-   
-    if (pimPamPum ==1 )                          nota = rnd->Next(1, 8);   // Negativa baixa
-    else if (pimPamPum >= 5  && pimPamPum < 10)  nota = rnd->Next(8, 10);  // Negativa alta
-    else if (pimPamPum >= 20 && pimPamPum < 50)  nota = rnd->Next(15, 18); // Nota alta
-    else if (pimPamPum >= 50 && pimPamPum < 70)  nota = rnd->Next(18, 20); // Nota muito alta
-    else if (pimPamPum >= 95)                    nota = 20;                // Nota máxima
-    else nota = rnd->Next(10, 15); // gerar número aleatório para nota mediana
-
-    return nota;
-}
-
-private: void gerar_notas()
-{
-    int n_notas = 10;
-    int cols_extra_direita = 3;
-    int n_linhas;
-    int col_start;
-    int col_end;
-
-    bool linha_intro = dataGridView1->AllowUserToAddRows;
-    dataGridView1->AllowUserToAddRows = false;
-    n_linhas = dataGridView1->Rows->Count;
-
-    col_start = dataGridView1->Columns->Count - n_notas - cols_extra_direita;
-    col_end = dataGridView1->Columns->Count - cols_extra_direita;
-
-    for (int i = 0;  i < n_linhas;  i++)
-    {
-        for (int j = col_start; j < col_end; j++) //-2: ultimas 2 colunas são média e estado
-            dataGridView1->Rows[i]->Cells[j]->Value = gerar_nota_especial();
-    }
-    atualizar_tabela();
-    dataGridView1->AllowUserToAddRows = linha_intro;
-}
 
 private: void calcular_media_idades()
 {
@@ -990,7 +905,7 @@ private: void calcular_media_idades()
     
     // Mostrar resultados
     listBox1->Items->Clear();
-    mostrar_painel_lateral();
+    janela->mostrar_painel_lateral(listBox1, dataGridView1, btn_painel);
     listBox1->Items->Add("Idade do mais velho: " + Convert::ToString(idade_max) + " anos");
     listBox1->Items->Add("Idade do mais novo: " + Convert::ToString(idade_min) + " anos");
     listBox1->Items->Add("");
@@ -1054,7 +969,7 @@ private: void stats_notas()
 
     // Mostrar resultados
     listBox1->Items->Clear();
-    mostrar_painel_lateral();
+    janela->mostrar_painel_lateral(listBox1, dataGridView1, btn_painel);
     listBox1->Items->Add("Nota máxima: " + Convert::ToString(nota_max));
     listBox1->Items->Add("Nota mínima: " + Convert::ToString(nota_min));
     listBox1->Items->Add("");
@@ -1063,178 +978,6 @@ private: void stats_notas()
 
     dataGridView1->AllowUserToAddRows = linha_intro;
 }
-
-private: void gerar_colunas()
-{
-	int cur_n;
-	int target_n;
-    int i;
-
-    array<String^>^ novas_colunas = gcnew array<String^>(13) {
-        "POR", "ING", "FIL", "MAT", "FÍS", "QUÍ", "GEO", "HIS", "EF", "MOR", "Média", "Negativas", "Estado"
-    };
-
-    cur_n = dataGridView1->ColumnCount;
-	target_n = cur_n + novas_colunas->Length;
-
-	dataGridView1->ColumnCount = target_n;
-
-    for (i = cur_n; i < target_n; i++)
-    {
-        dataGridView1->Columns[i]->HeaderText = novas_colunas[i - cur_n];
-
-        if (novas_colunas[i - cur_n] == "Média")
-        {
-            dataGridView1->Columns[i]->Name = "media";
-            dataGridView1->Columns[i]->Width = 50;
-            dataGridView1->Columns[i]->DefaultCellStyle->ForeColor = Color::Blue;
-        }
-        else if (novas_colunas[i - cur_n] == "Negativas")
-        {
-            dataGridView1->Columns[i]->Name = "negativas";
-            dataGridView1->Columns[i]->Width = 60;
-            dataGridView1->Columns[i]->DefaultCellStyle->ForeColor = Color::Blue;
-        }
-        else if (novas_colunas[i - cur_n] == "Estado")
-        {
-            dataGridView1->Columns[i]->Name = "estado";
-            dataGridView1->Columns[i]->Width = 100;
-            dataGridView1->Columns[i]->MinimumWidth = 100;
-        }
-        else
-        {
-            dataGridView1->Columns[i]->Name = "d" + (i - cur_n);
-            dataGridView1->Columns[i]->Width = 38;
-        }
-    }
-}
-
-
-private: void calcula_medias()
-{
-    int start_col = 5;
-    int end_col = 14;
-    int n_disciplinas = end_col + 1 - start_col;
-    int col_media = 15;
-
-    Double soma;
-    Double media;
-        
-    bool linha_intro = dataGridView1->AllowUserToAddRows;
-    dataGridView1->AllowUserToAddRows = false;
-    
-    for (size_t i = 0; i < dataGridView1->Rows->Count; i++)
-    {
-        soma = 0;
-        for (int j = start_col; j <= end_col; j++)
-            soma += Convert::ToDouble(dataGridView1->Rows[i]->Cells[j]->Value);
-        
-        media = soma / n_disciplinas;
-        dataGridView1->Rows[i]->Cells[col_media]->Value = media.ToString("f2");
-    }
-       
-    dataGridView1->AllowUserToAddRows = linha_intro;
-}
-
-
-private: void calcula_negas()
-{
-    int start_col = 5;
-    int end_col = 14;
-    int n_disciplinas = end_col - start_col;
-    int col_negas = 16;
-    int col_estado = 17;
-  
-    int negas_0_7;
-    int negas_8_9;
-    int nota;
-    String^ estado;
-
-    bool linha_intro = dataGridView1->AllowUserToAddRows;
-    dataGridView1->AllowUserToAddRows = false;
-
-    for (size_t i = 0; i < dataGridView1->Rows->Count; i++)
-    {
-        negas_0_7 = 0;
-        negas_8_9 = 0;
-        for (int j = start_col; j <= end_col; j++)
-        {
-            nota = Convert::ToInt16(dataGridView1->Rows[i]->Cells[j]->Value);
-            if (nota < 8)
-                negas_0_7++;
-            else if (nota < 10)
-                negas_8_9++;
-        }
-        if (negas_0_7 > 0)
-            estado = "REPROVADO";
-        else if ((negas_0_7 + negas_8_9) > 2)
-            estado = "REPROVADO";
-        else
-            estado = "APROVADO";
-
-        dataGridView1->Rows[i]->Cells[col_negas]->Value = (negas_0_7 + negas_8_9).ToString();
-        dataGridView1->Rows[i]->Cells[col_estado]->Value = estado;
-    }
-
-    dataGridView1->AllowUserToAddRows = linha_intro;
-}
-
-
-
-private: void atualizar_cores()
-{
-   	int start_col = 5;
-	int end_col = 14;
-	int n_disciplinas = end_col + 1 - start_col;
-    
-	int nota;
-
-	bool linha_intro = dataGridView1->AllowUserToAddRows;
-	dataGridView1->AllowUserToAddRows = false;
-    int n_formandos = dataGridView1->Rows->Count;
-
-    for (size_t i = 0; i < n_formandos; i++)
-	{
-		for (int j = start_col; j <= end_col; j++)
-		{
-			// Colorir notas negativas : vermelho até 7, amarelo 8 ou 9
-   
-			nota = Convert::ToInt16(dataGridView1->Rows[i]->Cells[j]->Value);
-            if (nota < 8)
-                dataGridView1->Rows[i]->Cells[j]->Style->BackColor = Color::LightCyan;
-			else if (nota < 10)
-                dataGridView1->Rows[i]->Cells[j]->Style->BackColor = Color::Yellow;
-            else
-                dataGridView1->Rows[i]->Cells[j]->Style->BackColor = Color::White;
-
-		}
-
-        for (int i = 0; i < n_formandos; i++)
-        {
-            if (dataGridView1->Rows[i]->Cells["Estado"]->Value == "REPROVADO")
-                dataGridView1->Rows[i]->Cells["Estado"]->Style->BackColor = Color::Salmon;
-            else
-                dataGridView1->Rows[i]->Cells["Estado"]->Style->BackColor = Color::White;
-        }
-	}
-
-	dataGridView1->AllowUserToAddRows = linha_intro;
-}
-
-
-private: void atualizar_estado()
-{
-    String^ estado;
-    
-    bool linha_intro = dataGridView1->AllowUserToAddRows;
-    dataGridView1->AllowUserToAddRows = false;
-    int n_formandos = dataGridView1->Rows->Count;
-    dataGridView1->AllowUserToAddRows = linha_intro;
-
-    estado = Convert::ToString(n_formandos) + " formandos.";
-    lbl_status->Text = estado;
-}
-
 
 
 
@@ -1328,34 +1071,32 @@ private: void status_formando()
 }
 
 
-private: void atualizar_tabela()
-{
-    calcula_medias();
-    calcula_negas();
-    atualizar_cores();
-    atualizar_estado();
-}
-
 private: System::Void Btn_init_grid_Click(System::Object^ sender, System::EventArgs^ e) { init_grid(); }
 private: System::Void Form1_Load(System::Object^ sender, System::EventArgs^ e) { on_form_load(); }
 private: System::Void ToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) { identificar_mais_velho();  }
 private: System::Void IdentificarOMaisVelhoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {identificar_mais_velho();}
 private: System::Void Btn_freguesia_Click(System::Object^ sender, System::EventArgs^ e) { procurar_por_localidade("M"); }
 private: System::Void Btn_feminino_Click(System::Object^ sender, System::EventArgs^ e) { procurar_por_localidade("F"); }
-private: System::Void MostrarToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { alternar_linha_introducao(); }
-private: System::Void MostrarOcultarSeletorDeLinhasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { alternar_row_headers(); }
-private: System::Void MostrarOcultarColunaDelegadoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {alternar_col_delegado();}
+private: System::Void MostrarToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { tabela->alternar_linha_introducao(dataGridView1); }
+private: System::Void MostrarOcultarSeletorDeLinhasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { tabela->alternar_row_headers(dataGridView1); }
+private: System::Void MostrarOcultarColunaDelegadoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {tabela->alternar_col_delegado(dataGridView1);}
 private: System::Void NovoDelegadoSortearToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { sortear_delegado();}
 private: System::Void MédiaDeIdadesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {calcular_media_idades();}
 private: System::Void DataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) { status_formando(); }
 private: System::Void InicializarTurmaToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { init_grid();}
-private: System::Void AdicionarColunasDeDisciplinasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { gerar_colunas(); }
-private: System::Void MostrarOcultarPainelLateralToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {alternar_painel_lateral();}
-private: System::Void Btn_painel_Click(System::Object^ sender, System::EventArgs^ e) { alternar_painel_lateral();}
-private: System::Void GerarNotasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { gerar_notas();}
+private: System::Void AdicionarColunasDeDisciplinasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { tabela->gerar_colunas(dataGridView1); }
+private: System::Void MostrarOcultarPainelLateralToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {janela->alternar_painel_lateral(listBox1, dataGridView1, btn_painel);}
+private: System::Void Btn_painel_Click(System::Object^ sender, System::EventArgs^ e) { janela->alternar_painel_lateral(listBox1, dataGridView1, btn_painel);}
+
+private: System::Void GerarNotasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) 
+{ 
+    ga->gerar_notas(dataGridView1);
+    tabela->atualizar_tabela(dataGridView1, lbl_status);
+}
+
 private: System::Void NotasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { stats_notas(); }
 private: System::Void ToolStripComboBox1_Click(System::Object^ sender, System::EventArgs^ e) { recuperar_delegado(); }
 private: System::Void GuardarDelegadoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { guardar_delegado();}
-private: System::Void Button6_Click(System::Object^ sender, System::EventArgs^ e) { gerar_notas();}
+private: System::Void Button6_Click(System::Object^ sender, System::EventArgs^ e) { ga->gerar_notas(dataGridView1);}
 };
 }

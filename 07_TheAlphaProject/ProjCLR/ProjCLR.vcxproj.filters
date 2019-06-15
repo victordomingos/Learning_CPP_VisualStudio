@@ -23,5 +23,14 @@
     <ClInclude Include="Form1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GeradorAvaliacoes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tabela.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Janela.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
