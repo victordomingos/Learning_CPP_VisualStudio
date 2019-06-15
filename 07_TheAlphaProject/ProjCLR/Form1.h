@@ -50,15 +50,11 @@ namespace ProjCLR {
     private: System::Windows::Forms::GroupBox^ groupBox1;
 
 
-
     private: System::Windows::Forms::Button^ button6;
     private: System::Windows::Forms::Button^ button5;
     private: System::Windows::Forms::Button^ button4;
     private: System::Windows::Forms::Button^ button3;
     private: System::Windows::Forms::Button^ btn_painel;
-
-
-
 
 
 
@@ -68,17 +64,11 @@ namespace ProjCLR {
     private: System::Windows::Forms::ToolStripMenuItem^ ajudaToolStripMenuItem;
     private: System::Windows::Forms::ToolStripMenuItem^ acercaToolStripMenuItem;
 
-
-
-
     private: System::Windows::Forms::ToolStripMenuItem^ identificarOMaisVelhoToolStripMenuItem;
     private: System::Windows::Forms::TextBox^ txt_freguesia;
     private: System::Windows::Forms::Button^ btn_masculino;
 
     private: System::Windows::Forms::GroupBox^ groupBox2;
-
-
-
 
 
     private: System::Windows::Forms::ToolStripMenuItem^ visualizaçãoToolStripMenuItem;
@@ -87,29 +77,14 @@ namespace ProjCLR {
     private: System::Windows::Forms::ToolStripMenuItem^ mostrarOcultarColunaDelegadoToolStripMenuItem;
 
 
-
-
-
     private: System::Windows::Forms::Button^ btn_feminino;
     private: System::Windows::Forms::ToolStripMenuItem^ novoDelegadoSortearToolStripMenuItem;
 
-
-
-
-
     private: System::Windows::Forms::ToolStripMenuItem^ médiaDeIdadesToolStripMenuItem;
-
-
-
-
 
 	private: System::Windows::Forms::ToolStripMenuItem^ ferramentasToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ inicializarTurmaToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ adicionarColunasDeDisciplinasToolStripMenuItem;
-
-
-
-
 
     private: System::Windows::Forms::ToolStripMenuItem^ mostrarOcultarPainelLateralToolStripMenuItem;
     private: System::Windows::Forms::ToolStripMenuItem^ gerarNotasToolStripMenuItem;
@@ -123,121 +98,6 @@ namespace ProjCLR {
     private: System::Windows::Forms::ToolStripStatusLabel^ lbl_status;
     private: System::Windows::Forms::ToolStripMenuItem^ guardarDelegadoToolStripMenuItem;
     private: System::Windows::Forms::ToolStripMenuItem^ toolStripComboBox1;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1097,6 +957,10 @@ private: System::Void GerarNotasToolStripMenuItem_Click(System::Object^ sender, 
 private: System::Void NotasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { stats_notas(); }
 private: System::Void ToolStripComboBox1_Click(System::Object^ sender, System::EventArgs^ e) { recuperar_delegado(); }
 private: System::Void GuardarDelegadoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) { guardar_delegado();}
-private: System::Void Button6_Click(System::Object^ sender, System::EventArgs^ e) { ga->gerar_notas(dataGridView1);}
+private: System::Void Button6_Click(System::Object^ sender, System::EventArgs^ e) 
+{ 
+    ga->gerar_notas(dataGridView1);
+    tabela->atualizar_tabela(dataGridView1, lbl_status);
+}
 };
 }

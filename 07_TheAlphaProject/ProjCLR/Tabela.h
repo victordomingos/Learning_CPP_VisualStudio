@@ -215,5 +215,7 @@ public: void alternar_col_delegado(DataGridView^ dataGridView1)
         dataGridView1->Columns["Delegado"]->Visible = true;
 }
 
+
+
 };
 
