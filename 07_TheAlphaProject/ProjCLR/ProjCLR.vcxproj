@@ -135,9 +135,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Acerca.cpp" />
     <ClCompile Include="Form1.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Acerca.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Form1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -146,6 +150,9 @@
     <ClInclude Include="Tabela.h" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Acerca.resx">
+      <DependentUpon>Acerca.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.h</DependentUpon>
     </EmbeddedResource>
